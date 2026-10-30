@@ -37,11 +37,21 @@ Needs Node 18+ and nothing from npm.
 | qwen2.5-coder:3b | 1/3 | 5/5 |
 | qwen2.5-coder:7b | 1/3 | 5/5 |
 
-  Repair is solved because the validator message names the fix. Stacks fail because both models drop the required `stack` field when the request names the stack only once, and the 3B model also mixed up `mcp`/`agent`. That is the first real gap a trained model, or a better prompt, has to close. `flisk doctor` output is not tested yet.
-- The dataset is tiny (29 unique valid files), so training a LoRA is not justified yet.
+  Repair is solved because the validator message names the fix. Stacks failed because both models dropped the required `stack` field.
+
+### After the stack fix (prompt v2 + a `stack` rule + one worked array example)
+
+| Model | Stack, fresh (3) | Stack 2, seen (4) | Main (12) | Held-out (8) | Repair (5) |
+|---|---|---|---|---|---|
+| qwen2.5-coder:3b | 1/3 | 4/4 | 12/12 | 7/8 | 5/5 |
+| qwen2.5-coder:7b | 3/3 | 4/4 | 11/12 | 8/8 | 5/5 |
+
+- The 7B model now handles whole stacks. The 3B model does not reliably (1/3 on the fresh set) and slipped from 8/8 to 7/8 on held-out, so it is the one a trained model could help most.
+- `tasks-stack2` was written after the `stack` rule and the worked example resembles it (Redis plus API), so count it as seen. `tasks-stack3` is the fair one. Only 3 tasks: treat it as a signal, not a score.
+- `flisk doctor` output is still untested.
 
 ## Next
 
-1. Fix the stack gap (prompt first, then data), re-test on a fresh stack set, add `flisk doctor` output tasks.
+1. Add more fresh stack tasks and `flisk doctor` output tasks. Use the 7B model with the v2 prompt as the working default; try a LoRA only for the 3B model if small and fast matters.
 2. If a model still fails those with the v2 prompt, grow the dataset and try a small LoRA. If not, ship the prompt as a Flisk skill and serve a base model with `flisk resource brain --type inference`.
 3. Keep data private until you have checked which source repos are public.

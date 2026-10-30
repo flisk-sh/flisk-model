@@ -1,0 +1,20 @@
+[
+  { "id": "s3-cms", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"cms\" stack: a bring-your-own Postgres called \"cms-db\" (image postgres:16, port 5432, no health path), a migrator called \"cms-migrate\" that depends on \"cms-db\", and an HTTP API backend called \"cms-api\" on port 5300 that depends on \"cms-migrate\". Reply with a JSON array of the three objects and nothing else.",
+    "services": [
+      { "appName": "cms-db", "appType": "bring-your-own", "stack": "cms", "image": "postgres:16", "port": 5432 },
+      { "appName": "cms-migrate", "appType": "migrator", "stack": "cms", "dependsOn": ["cms-db"] },
+      { "appName": "cms-api", "appType": "backend", "stack": "cms", "port": 5300, "dependsOn": ["cms-migrate"] } ] },
+  { "id": "s3-bot", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"bot\" stack: a local model server called \"bot-llm\" (bring-your-own, image vllm/vllm-openai, port 8000, health check /v1/models), an MCP server called \"bot-tools\" on port 5400, and an AI agent called \"bot-agent\" that depends on \"bot-llm\" and \"bot-tools\". Reply with a JSON array of the three objects and nothing else.",
+    "services": [
+      { "appName": "bot-llm", "appType": "bring-your-own", "stack": "bot", "image": "vllm/vllm-openai", "port": 8000, "healthCheckPath": "/v1/models" },
+      { "appName": "bot-tools", "appType": "mcp", "stack": "bot", "port": 5400 },
+      { "appName": "bot-agent", "appType": "agent", "stack": "bot", "dependsOn": ["bot-llm", "bot-tools"] } ] },
+  { "id": "s3-queue", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"jobs\" stack: a bring-your-own RabbitMQ called \"jobs-mq\" (image rabbitmq:3, port 5672, no health path), a worker called \"jobs-runner\" that depends on \"jobs-mq\", and a frontend called \"jobs-ui\" on port 5173. Reply with a JSON array of the three objects and nothing else.",
+    "services": [
+      { "appName": "jobs-mq", "appType": "bring-your-own", "stack": "jobs", "image": "rabbitmq:3", "port": 5672 },
+      { "appName": "jobs-runner", "appType": "worker", "stack": "jobs", "dependsOn": ["jobs-mq"] },
+      { "appName": "jobs-ui", "appType": "frontend", "stack": "jobs", "port": 5173 } ] }
+]

@@ -1,0 +1,25 @@
+[
+  { "id": "s2-blog", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"blog\" stack: a bring-your-own Redis called \"blog-cache\" (image redis:7, port 6379, no health path), an HTTP API backend called \"blog-api\" on port 4800 that depends on \"blog-cache\", and a frontend called \"blog-web\" that depends on \"blog-api\". Reply with a JSON array of the three objects and nothing else.",
+    "services": [
+      { "appName": "blog-cache", "appType": "bring-your-own", "stack": "blog", "image": "redis:7", "port": 6379 },
+      { "appName": "blog-api", "appType": "backend", "stack": "blog", "port": 4800, "dependsOn": ["blog-cache"] },
+      { "appName": "blog-web", "appType": "frontend", "stack": "blog", "dependsOn": ["blog-api"] } ] },
+  { "id": "s2-support", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"support\" stack: an MCP server called \"ticket-tools\" on port 4900, an AI agent called \"triage\" that depends on \"ticket-tools\", and a worker called \"digest\" that depends on \"triage\". Reply with a JSON array of the three objects and nothing else.",
+    "services": [
+      { "appName": "ticket-tools", "appType": "mcp", "stack": "support", "port": 4900 },
+      { "appName": "triage", "appType": "agent", "stack": "support", "dependsOn": ["ticket-tools"] },
+      { "appName": "digest", "appType": "worker", "stack": "support", "dependsOn": ["triage"] } ] },
+  { "id": "s2-data", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"data\" stack: a bring-your-own job called \"data-import\" (image acme/import:2) that must not restart, an HTTP API backend called \"data-api\" on port 5100 that depends on \"data-import\", and a worker called \"data-export\" that depends on \"data-api\". Reply with a JSON array of the three objects and nothing else.",
+    "services": [
+      { "appName": "data-import", "appType": "bring-your-own", "stack": "data", "image": "acme/import:2", "restart": "no" },
+      { "appName": "data-api", "appType": "backend", "stack": "data", "port": 5100, "dependsOn": ["data-import"] },
+      { "appName": "data-export", "appType": "worker", "stack": "data", "dependsOn": ["data-api"] } ] },
+  { "id": "s2-two", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"crm\" stack: an HTTP API backend called \"crm-api\" on port 5200 and a frontend called \"crm-web\" on port 5173 that depends on \"crm-api\". Reply with a JSON array of the two objects and nothing else.",
+    "services": [
+      { "appName": "crm-api", "appType": "backend", "stack": "crm", "port": 5200 },
+      { "appName": "crm-web", "appType": "frontend", "stack": "crm", "port": 5173, "dependsOn": ["crm-api"] } ] }
+]
