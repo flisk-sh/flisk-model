@@ -1,0 +1,394 @@
+[
+ {
+  "id": "v-1",
+  "prompt": "can u spin up a backend for 'ticketing-api' in the support stack, port 4510 pls",
+  "expect": {
+   "appType": "backend",
+   "appName": "ticketing-api",
+   "stack": "support",
+   "port": 4510
+  }
+ },
+ {
+  "id": "v-2",
+  "prompt": "add a worker called invoice-runner to billing",
+  "expect": {
+   "appType": "worker",
+   "appName": "invoice-runner",
+   "stack": "billing"
+  }
+ },
+ {
+  "id": "v-3",
+  "prompt": "we need a frontend (customer-portal) in the support stack, under /portal, running on 5180",
+  "expect": {
+   "appType": "frontend",
+   "appName": "customer-portal",
+   "stack": "support",
+   "basePath": "/portal",
+   "port": 5180
+  }
+ },
+ {
+  "id": "v-4",
+  "prompt": "mongo:7 for the catalog stack as catalog-db, 27017, no http health",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "catalog-db",
+   "stack": "catalog",
+   "image": "mongo:7",
+   "port": 27017
+  },
+  "absent": [
+   "healthCheckPath"
+  ]
+ },
+ {
+  "id": "v-5",
+  "prompt": "memcached:1.6 named page-cache in stack web on 11211, health /stats",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "page-cache",
+   "stack": "web",
+   "image": "memcached:1.6",
+   "port": 11211,
+   "healthCheckPath": "/stats"
+  }
+ },
+ {
+  "id": "v-6",
+  "prompt": "mcp server pdf-tools stack docs port 4650",
+  "expect": {
+   "appType": "mcp",
+   "appName": "pdf-tools",
+   "stack": "docs",
+   "port": 4650
+  }
+ },
+ {
+  "id": "v-7",
+  "prompt": "I'd like an agent called triage-bot in support that keeps checkpoints in files",
+  "expect": {
+   "appType": "agent",
+   "appName": "triage-bot",
+   "stack": "support",
+   "agent": {
+    "durability": "files"
+   }
+  }
+ },
+ {
+  "id": "v-8",
+  "prompt": "run migrations for the billing stack - job name billing-migrate",
+  "expect": {
+   "appType": "migrator",
+   "appName": "billing-migrate",
+   "stack": "billing"
+  }
+ },
+ {
+  "id": "v-9",
+  "prompt": "local node process: 'node poller.js' as a worker called feed-poller, nothing in docker",
+  "expect": {
+   "appType": "worker",
+   "appName": "feed-poller",
+   "command": "node poller.js"
+  },
+  "absent": [
+   "image",
+   "dockerfile"
+  ]
+ },
+ {
+  "id": "v-10",
+  "prompt": "api gateway-api, stack edge, 4 replicas, health /up, port 4020",
+  "expect": {
+   "appType": "backend",
+   "appName": "gateway-api",
+   "stack": "edge",
+   "replicas": 4,
+   "healthCheckPath": "/up",
+   "port": 4020
+  }
+ },
+ {
+  "id": "v-11",
+  "prompt": "pause the frontend legacy-ui in stack archive (disabled)",
+  "expect": {
+   "appType": "frontend",
+   "appName": "legacy-ui",
+   "stack": "archive",
+   "enabled": false
+  }
+ },
+ {
+  "id": "v-12",
+  "prompt": "rabbitmq:3 container mq-broker in stack messaging port 5672, should never restart after exiting",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "mq-broker",
+   "stack": "messaging",
+   "image": "rabbitmq:3",
+   "port": 5672,
+   "restart": "no"
+  }
+ },
+ {
+  "id": "v-13",
+  "prompt": "grafana/grafana:11 as dashboards in stack observability on port 3000 and health /api/health, don't route it through traefik",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "dashboards",
+   "stack": "observability",
+   "image": "grafana/grafana:11",
+   "port": 3000,
+   "healthCheckPath": "/api/health",
+   "exposeViaProxy": false
+  }
+ },
+ {
+  "id": "v-15",
+  "prompt": "pricing: worker price-updater",
+  "expect": {
+   "appType": "worker",
+   "appName": "price-updater",
+   "stack": "pricing"
+  }
+ },
+ {
+  "id": "v-16",
+  "prompt": "backend quote-api port 4222 stack sales",
+  "expect": {
+   "appType": "backend",
+   "appName": "quote-api",
+   "stack": "sales",
+   "port": 4222
+  }
+ },
+ {
+  "id": "v-17",
+  "prompt": "migrator sales-migrate stack sales depends on sales-db",
+  "expect": {
+   "appType": "migrator",
+   "appName": "sales-migrate",
+   "stack": "sales",
+   "dependsOn": [
+    "sales-db"
+   ]
+  }
+ },
+ {
+  "id": "v-18",
+  "prompt": "Could you write the manifest for a service called mailer-svc? It's an API, belongs to the comms stack, listens on 4321 and has a /health endpoint.",
+  "expect": {
+   "appType": "backend",
+   "appName": "mailer-svc",
+   "stack": "comms",
+   "port": 4321,
+   "healthCheckPath": "/health"
+  }
+ },
+ {
+  "id": "v-19",
+  "prompt": "frontend dash-ui stack comms health /ready",
+  "expect": {
+   "appType": "frontend",
+   "appName": "dash-ui",
+   "stack": "comms",
+   "healthCheckPath": "/ready"
+  }
+ },
+ {
+  "id": "v-20",
+  "prompt": "agent concierge-2 in stack travel, depends on flights-api and hotels-api",
+  "expect": {
+   "appType": "agent",
+   "appName": "concierge-2",
+   "stack": "travel",
+   "dependsOn": [
+    "flights-api",
+    "hotels-api"
+   ]
+  }
+ },
+ {
+  "id": "v-21",
+  "prompt": "clickhouse/clickhouse-server:24 container events-db for the analytics stack, port 8123, it does speak HTTP, health /ping",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "events-db",
+   "stack": "analytics",
+   "image": "clickhouse/clickhouse-server:24",
+   "port": 8123,
+   "healthCheckPath": "/ping"
+  }
+ },
+ {
+  "id": "v-22",
+  "prompt": "mcp 'crm-tools' in stack sales with port 4701 and depends on quote-api",
+  "expect": {
+   "appType": "mcp",
+   "appName": "crm-tools",
+   "stack": "sales",
+   "port": 4701,
+   "dependsOn": [
+    "quote-api"
+   ]
+  }
+ },
+ {
+  "id": "v-23",
+  "prompt": "tiny worker thumbnailer in media stack, off for now",
+  "expect": {
+   "appType": "worker",
+   "appName": "thumbnailer",
+   "stack": "media",
+   "enabled": false
+  }
+ },
+ {
+  "id": "v-24",
+  "prompt": "I want a python script `python sync.py` to run as a worker named syncer, locally",
+  "expect": {
+   "appType": "worker",
+   "appName": "syncer",
+   "command": "python sync.py"
+  },
+  "absent": [
+   "image",
+   "dockerfile"
+  ]
+ },
+ {
+  "id": "v-stack-1",
+  "kind": "stack",
+  "prompt": "Set up the 'blogging' stack for me: a postgres:16 container blog-db on 5432 (no health path), a backend blog-api on port 4100 that needs blog-db, and a frontend blog-web that needs blog-api. Return a JSON array.",
+  "services": [
+   {
+    "appName": "blog-db",
+    "appType": "bring-your-own",
+    "stack": "blogging",
+    "image": "postgres:16",
+    "port": 5432
+   },
+   {
+    "appName": "blog-api",
+    "appType": "backend",
+    "stack": "blogging",
+    "port": 4100,
+    "dependsOn": [
+     "blog-db"
+    ]
+   },
+   {
+    "appName": "blog-web",
+    "appType": "frontend",
+    "stack": "blogging",
+    "dependsOn": [
+     "blog-api"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "v-stack-2",
+  "kind": "stack",
+  "prompt": "stack analytics: worker event-ingest; backend stats-api port 4300 depends on event-ingest; mcp stats-tools depends on stats-api. JSON array please.",
+  "services": [
+   {
+    "appName": "event-ingest",
+    "appType": "worker",
+    "stack": "analytics"
+   },
+   {
+    "appName": "stats-api",
+    "appType": "backend",
+    "stack": "analytics",
+    "port": 4300,
+    "dependsOn": [
+     "event-ingest"
+    ]
+   },
+   {
+    "appName": "stats-tools",
+    "appType": "mcp",
+    "stack": "analytics",
+    "dependsOn": [
+     "stats-api"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "v-repair-1",
+  "broken": {
+   "schemaVersion": 1,
+   "appName": "queue-cache",
+   "appType": 7,
+   "stack": "web",
+   "image": "redis:7",
+   "port": 6379
+  },
+  "keep": {
+   "appName": "queue-cache",
+   "stack": "web",
+   "image": "redis:7",
+   "port": 6379
+  },
+  "mustHave": [
+   "appType"
+  ],
+  "prompt": "Flisk is rejecting this one: {\"schemaVersion\":1,\"appName\":\"queue-cache\",\"appType\":7,\"stack\":\"web\",\"image\":\"redis:7\",\"port\":6379}\nValidator output: service.json.appType: expected a string\nGive me the fixed JSON."
+ },
+ {
+  "id": "v-repair-2",
+  "broken": {
+   "schemaVersion": 1,
+   "appName": "stats-api",
+   "appType": "backend",
+   "port": 4300
+  },
+  "keep": {
+   "appName": "stats-api",
+   "appType": "backend",
+   "port": 4300
+  },
+  "mustHave": [
+   "stack"
+  ],
+  "prompt": "this config fails validation, help: {\"schemaVersion\":1,\"appName\":\"stats-api\",\"appType\":\"backend\",\"port\":4300}\nValidator output: service.json.stack: required field is missing\nGive me the fixed JSON."
+ },
+ {
+  "id": "v-repair-3",
+  "broken": {
+   "schemaVersion": 1,
+   "appName": "poller",
+   "appType": "worker",
+   "stack": "ops",
+   "command": "node poller.js",
+   "image": "node:22"
+  },
+  "keep": {
+   "appName": "poller",
+   "appType": "worker",
+   "stack": "ops"
+  },
+  "prompt": "Why won't this start? {\"schemaVersion\":1,\"appName\":\"poller\",\"appType\":\"worker\",\"stack\":\"ops\",\"command\":\"node poller.js\",\"image\":\"node:22\"}\nValidator output: service.json: service \"poller\": declares both command and image; a service has exactly one runtime source (remove it to run the command locally, or remove command to run in Docker)\nGive me the fixed JSON."
+ },
+ {
+  "id": "v-repair-4",
+  "broken": {
+   "schemaVersion": 0,
+   "appName": "archiver",
+   "appType": "worker",
+   "stack": "ops"
+  },
+  "keep": {
+   "appName": "archiver",
+   "appType": "worker",
+   "stack": "ops",
+   "schemaVersion": 1
+  },
+  "prompt": "fix pls: {\"schemaVersion\":0,\"appName\":\"archiver\",\"appType\":\"worker\",\"stack\":\"ops\"}\nValidator output: service.json.schemaVersion: unsupported version 0 (supported: 1)\nGive me the fixed JSON."
+ }
+]
