@@ -5,46 +5,51 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Small Wolf</title>
 <style>
-:root{--bg:#f2f1ec;--panel:#fbfaf6;--ink:#17181a;--mut:#6b6d70;--line:#d9d7cf;--acc:#e8590c;--acc2:#1c7c54;--side:#141516;--sideink:#f2f1ec;--tile:#e9e7dd}
-@media (prefers-color-scheme:dark){:root{--bg:#121314;--panel:#1a1b1d;--ink:#eeede8;--mut:#9a9b9e;--line:#2c2d30;--tile:#202124;--side:#0b0b0c}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",sans-serif}
-h1,h2,h3{font-family:ui-serif,Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em;margin:0}
-a{color:inherit}code,pre{font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}
+/* tokens from flisk-sh/roadmap (assets/css/style.css), dark first */
+:root{--bg:#08080c;--glow:rgba(34,197,94,.07);--panel:#111117;--tile:#17171f;--tile2:#1e1e28;--ink:#ececf1;--mut:rgba(236,236,241,.7);--faint:rgba(236,236,241,.48);--line:rgba(255,255,255,.08);--strong:rgba(255,255,255,.2);
+--acc:#22c55e;--accink:#04120a;--acctext:#6ee7a0;--adopt:#22c55e;--trial:#38bdf8;--assess:#f59e0b;--hold:#f43f5e;
+--side:#0d0d12;--r:16px;--font:"Satoshi","DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+@media (prefers-color-scheme:light){:root{--bg:#f6f6f4;--glow:rgba(34,197,94,.08);--panel:#fff;--tile:#f0f0ed;--tile2:#e7e7e3;--ink:#16161a;--mut:#52525b;--faint:#71717a;--line:rgba(0,0,0,.09);--strong:rgba(0,0,0,.22);--acctext:#15803d;--side:#16161a}}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(60rem 30rem at 80% -10%,var(--glow),transparent 60%),var(--bg);color:var(--ink);font:15px/1.55 var(--font)}
+h1,h2,h3{font-family:var(--font);font-weight:700;letter-spacing:-.02em;margin:0}
+a{color:inherit}code,pre{font:13px/1.55 var(--mono)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 16px}
 nav.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-.logo{display:flex;align-items:center;gap:10px;font-family:ui-serif,Georgia,serif;font-size:22px;font-weight:700}
-.logo svg{width:26px;height:26px}
-.btn{display:inline-block;border:1px solid var(--ink);padding:9px 16px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;background:transparent;color:var(--ink);cursor:pointer}
-.btn.solid{background:var(--ink);color:var(--bg)}
-.hero{padding:64px 0 40px}.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.05;max-width:14em}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:-.02em}
+.logo svg{width:26px;height:26px;color:var(--acc)}
+.btn{display:inline-block;border:1px solid var(--strong);border-radius:999px;padding:9px 18px;font:600 12px var(--mono);letter-spacing:.04em;text-decoration:none;background:transparent;color:var(--ink);cursor:pointer}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:var(--accink)}
+.hero{padding:64px 0 40px}.hero h1{font-size:clamp(36px,6.4vw,64px);line-height:1.02;max-width:12em}
 .hero p{max-width:34em;color:var(--mut);font-size:18px;margin:18px 0 26px}
-.kicker{color:var(--acc);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.kicker{color:var(--acctext);font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
 section{padding:36px 0;border-top:1px solid var(--line)}section h2{font-size:28px;margin-bottom:6px}.sub{color:var(--mut);margin:0 0 22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.cell{background:var(--panel);padding:18px}.cell h3{font-size:17px;margin-bottom:6px}.cell p{margin:0;color:var(--mut);font-size:14px}
-.tag{display:inline-block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;margin-bottom:8px;border:1px solid var(--line);color:var(--mut)}
-.tag.ok{border-color:var(--acc2);color:var(--acc2)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}@media(max-width:720px){.two{grid-template-columns:1fr}}
-.card{background:var(--panel);border:1px solid var(--line);padding:18px}
-pre{background:var(--tile);padding:14px;overflow:auto;margin:0;border:1px solid var(--line)}
-table{width:100%;border-collapse:collapse;font-size:14px}th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);text-align:left;font-weight:500}
-th,td{padding:10px 8px;border-bottom:1px solid var(--line)}th{border-bottom:2px solid var(--ink)}
-footer{padding:28px 0 48px;color:var(--mut);font-size:13px;border-top:1px solid var(--line)}
-/* console */
-#console{display:none;min-height:100vh}#console.on{display:grid;grid-template-columns:200px 1fr}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.cell{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px}.cell h3{font-size:16px;margin-bottom:6px}.cell p{margin:0;color:var(--mut);font-size:14px}
+.tag{display:inline-flex;align-items:center;gap:6px;font:600 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;margin-bottom:10px;border:1px solid var(--c,var(--line));border-radius:999px;color:var(--c,var(--faint))}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c,var(--faint))}
+.tag.ok{--c:var(--adopt)}.tag.assess{--c:var(--assess)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:720px){.two{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+pre{background:var(--tile);padding:14px;overflow:auto;margin:0;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14px}th{font:500 11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--faint);text-align:left}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line)}th{border-bottom:1px solid var(--strong)}
+footer{padding:28px 0 48px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+#console{display:none;min-height:100vh}#console.on{display:grid;grid-template-columns:210px 1fr}
 @media(max-width:720px){#console.on{grid-template-columns:1fr}}
-aside{background:var(--side);color:var(--sideink);display:flex;flex-direction:column}
-aside .logo{padding:16px 14px;font-size:20px;border-bottom:1px solid #2a2b2d}
-aside .org{margin:12px;border:1px solid #3a3b3e;padding:8px 10px;font-size:13px}aside .role{margin:-6px 12px 10px;font-size:12px;color:#9a9b9e}
-aside button{all:unset;cursor:pointer;display:block;padding:11px 14px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;border-top:1px solid #2a2b2d}
-aside button.on{background:#f2c200;color:#141516}
-aside .who{margin-top:auto;padding:14px;font-size:12px;color:#9a9b9e;border-top:1px solid #2a2b2d}
-main{background:var(--bg);padding:0}main header{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}main header h2{font-size:26px}
+aside{background:var(--side);color:#ececf1;display:flex;flex-direction:column;border-right:1px solid var(--line)}
+aside .logo{padding:16px 14px;font-size:18px;border-bottom:1px solid rgba(255,255,255,.08)}
+aside .org{margin:12px;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:8px 10px;font-size:13px}aside .role{margin:-6px 12px 10px;font:12px var(--mono);color:rgba(236,236,241,.5)}
+aside button{all:unset;cursor:pointer;display:block;padding:11px 14px;font:600 11px var(--mono);letter-spacing:.07em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.08)}
+aside button:hover{background:rgba(255,255,255,.04)}
+aside button.on{background:var(--acc);color:var(--accink)}
+aside .who{margin-top:auto;padding:14px;font-size:12px;color:rgba(236,236,241,.5);border-top:1px solid rgba(255,255,255,.08)}
+main{padding:0}main header{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}main header h2{font-size:24px}
 .pane{display:none;padding:22px}.pane.on{display:block}
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-bottom:26px}@media(max-width:720px){.tiles{grid-template-columns:1fr}}
-.tile{background:var(--tile);padding:16px 18px;border-bottom:4px solid var(--c)}.tile small{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}.tile b{display:block;font-size:34px;font-weight:500;margin-top:6px}
-.note{font-size:12px;color:var(--mut);border:1px dashed var(--line);padding:8px 10px;margin-bottom:16px;background:var(--panel)}
-.input{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 10px;font:inherit;width:100%;max-width:420px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}@media(max-width:720px){.tiles{grid-template-columns:1fr}}
+.tile{background:var(--panel);border:1px solid var(--line);border-bottom:3px solid var(--c);border-radius:var(--r);padding:16px 18px}.tile small{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}.tile b{display:block;font-size:34px;font-weight:600;margin-top:6px;font-variant-numeric:tabular-nums}
+.note{font-size:12px;color:var(--faint);border:1px dashed var(--strong);border-radius:12px;padding:8px 12px;margin-bottom:16px}
+.input{border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);padding:9px 12px;font:inherit;width:100%;max-width:420px}
 </style>
 </head>
 <body>
@@ -76,18 +81,18 @@ main{background:var(--bg);padding:0}main header{padding:16px 22px;border-bottom:
 
   <section id="cases">
     <h2>10 jobs for a small model</h2>
-    <p class="sub">Two are measured on a public eval. The rest are what small models are good at, and are labelled until we measure them.</p>
+    <p class="sub">Status uses the same words as the Flisk roadmap: Adopt means we measured it, Assess means we think it fits and have not tested it yet.</p>
     <div class="grid">
-      <div class="cell"><span class="tag ok">Tested</span><h3>1. Write a config</h3><p>Turn a plain-English request into a valid Flisk <code>service.json</code>. 20 of 20 held-out and stack tasks passed on the 7B base.</p></div>
-      <div class="cell"><span class="tag ok">Tested</span><h3>2. Repair a rejected config</h3><p>Feed it the validator error and the broken file; get the smallest fix back. 5 of 5.</p></div>
-      <div class="cell"><span class="tag">Not yet tested</span><h3>3. Route support tickets</h3><p>Label each ticket billing, bug or how-to and pick the queue. A cheap first hop before a human or a big model.</p></div>
-      <div class="cell"><span class="tag">Not yet tested</span><h3>4. Extract fields to JSON</h3><p>Invoices, emails and receipts into a fixed schema: vendor, date, total.</p></div>
-      <div class="cell"><span class="tag">Not yet tested</span><h3>5. Triage log lines</h3><p>Mark a stack trace as noise, known issue or page-someone.</p></div>
-      <div class="cell"><span class="tag">Not yet tested</span><h3>6. Agent router</h3><p>Decide whether a request needs a tool, a big model or a canned answer, then hand it on.</p></div>
-      <div class="cell"><span class="tag">Not yet tested</span><h3>7. Tag and summarise short docs</h3><p>One-line summaries and tags for notes, tickets and changelog entries.</p></div>
-      <div class="cell"><span class="tag">Not yet tested</span><h3>8. Normalise messy input</h3><p>Names, addresses, units and dates into one clean format.</p></div>
-      <div class="cell"><span class="tag">Not yet tested</span><h3>9. Draft commit and PR titles</h3><p>Short, conventional titles from a diff stat or a file list.</p></div>
-      <div class="cell"><span class="tag">Not yet tested</span><h3>10. Make test data</h3><p>Synthetic rows and fixtures that match a schema, for demos and tests.</p></div>
+      <div class="cell"><span class="tag ok">Adopt · tested</span><h3>1. Write a config</h3><p>Turn a plain-English request into a valid Flisk <code>service.json</code>. 20 of 20 held-out and stack tasks passed on the 7B base.</p></div>
+      <div class="cell"><span class="tag ok">Adopt · tested</span><h3>2. Repair a rejected config</h3><p>Feed it the validator error and the broken file; get the smallest fix back. 5 of 5.</p></div>
+      <div class="cell"><span class="tag assess">Assess · untested</span><h3>3. Route support tickets</h3><p>Label each ticket billing, bug or how-to and pick the queue. A cheap first hop before a human or a big model.</p></div>
+      <div class="cell"><span class="tag assess">Assess · untested</span><h3>4. Extract fields to JSON</h3><p>Invoices, emails and receipts into a fixed schema: vendor, date, total.</p></div>
+      <div class="cell"><span class="tag assess">Assess · untested</span><h3>5. Triage log lines</h3><p>Mark a stack trace as noise, known issue or page-someone.</p></div>
+      <div class="cell"><span class="tag assess">Assess · untested</span><h3>6. Agent router</h3><p>Decide whether a request needs a tool, a big model or a canned answer, then hand it on.</p></div>
+      <div class="cell"><span class="tag assess">Assess · untested</span><h3>7. Tag and summarise short docs</h3><p>One-line summaries and tags for notes, tickets and changelog entries.</p></div>
+      <div class="cell"><span class="tag assess">Assess · untested</span><h3>8. Normalise messy input</h3><p>Names, addresses, units and dates into one clean format.</p></div>
+      <div class="cell"><span class="tag assess">Assess · untested</span><h3>9. Draft commit and PR titles</h3><p>Short, conventional titles from a diff stat or a file list.</p></div>
+      <div class="cell"><span class="tag assess">Assess · untested</span><h3>10. Make test data</h3><p>Synthetic rows and fixtures that match a schema, for demos and tests.</p></div>
     </div>
   </section>
 
@@ -122,9 +127,9 @@ main{background:var(--bg);padding:0}main header{padding:16px 22px;border-bottom:
     <div class="pane" id="p-usage">
       <div class="note">Sample data. Nothing here is connected to a real service.</div>
       <div class="tiles">
-        <div class="tile" style="--c:#d6409f"><small>Total tokens</small><b id="t1">48,210</b></div>
-        <div class="tile" style="--c:#2b8fc7"><small>Requests</small><b id="t2">312</b></div>
-        <div class="tile" style="--c:#1c9c4f"><small>Usage cost</small><b id="t3">$0.04</b></div>
+        <div class="tile" style="--c:var(--assess)"><small>Total tokens</small><b id="t1">48,210</b></div>
+        <div class="tile" style="--c:var(--trial)"><small>Requests</small><b id="t2">312</b></div>
+        <div class="tile" style="--c:var(--adopt)"><small>Usage cost</small><b id="t3">$0.04</b></div>
       </div>
       <h3 style="margin-bottom:8px">Usage by API key</h3>
       <table><tr><th>Key</th><th>Requests</th><th>Input</th><th>Output</th><th>Total</th><th>Cost</th><th>Last used</th></tr>
