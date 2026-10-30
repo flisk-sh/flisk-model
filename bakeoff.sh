@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Scores several small open models on the held-out set (tasks-b) with the short prompt, then removes each model.
 cd "$(dirname "$0")"
-export FLISK_REPO=/Users/san4osq/tdk-pr-work/flisk-inference
+export FLISK_REPO="${FLISK_REPO:-../flisk}"
 OL=./.ollama-bin/ollama
 : > evals/bakeoff.txt
 for m in qwen2.5-coder:1.5b qwen2.5-coder:3b qwen3:1.7b qwen3:4b llama3.2:3b phi4-mini smollm2:1.7b; do

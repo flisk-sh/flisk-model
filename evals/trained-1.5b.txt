@@ -1,0 +1,6 @@
+training failed
+  File "/Users/san4osq/tdk-pr-work/flisk-model/.venv-mlx/lib/python3.12/site-packages/mlx_lm/lora.py", line 306, in train_model
+    train(
+  File "/Users/san4osq/tdk-pr-work/flisk-model/.venv-mlx/lib/python3.12/site-packages/mlx_lm/tuner/trainer.py", line 331, in train
+    mx.eval(state, losses, n_tokens, grad_accum)
+RuntimeError: [METAL] Command buffer execution failed: Insufficient Memory (00000008:kIOGPUCommandBufferCallbackErrorOutOfMemory).

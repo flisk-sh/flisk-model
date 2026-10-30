@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Waits for training to finish, then scores every local model on the held-out test, one at a time, and builds RESULTS.md.
 cd "$(dirname "$0")"
-export FLISK_REPO=/Users/san4osq/tdk-pr-work/flisk-inference
+export FLISK_REPO="${FLISK_REPO:-../flisk}"
 OL=./.ollama-bin/ollama
 until grep -q DONE evals/trained-1.5b.txt 2>/dev/null || grep -q "training failed" evals/trained-1.5b.txt 2>/dev/null; do sleep 20; done
 run() { node eval.mjs "$@" > /dev/null 2>&1; }

@@ -48,6 +48,8 @@ Caveat: 62 questions is a small sample, so one or two questions of difference is
 | `server.mjs` | Console with GitHub sign-in, API keys and a metered `/v1` endpoint |
 | `site/` | The Flisk Inference console page |
 
+**Other task files.** `tasks-b.json` is the held-out test used for every number above. The other files in `evals/` (`tasks.json`, `tasks-hard.json`, `tasks-stack*.json`, `tasks-jobs.json` and so on) are early development sets that the first prompts were tuned on, so they are not fair tests.
+
 ## Reproduce
 
 ```bash
@@ -57,7 +59,7 @@ node eval.mjs --model qwen2.5-coder:7b --tasks tasks-b --prompt v1
 node report.mjs                       # writes RESULTS.md
 ```
 
-Training uses [MLX](https://github.com/ml-explore/mlx-lm) on Apple Silicon: `python -m mlx_lm lora --model mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit --train --data data ...`. Qwen2.5-Coder 1.5B and 7B are Apache 2.0; the 3B model is research-only, so it is not used.
+Training uses [MLX](https://github.com/ml-explore/mlx-lm) on Apple Silicon: `python -m mlx_lm lora --model mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit --train --data data ...`. Qwen2.5-Coder 1.5B and 7B are Apache 2.0; the 3B model is research-only, so it is not used. This repo is [MIT](LICENSE); any model weights you train from Qwen follow Qwen's licence.
 
 ## Status
 

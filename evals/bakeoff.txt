@@ -1,0 +1,3 @@
+qwen2.5-coder:1.5b | prompt v1 | 9/62 passed, 5059 output tokens
+qwen2.5-coder:1.5b | prompt v2 | 44/62 passed, 4985 output tokens
+qwen2.5-coder:3b | prompt v1 | 10/62 passed, 5505 output tokens

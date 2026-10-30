@@ -1,0 +1,250 @@
+[
+ {
+  "id": "b-single-0",
+  "prompt": "Set up a migrator called \"falcon-job\", for the \"farm\" stack in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-1",
+  "prompt": "Our team is adding a third-party service called \"ember-box\", for the \"clinic\" stack, listening on 4953, using the image caddy:2, it does not speak HTTP, so no health path, that restarts only on failure. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-2",
+  "prompt": "Set up a backend API called \"zephyr-api\", listening on 7967, started by `java -jar app.jar`, no image and no Dockerfile in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-3",
+  "prompt": "service.json needed -- a backend API called \"zephyr-web\", in the \"atlas\" stack, listening on 3157, health path /alive, running 2 replicas. No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-4",
+  "prompt": "service.json needed -- a MCP server called \"lantern-svc\", in the \"orbit\" stack. No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-5",
+  "prompt": "Our team is adding an existing container called \"mosaic-db\", for the \"clinic\" stack, listening on 5551, from the Docker image caddy:2, with no HTTP health path. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-6",
+  "prompt": "service.json needed -- a third-party service called \"zephyr-db\", for the \"quartz\" stack, listening on 5070, from the Docker image caddy:2, with health check /livez. No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-7",
+  "prompt": "Our team is adding a prebuilt service called \"falcon-cache\", in the \"studio\" stack, listening on 11746, running couchdb:3, with no HTTP health path, that always restarts. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-8",
+  "prompt": "service.json needed -- a single-page frontend called \"mosaic-svc\", in the atlas stack, on port 4842, served under the base path /tools. No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-9",
+  "prompt": "service.json needed -- a database migration job called \"saffron-app\", for the \"harbor\" stack, that depends on \"rooster-queue\". No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-10",
+  "prompt": "service.json needed -- a tool server for agents called \"falcon-app\", in the \"orbit\" stack, on port 4880, that depends on \"mosaic-queue\". No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-11",
+  "prompt": "service.json needed -- a HTTP API backend called \"rooster-svc\", on port 3073, started by `java -jar app.jar`, no image and no Dockerfile. No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-12",
+  "prompt": "Set up a third-party service called \"tundra-cache\", in the farm stack, on port 12674, using the image etcd:3.5, with health check /state in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-13",
+  "prompt": "Our team is adding an API server called \"tundra-api\", for the \"farm\" stack, on port 5333, switched off for now. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-14",
+  "prompt": "Set up a prebuilt service called \"tulip-cache\", in the atlas stack, listening on 10378, from the Docker image etcd:3.5, with health check /state in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-15",
+  "prompt": "Set up an existing container called \"walnut-db\", for the \"lab\" stack, listening on 11715, from the Docker image etcd:3.5, with health check /livez in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-16",
+  "prompt": "Our team is adding a third-party service called \"zephyr-cache\", in the nimbus stack, on port 16790, from the Docker image nats:2, health path /state, that must not restart after it exits, that must not get a Traefik route. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-17",
+  "prompt": "Our team is adding a backend API called \"rooster-api\", in the \"garage\" stack, on port 5783, that depends on \"mosaic-db\" and \"falcon-api\". What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-18",
+  "prompt": "Our team is adding a frontend called \"zephyr-api\", listening on 8496, started by `java -jar app.jar`, no image and no Dockerfile. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-19",
+  "prompt": "service.json needed -- a HTTP API backend called \"lantern-job\", in the harbor stack. No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-20",
+  "prompt": "Set up a Model Context Protocol server called \"pebble-app\", in the nimbus stack, on port 4293 in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-21",
+  "prompt": "service.json needed -- a REST service called \"pebble-web\", for the \"farm\" stack, running 3 replicas, switched off for now, that depends on \"zephyr-db\". No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-22",
+  "prompt": "Set up a web frontend called \"lantern-web\", in the orbit stack, using port 5560, health path /livez in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-23",
+  "prompt": "service.json needed -- a REST service called \"mosaic-api\", for the \"quartz\" stack, that depends on \"tulip-api\". No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-24",
+  "prompt": "Set up a worker called \"tulip-app\", in the \"clinic\" stack in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-25",
+  "prompt": "service.json needed -- a schema migration runner called \"meadow-app\", for the \"nimbus\" stack, switched off for now, that depends on \"pebble-queue\". No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-26",
+  "prompt": "Our team is adding a migrator called \"lantern-job\", for the \"harbor\" stack. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-27",
+  "prompt": "Our team is adding a tool server for agents called \"ember-app\", in the \"atlas\" stack, using port 3901. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-28",
+  "prompt": "service.json needed -- an AI agent called \"walnut-svc\", in the \"lab\" stack. No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-29",
+  "prompt": "Our team is adding a schema migration runner called \"rooster-job\", in the \"garage\" stack. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-30",
+  "prompt": "Set up a tool server for agents called \"lantern-svc\", in the \"farm\" stack, on port 3434 in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-31",
+  "prompt": "Set up an AI agent called \"tulip-api\", in the farm stack in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-32",
+  "prompt": "Set up a prebuilt service called \"saffron-store\", in the lab stack, listening on 11186, using the image influxdb:2, health path /hc in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-33",
+  "prompt": "Set up a container called \"zephyr-queue\", for the \"farm\" stack, using port 17173, running influxdb:2, it does not speak HTTP, so no health path in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-34",
+  "prompt": "Our team is adding an existing container called \"tulip-queue\", for the \"studio\" stack, using port 2774, using the image etcd:3.5, with no HTTP health path. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-35",
+  "prompt": "service.json needed -- a container called \"meadow-cache\", in the farm stack, on port 5779, using the image nats:2, with health check /alive. No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-36",
+  "prompt": "service.json needed -- a HTTP API backend called \"saffron-api\", on port 3227, run locally with the command \"elixir app.exs\", no image and no Dockerfile. No commentary. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-37",
+  "prompt": "Set up an AI agent called \"pebble-web\", in the \"orbit\" stack in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-38",
+  "prompt": "Set up an AI agent called \"tundra-api\", in the \"clinic\" stack, that depends on \"lantern-api\" in Flisk and show me the manifest as JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-single-39",
+  "prompt": "Our team is adding an agent service called \"mosaic-web\", in the garage stack, keeping its session checkpoints in files. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only."
+ },
+ {
+  "id": "b-stack-0",
+  "prompt": "Write the Flisk service.json files for a \"nimbus\" stack: a prebuilt service called \"lantern-cache\", on port 13618, running valkey/valkey:8, with health check /livez, that must not get a Traefik route; a HTTP API backend called \"walnut-app\", using port 3311, that depends on \"lantern-cache\"; a frontend called \"rooster-job\", on port 5842, that depends on \"walnut-app\"; an AI agent called \"walnut-api\", keeping its session checkpoints in files, that depends on \"lantern-cache\". Reply with a JSON array of the 4 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-stack-1",
+  "prompt": "Write the Flisk service.json files for a \"clinic\" stack: a REST service called \"falcon-job\", on port 4677, with health check /livez; a Model Context Protocol server called \"pebble-app\", listening on 3154, that depends on \"falcon-job\"; a schema migration runner called \"meadow-app\", that depends on \"pebble-app\". Reply with a JSON array of the 3 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-stack-2",
+  "prompt": "Write the Flisk service.json files for a \"garage\" stack: a web frontend called \"pebble-api\", served under the base path /lab; a HTTP API backend called \"walnut-api\", health path /state, that depends on \"pebble-api\"; a migrator called \"tulip-api\", that depends on \"walnut-api\". Reply with a JSON array of the 3 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-stack-3",
+  "prompt": "Write the Flisk service.json files for a \"orbit\" stack: a background worker called \"walnut-api\"; a frontend called \"lantern-app\", that depends on \"walnut-api\"; a MCP server called \"meadow-api\", on port 3542, that depends on \"walnut-api\". Reply with a JSON array of the 3 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-stack-4",
+  "prompt": "Write the Flisk service.json files for a \"atlas\" stack: a database migration job called \"rooster-web\"; a database migration job called \"rooster-job\", that depends on \"rooster-web\". Reply with a JSON array of the 2 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-stack-5",
+  "prompt": "Write the Flisk service.json files for a \"quartz\" stack: a worker called \"pebble-app\"; a container called \"walnut-box\", listening on 15817, running valkey/valkey:8, health path /hc, that must not get a Traefik route, that depends on \"pebble-app\"; a tool server for agents called \"rooster-web\", that depends on \"pebble-app\". Reply with a JSON array of the 3 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-stack-6",
+  "prompt": "Write the Flisk service.json files for a \"farm\" stack: a third-party service called \"ember-store\", using port 11800, using the image caddy:2, it does not speak HTTP, so no health path, that must not get a Traefik route; a single-page frontend called \"ember-api\", listening on 7796, that depends on \"ember-store\"; a long-running agent called \"meadow-web\", that depends on \"ember-api\". Reply with a JSON array of the 3 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-stack-7",
+  "prompt": "Write the Flisk service.json files for a \"studio\" stack: a prebuilt service called \"rooster-store\", on port 14461, using the image couchdb:3, with no HTTP health path, that must not get a Traefik route; a container called \"rooster-queue\", using port 5754, from the Docker image keycloak/keycloak:25, with no HTTP health path, that must not get a Traefik route, that depends on \"rooster-store\"; a job processor called \"saffron-api\", that depends on \"rooster-store\". Reply with a JSON array of the 3 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-stack-8",
+  "prompt": "Write the Flisk service.json files for a \"clinic\" stack: a prebuilt service called \"walnut-cache\", using port 19923, using the image keycloak/keycloak:25, with health check /hc; a migrator called \"ember-web\", that depends on \"walnut-cache\"; an API server called \"rooster-svc\", listening on 5320, health path /state, running 3 replicas, that depends on \"walnut-cache\"; an API server called \"zephyr-app\", using port 4301, that depends on \"ember-web\". Reply with a JSON array of the 4 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-stack-9",
+  "prompt": "Write the Flisk service.json files for a \"studio\" stack: a backend API called \"saffron-web\", on port 4768, running 4 replicas; a Model Context Protocol server called \"rooster-job\", listening on 5028, that depends on \"saffron-web\". Reply with a JSON array of the 2 objects and nothing else.\n(The answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.)"
+ },
+ {
+  "id": "b-repair-0",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":1,\"appName\":\"tulip-job\",\"appType\":\"backend\",\"port\":4348,\"replicas\":4,\"dependsOn\":[\"lantern-queue\",\"tulip-queue\"]}\nThe validator says:\nservice.json.stack: required field is missing\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-1",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":1,\"appName\":\"meadow-web\",\"appType\":7,\"stack\":\"farm\",\"agent\":{\"durability\":\"files\"},\"enabled\":false}\nThe validator says:\nservice.json.appType: expected a string\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-2",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":1,\"appName\":\"ember-svc\",\"appType\":\"backend\",\"healthCheckPath\":\"/alive\",\"dependsOn\":[\"rooster-queue\",\"ember-db\"]}\nThe validator says:\nservice.json.stack: required field is missing\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-3",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":2,\"appName\":\"tundra-job\",\"appType\":\"migrator\",\"stack\":\"lab\"}\nThe validator says:\nservice.json.schemaVersion: unsupported version 2 (supported: 1)\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-4",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":2,\"appName\":\"tundra-api\",\"appType\":\"backend\",\"stack\":\"quartz\",\"port\":4188,\"dependsOn\":[\"walnut-api\"]}\nThe validator says:\nservice.json.schemaVersion: unsupported version 2 (supported: 1)\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-5",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":2,\"appName\":\"ember-cache\",\"appType\":\"bring-your-own\",\"stack\":\"quartz\",\"port\":19445,\"image\":\"nats:2\",\"restart\":\"always\"}\nThe validator says:\nservice.json.schemaVersion: unsupported version 2 (supported: 1)\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-6",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":2,\"appName\":\"tulip-job\",\"appType\":\"agent\",\"stack\":\"quartz\",\"agent\":{\"durability\":\"files\"}}\nThe validator says:\nservice.json.schemaVersion: unsupported version 2 (supported: 1)\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-7",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":1,\"appName\":\"lantern-queue\",\"appType\":7,\"stack\":\"clinic\",\"port\":9488,\"image\":\"keycloak/keycloak:25\",\"healthCheckPath\":\"/state\"}\nThe validator says:\nservice.json.appType: expected a string\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-8",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":1,\"appName\":\"pebble-app\",\"appType\":\"backend\",\"port\":4652,\"command\":\"elixir app.exs\",\"env\":{\"MODE\":3}}\nThe validator says:\nservice.json: service \"pebble-app\": env MODE: names must be letters, digits or _ (not starting with a digit) and values must be strings\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-9",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":1,\"appName\":\"pebble-cache\",\"appType\":7,\"stack\":\"farm\",\"port\":10996,\"image\":\"keycloak/keycloak:25\"}\nThe validator says:\nservice.json.appType: expected a string\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-10",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":2,\"appName\":\"meadow-web\",\"appType\":\"worker\",\"stack\":\"harbor\"}\nThe validator says:\nservice.json.schemaVersion: unsupported version 2 (supported: 1)\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ },
+ {
+  "id": "b-repair-11",
+  "prompt": "This Flisk service.json is rejected:\n{\"schemaVersion\":2,\"appName\":\"tulip-api\",\"appType\":\"backend\",\"stack\":\"atlas\",\"port\":5844}\nThe validator says:\nservice.json.schemaVersion: unsupported version 2 (supported: 1)\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only."
+ }
+]

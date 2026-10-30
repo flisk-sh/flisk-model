@@ -8,3 +8,5 @@ evals/results*.json
 node_modules/
 ollama.log
 server.log
+.cf-bin/
+.venv-mlx/

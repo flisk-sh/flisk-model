@@ -1,0 +1,37 @@
+Loading pretrained model
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 9 files:  11%|█         | 1/9 [00:00<00:04,  1.61it/s]Fetching 9 files:  22%|██▏       | 2/9 [00:00<00:02,  2.73it/s]Fetching 9 files:  56%|█████▌    | 5/9 [00:01<00:00,  6.49it/s]Fetching 9 files:  67%|██████▋   | 6/9 [00:01<00:00,  5.89it/s]Fetching 9 files:  78%|███████▊  | 7/9 [00:01<00:00,  4.89it/s]Fetching 9 files:  89%|████████▉ | 8/9 [00:02<00:00,  3.42it/s]Fetching 9 files: 100%|██████████| 9/9 [03:51<00:00, 65.06s/it]Fetching 9 files: 100%|██████████| 9/9 [03:51<00:00, 25.73s/it]
+Loading datasets
+Training
+[34m╭─[0m[34m [0m[1;35mmlx_lm.lora[0m[34m [0m[34m───────────────────────────────────────────────────────────────────────────────────────────────────────[0m[34m─╮[0m
+[34m│[0m    [39mmodel        [0m   [1mmlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit[0m                                                    [34m│[0m
+[34m│[0m    [39mtype         [0m   [1mlora · 16 layers · rank 8[0m                                                                         [34m│[0m
+[34m│[0m    [39mdataset      [0m   [1mdata[0m                                                                                              [34m│[0m
+[34m│[0m    [39moptimizer    [0m   [1madam · lr 1.0e-04[0m                                                                                 [34m│[0m
+[34m│[0m    [39mbatch · iters[0m   [1m4 · 600[0m                                                                                           [34m│[0m
+[34m│[0m    [39mmax seq      [0m   [1m1,024[0m                                                                                             [34m│[0m
+[34m╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯[0m
+Trainable parameters: 0.342% (5.276M/1543.714M)
+  [1miter   train_loss     tok/s     tokens[0m
+  [38;5;244m   1[0m    [1;35mval[0m [1m0.603[0m    [38;5;244m88.41s[0m
+  [38;5;244m  10[0m    [1;32m0.228 ▼[0m    [1m   15[0m    [38;5;244m  3.4k[0m
+  [38;5;244m  20[0m    [1;32m0.161 ▼[0m    [1m   17[0m    [38;5;244m  6.1k[0m
+  [38;5;244m  30[0m    [1;32m0.089 ▼[0m    [1m   27[0m    [38;5;244m  9.1k[0m
+  [38;5;244m  40[0m    [1;32m0.077 ▼[0m    [1m   31[0m    [38;5;244m 12.5k[0m
+[1;34mtrain[0m [34m██[0m[34m▎[0m[38;5;244m░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m [1;34m  8%[0m [38;5;244m·[0m [1;34m   47[0m[38;5;244m/600[0m
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/san4osq/tdk-pr-work/flisk-model/.venv-mlx/lib/python3.12/site-packages/mlx_lm/__main__.py", line 6, in <module>
+    cli.main()
+  File "/Users/san4osq/tdk-pr-work/flisk-model/.venv-mlx/lib/python3.12/site-packages/mlx_lm/cli.py", line 40, in main
+    submodule.main()
+  File "/Users/san4osq/tdk-pr-work/flisk-model/.venv-mlx/lib/python3.12/site-packages/mlx_lm/lora.py", line 392, in main
+    run(types.SimpleNamespace(**args))
+  File "/Users/san4osq/tdk-pr-work/flisk-model/.venv-mlx/lib/python3.12/site-packages/mlx_lm/lora.py", line 364, in run
+    train_model(args, model, train_set, valid_set, training_callback)
+  File "/Users/san4osq/tdk-pr-work/flisk-model/.venv-mlx/lib/python3.12/site-packages/mlx_lm/lora.py", line 306, in train_model
+    train(
+  File "/Users/san4osq/tdk-pr-work/flisk-model/.venv-mlx/lib/python3.12/site-packages/mlx_lm/tuner/trainer.py", line 331, in train
+    mx.eval(state, losses, n_tokens, grad_accum)
+RuntimeError: [METAL] Command buffer execution failed: Impacting Interactivity (0000000e:kIOGPUCommandBufferCallbackErrorImpactingInteractivity).
