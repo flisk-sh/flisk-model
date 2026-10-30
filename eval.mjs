@@ -26,12 +26,54 @@ function extractJson(text) {
 
 const tasks = JSON.parse(readFileSync(new URL(`./evals/${arg("tasks", "tasks")}.json`, import.meta.url), "utf-8"));
 const results = [];
+const KIND_NOTE = {
+  stack: "\n\nThe answer is a JSON array of service.json objects. Every dependsOn entry must name another service in the array.",
+  repair: "",
+};
+function buildPrompt(task) {
+  if (!task.broken) return task.prompt;
+  const errors = validateService(task.broken).errors.join("\n");
+  return `This Flisk service.json is rejected:\n${JSON.stringify(task.broken, null, 2)}\n\nThe validator says:\n${errors}\n\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only.`;
+}
+function extractAny(text) {
+  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+  const body = fenced ? fenced[1] : text;
+  const a = body.search(/[\[{]/);
+  const end = Math.max(body.lastIndexOf("}"), body.lastIndexOf("]"));
+  return a > -1 && end > a ? body.slice(a, end + 1) : body;
+}
+const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+function scoreSingle(parsed, task, problems) {
+  problems.push(...validateService(parsed).errors);
+  for (const [k, v] of Object.entries(task.expect ?? task.keep ?? {})) {
+    if (!same(parsed[k], v)) problems.push(`${k}: expected ${JSON.stringify(v)}, got ${JSON.stringify(parsed[k])}`);
+  }
+  for (const k of task.mustHave ?? []) if (!(k in parsed)) problems.push(`${k}: must be present`);
+  for (const k of task.absent ?? []) if (k in parsed) problems.push(`${k}: must not be present`);
+}
+function scoreStack(parsed, task, problems) {
+  if (!Array.isArray(parsed)) return problems.push("expected a JSON array");
+  const names = new Set(parsed.map((s) => s?.appName));
+  if (names.size !== parsed.length) problems.push("duplicate appName");
+  for (const want of task.services) {
+    const got = parsed.find((s) => s?.appName === want.appName);
+    if (!got) { problems.push(`${want.appName}: missing`); continue; }
+    for (const [k, v] of Object.entries(want)) if (!same(got[k], v)) problems.push(`${want.appName}.${k}: expected ${JSON.stringify(v)}, got ${JSON.stringify(got[k])}`);
+  }
+  for (const s of parsed) {
+    problems.push(...validateService(s).errors.map((e) => `${s?.appName}: ${e}`));
+    for (const d of s?.dependsOn ?? []) if (!names.has(d)) problems.push(`${s.appName}: depends on unknown "${d}"`);
+  }
+  if (parsed.length !== task.services.length) problems.push(`expected ${task.services.length} services, got ${parsed.length}`);
+}
+
 for (const task of tasks) {
   let text = "", tokens = 0, error;
   try {
     const res = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST", headers,
-      body: JSON.stringify({ model, temperature: 0, messages: [...preamble, { role: "user", content: task.prompt }] }),
+      body: JSON.stringify({ model, temperature: 0, messages: [...preamble, { role: "user", content: buildPrompt(task) + (KIND_NOTE[task.kind] ?? "") }] }),
     });
     if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
     const body = await res.json();
@@ -42,14 +84,8 @@ for (const task of tasks) {
   if (error) problems.push(`request failed: ${error}`);
   else {
     let parsed;
-    try { parsed = JSON.parse(extractJson(text)); } catch { problems.push("not valid JSON"); }
-    if (parsed) {
-      problems.push(...validateService(parsed).errors);
-      for (const [k, v] of Object.entries(task.expect)) {
-        if (JSON.stringify(parsed[k]) !== JSON.stringify(v)) problems.push(`${k}: expected ${JSON.stringify(v)}, got ${JSON.stringify(parsed[k])}`);
-      }
-      for (const k of task.absent ?? []) if (k in parsed) problems.push(`${k}: must not be present`);
-    }
+    try { parsed = JSON.parse(extractAny(text)); } catch { problems.push("not valid JSON"); }
+    if (parsed !== undefined) (task.kind === "stack" ? scoreStack : scoreSingle)(parsed, task, problems);
   }
   results.push({ id: task.id, pass: problems.length === 0, tokens, problems });
   console.log(`${problems.length === 0 ? "PASS" : "FAIL"} ${task.id} (${tokens} tokens)${problems.length ? "\n  " + problems.join("\n  ") : ""}`);

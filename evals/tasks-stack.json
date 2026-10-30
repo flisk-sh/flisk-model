@@ -1,0 +1,21 @@
+[
+  { "id": "stack-shop", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"shop\" stack: a bring-your-own Postgres called \"shop-db\" (image postgres:16, port 5432, no health path), a migrator called \"shop-migrate\" that depends on \"shop-db\", an HTTP API backend called \"shop-api\" on port 4100 that depends on \"shop-migrate\", and a frontend called \"shop-web\" that depends on \"shop-api\". Reply with a JSON array of the four objects and nothing else.",
+    "services": [
+      { "appName": "shop-db", "appType": "bring-your-own", "image": "postgres:16", "port": 5432 },
+      { "appName": "shop-migrate", "appType": "migrator", "dependsOn": ["shop-db"] },
+      { "appName": "shop-api", "appType": "backend", "port": 4100, "dependsOn": ["shop-migrate"] },
+      { "appName": "shop-web", "appType": "frontend", "dependsOn": ["shop-api"] } ] },
+  { "id": "stack-agents", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"kitchen\" stack: a local model server called \"brain\" (bring-your-own, image ollama/ollama, port 11434, health check /v1/models), an MCP server called \"menu-tools\" on port 4200, and an AI agent called \"chef\" that depends on \"brain\" and \"menu-tools\". Reply with a JSON array of the three objects and nothing else.",
+    "services": [
+      { "appName": "brain", "appType": "bring-your-own", "image": "ollama/ollama", "port": 11434, "healthCheckPath": "/v1/models" },
+      { "appName": "menu-tools", "appType": "mcp", "port": 4200 },
+      { "appName": "chef", "appType": "agent", "dependsOn": ["brain", "menu-tools"] } ] },
+  { "id": "stack-jobs", "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"mail\" stack: an HTTP API backend called \"mail-api\" on port 4300, a worker called \"mail-sender\" that depends on \"mail-api\", and a one-shot bring-your-own job called \"mail-seed\" (image acme/seed:1) that must not restart and depends on \"mail-api\". Reply with a JSON array of the three objects and nothing else.",
+    "services": [
+      { "appName": "mail-api", "appType": "backend", "port": 4300 },
+      { "appName": "mail-sender", "appType": "worker", "dependsOn": ["mail-api"] },
+      { "appName": "mail-seed", "appType": "bring-your-own", "image": "acme/seed:1", "restart": "no", "dependsOn": ["mail-api"] } ] }
+]

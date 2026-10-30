@@ -1,0 +1,12 @@
+[
+  { "id": "repair-missing-stack", "broken": { "schemaVersion": 1, "appName": "orders-api", "appType": "backend", "port": 4100, "healthCheckPath": "/health" },
+    "keep": { "appName": "orders-api", "appType": "backend", "port": 4100, "healthCheckPath": "/health" }, "mustHave": ["stack"] },
+  { "id": "repair-schema-version", "broken": { "schemaVersion": 2, "appName": "web", "appType": "frontend", "stack": "shop" },
+    "keep": { "appName": "web", "appType": "frontend", "stack": "shop", "schemaVersion": 1 } },
+  { "id": "repair-command-and-image", "broken": { "schemaVersion": 1, "appName": "api", "appType": "backend", "stack": "shop", "command": "node server.js", "image": "node:22", "port": 4000 },
+    "keep": { "appName": "api", "appType": "backend", "stack": "shop", "port": 4000 } },
+  { "id": "repair-env-number", "broken": { "schemaVersion": 1, "appName": "api", "appType": "backend", "stack": "shop", "command": "node server.js", "port": 4000, "env": { "RETRIES": 3 } },
+    "keep": { "appName": "api", "appType": "backend", "stack": "shop", "command": "node server.js", "port": 4000, "env": { "RETRIES": "3" } } },
+  { "id": "repair-apptype-type", "broken": { "schemaVersion": 1, "appName": "jobs", "appType": 7, "stack": "shop" },
+    "keep": { "appName": "jobs", "stack": "shop" }, "mustHave": ["appType"] }
+]

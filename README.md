@@ -30,11 +30,18 @@ Needs Node 18+ and nothing from npm.
 
 - The short prompt fails because the model invents `appType` values (`http`, `web`, `job`). The v2 prompt in `lib/templates.mjs` fixes that with no training.
 - Prompt rules were written after seeing failures on `tasks.json` and `tasks-hard.json`, so those two sets are contaminated. `tasks-heldout.json` was written afterwards and is the fair one. Write a new unseen set before each claim, and keep some tasks private.
-- All tasks ask for one resource at a time. Multi-service stacks, fixing a broken `service.json` and `doctor` output are not tested yet.
+- `tasks-stack.json` (whole stacks, dependsOn must point at real services) and `tasks-repair.json` (fix a `service.json` the validator rejects) are the harder sets. They are uncontaminated: the v2 prompt has not been tuned on them.
+
+| Model (prompt v2) | Stack (3) | Repair (5) |
+|---|---|---|
+| qwen2.5-coder:3b | 1/3 | 5/5 |
+| qwen2.5-coder:7b | 1/3 | 5/5 |
+
+  Repair is solved because the validator message names the fix. Stacks fail because both models drop the required `stack` field when the request names the stack only once, and the 3B model also mixed up `mcp`/`agent`. That is the first real gap a trained model, or a better prompt, has to close. `flisk doctor` output is not tested yet.
 - The dataset is tiny (29 unique valid files), so training a LoRA is not justified yet.
 
 ## Next
 
-1. Harder evals: a whole stack, repairing an invalid `service.json`, reading `flisk doctor` output.
+1. Fix the stack gap (prompt first, then data), re-test on a fresh stack set, add `flisk doctor` output tasks.
 2. If a model still fails those with the v2 prompt, grow the dataset and try a small LoRA. If not, ship the prompt as a Flisk skill and serve a base model with `flisk resource brain --type inference`.
 3. Keep data private until you have checked which source repos are public.
