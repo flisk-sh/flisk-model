@@ -68,4 +68,4 @@ Training uses [MLX](https://github.com/ml-explore/mlx-lm) on Apple Silicon: `pyt
 
 ## Status
 
-Trained model: full 400-step run. Next: much more varied phrasing in the training data (the natural-wording test stays held out), then a 7B version. The public demo of the prompted model runs on a Mac through a tunnel, so it is not always on.
+Trained model: full 400-step run. Next: much more varied phrasing in the training data (the natural-wording test stays held out), then a 7B version. The public demo of the prompted model runs on a laptop through a tunnel, so it is not always on. Its code is now [flisk-inference](https://github.com/flisk-sh/flisk-inference); the older `server.mjs` and `site/` here are kept only as a fallback.
