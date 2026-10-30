@@ -3,7 +3,7 @@
 // every expected field matches, no forbidden field is present. Also reports output tokens, the number Particle optimises.
 import { readFileSync, writeFileSync } from "node:fs";
 import { validateService } from "./lib/validate.mjs";
-import { SYSTEM } from "./lib/templates.mjs";
+import { SYSTEM, SYSTEM_V2, FEW_SHOTS } from "./lib/templates.mjs";
 
 const arg = (name, fallback) => {
   const i = process.argv.indexOf(`--${name}`);
@@ -12,6 +12,9 @@ const arg = (name, fallback) => {
 const baseUrl = arg("base-url", "http://localhost:11434/v1");
 const model = arg("model");
 if (!model) { console.error("usage: node eval.mjs --model <name> [--base-url <url>] [--out <file>]"); process.exit(2); }
+// --prompt v1 is the short prompt (what training data uses); v2 adds the Flisk rules and worked examples.
+const promptVersion = arg("prompt", "v1");
+const preamble = promptVersion === "v2" ? [{ role: "system", content: SYSTEM_V2 }, ...FEW_SHOTS] : [{ role: "system", content: SYSTEM }];
 const headers = { "content-type": "application/json", ...(process.env.OPENAI_API_KEY ? { authorization: `Bearer ${process.env.OPENAI_API_KEY}` } : {}) };
 
 function extractJson(text) {
@@ -21,14 +24,14 @@ function extractJson(text) {
   return start > -1 && end > start ? body.slice(start, end + 1) : body;
 }
 
-const tasks = JSON.parse(readFileSync(new URL("./evals/tasks.json", import.meta.url), "utf-8"));
+const tasks = JSON.parse(readFileSync(new URL(`./evals/${arg("tasks", "tasks")}.json`, import.meta.url), "utf-8"));
 const results = [];
 for (const task of tasks) {
   let text = "", tokens = 0, error;
   try {
     const res = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST", headers,
-      body: JSON.stringify({ model, temperature: 0, messages: [{ role: "system", content: SYSTEM }, { role: "user", content: task.prompt }] }),
+      body: JSON.stringify({ model, temperature: 0, messages: [...preamble, { role: "user", content: task.prompt }] }),
     });
     if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
     const body = await res.json();
@@ -53,7 +56,7 @@ for (const task of tasks) {
 }
 const passed = results.filter((r) => r.pass).length;
 const totalTokens = results.reduce((n, r) => n + r.tokens, 0);
-console.log(`\n${model}: ${passed}/${results.length} passed, ${totalTokens} output tokens`);
+console.log(`\n${model} (prompt ${promptVersion}): ${passed}/${results.length} passed, ${totalTokens} output tokens`);
 const out = arg("out");
-if (out) writeFileSync(out, JSON.stringify({ model, passed, total: results.length, totalTokens, results }, null, 2));
+if (out) writeFileSync(out, JSON.stringify({ model, prompt: promptVersion, passed, total: results.length, totalTokens, results }, null, 2));
 process.exit(passed === results.length ? 0 : 1);

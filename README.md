@@ -20,13 +20,21 @@ node build-dataset.mjs /path/to/flisk/examples /path/to/other/flisk/projects
 
 Needs Node 18+ and nothing from npm.
 
-## Where it stands
+## Results (2026-10-30, Ollama on a 16 GB Mac, temperature 0)
 
-- The scorer was checked against a fake server that answers perfectly (12/12). No real model has been scored yet.
-- The dataset is **tiny**: 29 unique valid `service.json` files across the local flisk repos (26 train, 3 valid). A LoRA needs hundreds to thousands of examples, so more data comes first: generate variations from the schema, and mine docs and agent sessions.
+| Model | Prompt | Main (12) | Held-out (8) |
+|---|---|---|---|
+| qwen2.5-coder:3b | v1 short | 1/12 | not run |
+| qwen2.5-coder:3b | v2 Flisk rules + 4 examples | 12/12 | 8/8 |
+| qwen2.5-coder:7b | v2 | 11/12 | 8/8 |
+
+- The short prompt fails because the model invents `appType` values (`http`, `web`, `job`). The v2 prompt in `lib/templates.mjs` fixes that with no training.
+- Prompt rules were written after seeing failures on `tasks.json` and `tasks-hard.json`, so those two sets are contaminated. `tasks-heldout.json` was written afterwards and is the fair one. Write a new unseen set before each claim, and keep some tasks private.
+- All tasks ask for one resource at a time. Multi-service stacks, fixing a broken `service.json` and `doctor` output are not tested yet.
+- The dataset is tiny (29 unique valid files), so training a LoRA is not justified yet.
 
 ## Next
 
-1. Score two or three open models for a baseline. If one already passes most tasks, stop: serve it with `flisk resource brain --type inference`.
-2. If not, grow the dataset and the task list, and hold the eval tasks out of training.
-3. Only then try a small LoRA (mlx-lm on a Mac for a demo, a rented GPU for a real run).
+1. Harder evals: a whole stack, repairing an invalid `service.json`, reading `flisk doctor` output.
+2. If a model still fails those with the v2 prompt, grow the dataset and try a small LoRA. If not, ship the prompt as a Flisk skill and serve a base model with `flisk resource brain --type inference`.
+3. Keep data private until you have checked which source repos are public.

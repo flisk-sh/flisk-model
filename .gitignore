@@ -3,3 +3,4 @@ data/*.jsonl
 evals/results*.json
 adapters/
 *.gguf
+.ollama-bin/
