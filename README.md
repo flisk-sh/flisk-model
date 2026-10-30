@@ -41,6 +41,7 @@ Caveat: 62 questions is a small sample, so one or two questions of difference is
 |---|---|
 | [`TESTS.md`](TESTS.md) | The test, in plain English, with one example per question group |
 | [`RESULTS.md`](RESULTS.md) | The results table on its own |
+| [`ROADMAP.md`](ROADMAP.md) | Where this is going, with the test that decides each step |
 | `eval.mjs` | Scores any model (any OpenAI-compatible server, or a file of answers) |
 | `gen-dataset.mjs` | Builds the verified training data and the held-out test |
 | `report.mjs` | Builds the results table |
