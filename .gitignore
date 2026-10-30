@@ -1,0 +1,5 @@
+node_modules/
+data/*.jsonl
+evals/results*.json
+adapters/
+*.gguf
