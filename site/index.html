@@ -94,7 +94,7 @@ main{background:var(--bg);padding:0}main header{padding:16px 22px;border-bottom:
   <section>
     <h2>One endpoint</h2>
     <div class="two">
-      <pre><code>curl https://api.example.com/v1/chat/completions \
+      <pre><code>curl https://api.wolf.flisk.si/v1/chat/completions \
   -H 'Authorization: Bearer YOUR_API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -105,7 +105,7 @@ main{background:var(--bg);padding:0}main header{padding:16px 22px;border-bottom:
       <div class="card"><b>How it was tested</b><p style="color:var(--mut);margin:8px 0 0">Scored with the Flisk CLI's own validator, temperature 0, on tasks the prompt was never tuned on. Sets, scripts and results live in the open <code>flisk-model</code> repo. Small models make small mistakes: it once called a one-shot job a <code>migrator</code>. We fixed the prompt and wrote down that we did.</p></div>
     </div>
   </section>
-  <footer>Mockup for a working brand. Domain, pricing and hosting are not decided. All console figures are sample data.</footer>
+  <footer>Mockup for a working brand. Planned hosts: wolf.flisk.si (site and console), api.wolf.flisk.si (API). Not live yet; pricing and hosting are not decided. All console figures are sample data.</footer>
 </div>
 </div>
 
@@ -140,7 +140,7 @@ main{background:var(--bg);padding:0}main header{padding:16px 22px;border-bottom:
 
     <div class="pane" id="p-keys">
       <h3 style="margin-bottom:6px">Make your first request</h3><p style="color:var(--mut);margin-top:0">Replace <code>YOUR_API_KEY</code> with your key.</p>
-      <pre><code>curl https://api.example.com/v1/chat/completions \
+      <pre><code>curl https://api.wolf.flisk.si/v1/chat/completions \
   -H 'Authorization: Bearer YOUR_API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{"model":"small-wolf","messages":[{"role":"user","content":"Say hello!"}],"max_tokens":256}'</code></pre>
@@ -160,7 +160,7 @@ main{background:var(--bg);padding:0}main header{padding:16px 22px;border-bottom:
       <p style="color:var(--mut);max-width:40em">OpenAI-compatible chat completions for <code>small-wolf</code>. Point an OpenAI SDK at the base URL and use your key.</p>
       <pre><code>from openai import OpenAI
 
-client = OpenAI(base_url="https://api.example.com/v1", api_key="wolf-...")
+client = OpenAI(base_url="https://api.wolf.flisk.si/v1", api_key="wolf-...")
 r = client.chat.completions.create(
     model="small-wolf",
     messages=[{"role": "user", "content": "Write a Flisk service.json for a backend called api."}],
@@ -175,10 +175,12 @@ print(r.choices[0].message.content)</code></pre>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const names={usage:"Usage",billing:"Billing",keys:"API keys",team:"Team",docs:"Developer docs"};
 function show(tab){tab=names[tab]?tab:"usage";$("#site").style.display="none";$("#console").classList.add("on");
- $$(".pane").forEach(p=>p.classList.toggle("on",p.id==="p-"+tab));$$("aside [data-tab]").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));$("#title").textContent=names[tab];scrollTo(0,0)}
-function home(){$("#console").classList.remove("on");$("#site").style.display=""}
+ $$(".pane").forEach(p=>p.classList.toggle("on",p.id==="p-"+tab));$$("aside [data-tab]").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));$("#title").textContent=names[tab];sync(tab);scrollTo(0,0)}
+function sync(tab){try{history.replaceState(null,"","?section="+tab)}catch(e){}}
+function home(){try{history.replaceState(null,"",location.pathname)}catch(e){}$("#console").classList.remove("on");$("#site").style.display=""}
 $$("[data-go]").forEach(e=>e.addEventListener("click",ev=>{ev.preventDefault();show(e.dataset.go)}));
 $$("aside [data-tab]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.tab)));
 $("#exit").addEventListener("click",home);
+const q=new URLSearchParams(location.search).get("section");if(q&&names[q])show(q);
 </script>
 </body></html>
