@@ -13,3 +13,4 @@ server.log
 *.log
 train-v2.status
 train-v2.eval.txt
+data-v3/
