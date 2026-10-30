@@ -47,6 +47,22 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 - A public leaderboard and open dataset, so others can test and improve it.
 - Optional paid tier for higher limits or private hosting, with a free open path.
 
+## Ideas from other projects (checked, and what we do with them)
+
+A scan of the MLX fine-tuning ecosystem (`ml-explore/mlx-lm` is the only mainstream project; the template and toolkit repos have under 20 stars and several are months stale). What we take, and what we skip:
+
+| Idea | Verdict |
+|---|---|
+| **Constrained decoding** (force the answer to match the `service.json` schema) | **Do first.** Ollama's structured-output mode and llama.cpp grammars can enforce it at serving time. Invalid JSON becomes impossible, and the check is simple: re-run both natural-wording tests with it on and off. |
+| **Fuse the adapter and publish weights** (GGUF, MLX, a Modelfile) | **Do in Phase 1.** Nobody can self-host or contribute until this exists. |
+| **A config file for training** | Done: [`configs/lora-v3.yaml`](configs/lora-v3.yaml). Not yet re-run from the file. |
+| **DoRA instead of plain LoRA** | **Cheap experiment.** One flag. Keep it only if it wins on *both* natural-wording tests. |
+| **On-policy preference training** (pairs of the model's own wrong answer and the correct one, from the validator) | **Phase 2.** It targets exactly what fails now (dropped Docker images, garbled names). Needs a tool beyond mlx-lm; check maturity before depending on it. |
+| **Turn real usage into training environments** (the REA-style idea of replayable sessions scored by a checker) | **After there are real users.** Without real sessions it is just more synthetic data. The validator is already our scorer. |
+| **Evidence trail in every answer** (explain which rules it followed) | **Skip for the main model.** It adds tokens, and the goal is fewer. Could be a separate "explain" mode later. |
+| **Distil from Claude on hard cases** | **Skip unless the terms allow it.** Anthropic's terms restrict training a competing model on its outputs. A permissively licensed open teacher is fine. |
+| **Streamlit or Gradio front ends for training** | **Skip for now.** Polish, not progress. |
+
 ## Risks and rules we hold ourselves to
 
 - **Demand is unproven.** No users yet. Phase 2's gate exists for this reason.

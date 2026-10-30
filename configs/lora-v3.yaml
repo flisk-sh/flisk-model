@@ -1,0 +1,19 @@
+# The settings used for the current trained model (continued from the v2 adapter on the widened-phrasing data).
+# Run: python -m mlx_lm lora --config configs/lora-v3.yaml
+# Mirrors the command in train-v3.sh. Not yet re-run from this file: the live run used the flags directly.
+model: mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit   # 4-bit base + LoRA (QLoRA), Apache 2.0
+train: true
+fine_tune_type: lora        # try `dora` as a cheap experiment; compare on both natural-wording tests
+data: data-v3
+adapter_path: adapters/wolf-1.5b-v3
+num_layers: 16
+batch_size: 4               # lower to 2 and add grad_accumulation_steps: 2 on a Mac with less free memory
+iters: 500
+learning_rate: 5.0e-5
+max_seq_length: 768         # longest training example is under 600 tokens
+mask_prompt: true           # loss only on the answer
+steps_per_eval: 100
+save_every: 25              # a GPU crash then loses at most 25 steps
+seed: 0
+# grad_checkpoint: true     # slower, saves memory: enable if the run hits "Insufficient Memory"
+# resume_adapter_file: adapters/wolf-1.5b-v2/adapters.safetensors
