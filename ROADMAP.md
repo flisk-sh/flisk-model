@@ -34,7 +34,7 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 
 ## Phase 1: make it reliable (1 to 2 months)
 
-- **Constrained decoding.** Force the output to match the real `service.json` schema (JSON-schema or grammar mode), so invalid JSON is impossible. This is the biggest cheap gain.
+- **Constrained decoding, on the prompted 7B that serves today.** Force the output to match the real `service.json` schema (JSON-schema or grammar mode) so invalid JSON becomes impossible. It will not fix the trained model's misses (wrong names, dropped images), which are valid JSON, but several of the 7B's clean-set misses are not JSON at all. Compare on and off on the clean natural set.
 - Fix whole stacks: more stack and dependency data, and a model that plans the list of services before writing them.
 - Publish the weights (MLX and GGUF) with a one-command Ollama recipe, so people can run it themselves. Check each base model's licence first: Qwen 1.5B and 7B are Apache 2.0, the 3B is not.
 - Move the service off a laptop to a small hosted GPU or CPU box, with a status page and uptime numbers.
