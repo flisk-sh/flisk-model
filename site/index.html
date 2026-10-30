@@ -110,54 +110,52 @@ main{padding:0}main header{padding:16px 22px;border-bottom:1px solid var(--line)
       <div class="card"><b>How it was tested</b><p style="color:var(--mut);margin:8px 0 0">Scored with the Flisk CLI's own validator, temperature 0, on tasks the prompt was never tuned on. Sets, scripts and results live in the open <code>flisk-model</code> repo. Small models make small mistakes: it once called a one-shot job a <code>migrator</code>. We fixed the prompt and wrote down that we did.</p></div>
     </div>
   </section>
-  <footer>Mockup for a working brand. Planned host: inference.flisk.si (site and console), with the API at inference.flisk.si/v1. Not live yet; pricing and hosting are not decided. All console figures are sample data.</footer>
+  <footer>Mockup for a working brand. Planned host: inference.flisk.si (site and console), with the API at inference.flisk.si/v1. Not live yet; pricing and hosting are not decided.</footer>
 </div>
 </div>
 
 <div id="console">
   <aside>
     <div class="logo"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 6l7 5h10l7-5-2 11-6 9h-8l-6-9z"/></svg>Inference <span style="font-size:10px;border:1px solid #f2f1ec;padding:0 4px;margin-left:4px">API</span></div>
-    <div class="org">Your team ▾</div><div class="role">Owner</div>
+    <div class="org">Personal ▾</div><div class="role">Owner</div>
     <button data-tab="usage">Usage</button><button data-tab="billing">Billing</button><button data-tab="keys">API keys</button><button data-tab="team">Team</button><button data-tab="docs">Developer docs ↗</button>
-    <div class="who">you@example.com<br><br><button style="padding:0;border:0" id="exit">← Back to site</button></div>
+    <div class="who"><span id="who"></span><br><br><a href="/auth/logout" id="signout" style="color:inherit">Sign out</a><br><br><button style="padding:0;border:0" id="exit">← Back to site</button></div>
   </aside>
   <main>
     <header><h2 id="title">Usage</h2><span style="color:var(--mut);font-size:13px">Last 30 days</span></header>
 
+    <div class="pane" id="p-login">
+      <div class="card" style="max-width:480px"><h3>Sign in</h3><p style="color:var(--mut)">Use your GitHub account to create API keys and see your usage.</p>
+        <p id="login-btns"></p><p id="login-note" style="color:var(--faint);font-size:13px"></p></div>
+    </div>
+
     <div class="pane" id="p-usage">
-      <div class="note">Sample data. Nothing here is connected to a real service.</div>
       <div class="tiles">
-        <div class="tile" style="--c:var(--assess)"><small>Total tokens</small><b id="t1">48,210</b></div>
-        <div class="tile" style="--c:var(--trial)"><small>Requests</small><b id="t2">312</b></div>
-        <div class="tile" style="--c:var(--adopt)"><small>Usage cost</small><b id="t3">$0.04</b></div>
+        <div class="tile" style="--c:var(--assess)"><small>Total tokens</small><b id="t1">0</b></div>
+        <div class="tile" style="--c:var(--trial)"><small>Requests</small><b id="t2">0</b></div>
+        <div class="tile" style="--c:var(--adopt)"><small>Usage cost</small><b id="t3">Free</b></div>
       </div>
       <h3 style="margin-bottom:8px">Usage by API key</h3>
-      <table><tr><th>Key</th><th>Requests</th><th>Input</th><th>Output</th><th>Total</th><th>Cost</th><th>Last used</th></tr>
-      <tr><td>default</td><td>312</td><td>39,870</td><td>8,340</td><td>48,210</td><td>$0.04</td><td>2 min ago</td></tr></table>
+      <table id="usage-table"><thead><tr><th>Key</th><th>Requests</th><th>Input</th><th>Output</th><th>Last used</th></tr></thead><tbody></tbody></table>
+      <p id="usage-empty" style="color:var(--faint)"></p>
     </div>
 
     <div class="pane" id="p-billing">
-      <div class="note">Placeholder plan. Prices are not decided.</div>
-      <div class="card" style="max-width:560px"><small style="color:var(--mut)">Remaining balance</small><div style="font-size:34px;font-weight:600">$5.00</div><p style="color:var(--mut)">$5.00 sample credit minus $0.04 of usage.</p><button class="btn solid">Add credits</button></div>
-      <h3 style="margin:24px 0 8px">Current prices per million tokens</h3>
-      <table style="max-width:560px"><tr><th>Model</th><th>Input</th><th>Output</th></tr><tr><td><code>flisk-wolf</code></td><td>TBD</td><td>TBD</td></tr></table>
+      <div class="card" style="max-width:560px"><h3>Free preview</h3><p style="color:var(--mut)">Billing is not built yet. Requests are free while this is a preview, limited to 30 per minute per key and 1,024 output tokens per request.</p></div>
     </div>
 
     <div class="pane" id="p-keys">
-      <h3 style="margin-bottom:6px">Make your first request</h3><p style="color:var(--mut);margin-top:0">Replace <code>YOUR_API_KEY</code> with your key.</p>
-      <pre><code>curl https://inference.flisk.si/v1/chat/completions \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Content-Type: application/json' \
-  -d '{"model":"flisk-wolf","messages":[{"role":"user","content":"Say hello!"}],"max_tokens":256}'</code></pre>
-      <p style="color:var(--mut)">Keys authenticate requests. Keep them secret; never put one in client-side code.</p>
-      <table><tr><th>Name</th><th>Key</th><th>Created</th><th></th></tr><tr><td>default</td><td><code>fi-••••…K3QZ</code></td><td>30 Oct 2026</td><td><button class="btn">Revoke</button></td></tr></table>
+      <h3 style="margin-bottom:6px">Make your first request</h3><p style="color:var(--mut);margin-top:0">Replace <code>YOUR_API_KEY</code> with a key from below.</p>
+      <pre><code id="curl"></code></pre>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:22px 0 8px"><p style="color:var(--mut);margin:0">Keys authenticate requests. Keep them secret; never put one in client-side code.</p><button class="btn solid" id="newkey">New API key</button></div>
+      <div id="newkey-box" class="card" style="display:none;margin-bottom:12px"><b>Copy this key now. It is shown once.</b><pre style="margin-top:8px"><code id="newkey-val"></code></pre></div>
+      <table id="keys-table"><thead><tr><th>Name</th><th>Key</th><th>Created</th><th>Last used</th><th></th></tr></thead><tbody></tbody></table>
     </div>
 
     <div class="pane" id="p-team">
-      <p style="color:var(--mut)">Team name</p><input class="input" value="Your team"> 
-      <h3 style="margin:24px 0 8px">Members</h3>
-      <table><tr><th>Email</th><th>Role</th><th>Joined</th></tr><tr><td>you@example.com (you)</td><td>Owner</td><td>30 Oct 2026</td></tr></table>
-      <p style="color:var(--mut)">Members use shared keys and credits. Admins also manage billing and members.</p>
+      <h3 style="margin-bottom:8px">Members</h3>
+      <table><thead><tr><th>GitHub</th><th>Role</th><th>Joined</th></tr></thead><tbody><tr><td id="me-login"></td><td>Owner</td><td id="me-joined"></td></tr></tbody></table>
+      <p style="color:var(--faint)">Inviting members is not built yet.</p>
     </div>
 
     <div class="pane" id="p-docs">
@@ -179,13 +177,43 @@ print(r.choices[0].message.content)</code></pre>
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const names={usage:"Usage",billing:"Billing",keys:"API keys",team:"Team",docs:"Developer docs"};
-function show(tab){tab=names[tab]?tab:"usage";$("#site").style.display="none";$("#console").classList.add("on");
- $$(".pane").forEach(p=>p.classList.toggle("on",p.id==="p-"+tab));$$("aside [data-tab]").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));$("#title").textContent=names[tab];sync(tab);scrollTo(0,0)}
-function sync(tab){try{history.replaceState(null,"","?section="+tab)}catch(e){}}
+let me=null,cfg={};
+const api=async(path,opt)=>{const r=await fetch(path,opt);if(r.status===401){me=null;return null}const j=await r.json();if(!r.ok)throw new Error(j.error||r.status);return j};
+const fmt=n=>n.toLocaleString("en-US");
+const ago=t=>{if(!t)return"never";const m=Math.round((Date.now()-new Date(t))/60000);return m<1?"just now":m<60?m+" min ago":m<1440?Math.round(m/60)+" h ago":Math.round(m/1440)+" d ago"};
+const cell=(tr,txt)=>{const td=document.createElement("td");td.textContent=txt;tr.appendChild(td);return td};
+
+async function load(tab){
+  if(tab==="usage"){const u=await api("/api/usage");if(!u)return;
+    $("#t1").textContent=fmt(u.totals.input+u.totals.output);$("#t2").textContent=fmt(u.totals.requests);
+    const tb=$("#usage-table tbody");tb.textContent="";
+    u.keys.forEach(k=>{const tr=document.createElement("tr");cell(tr,k.name+(k.revoked?" (revoked)":""));cell(tr,fmt(k.requests));cell(tr,fmt(k.input));cell(tr,fmt(k.output));cell(tr,ago(k.lastUsed));tb.appendChild(tr)});
+    $("#usage-empty").textContent=u.keys.length?"":"No usage recorded yet. Create an API key and make a request."}
+  if(tab==="keys"){
+    $("#curl").textContent=`curl ${location.origin}/v1/chat/completions \\\n  -H 'Authorization: Bearer YOUR_API_KEY' \\\n  -H 'Content-Type: application/json' \\\n  -d '{"model":"${cfg.model}","messages":[{"role":"user","content":"Say hello!"}],"max_tokens":256}'`;
+    const ks=await api("/api/keys");if(!ks)return;const tb=$("#keys-table tbody");tb.textContent="";
+    ks.forEach(k=>{const tr=document.createElement("tr");cell(tr,k.name);cell(tr,k.prefix+"…"+k.last4).style.fontFamily="var(--mono)";cell(tr,new Date(k.created).toLocaleDateString());cell(tr,ago(k.lastUsed));
+      const td=document.createElement("td"),b=document.createElement("button");b.className="btn";b.textContent="Revoke";b.onclick=async()=>{if(confirm("Revoke key "+k.name+"? Requests using it will stop working.")){await api("/api/keys/"+k.id,{method:"DELETE"});load("keys")}};td.appendChild(b);tr.appendChild(td);tb.appendChild(tr)})}
+  if(tab==="team"&&me){$("#me-login").textContent="@"+me.login;$("#me-joined").textContent=new Date(me.created).toLocaleDateString()}
+}
+async function show(tab){tab=names[tab]?tab:"usage";$("#site").style.display="none";$("#console").classList.add("on");
+  if(!me)me=await api("/api/me");
+  const pane=(me||tab==="docs")?tab:"login";
+  $$(".pane").forEach(p=>p.classList.toggle("on",p.id==="p-"+pane));$$("aside [data-tab]").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));
+  $("#title").textContent=pane==="login"?"Sign in":names[tab];$("#who").textContent=me?"@"+me.login:"Not signed in";$("#signout").style.display=me?"":"none";
+  try{history.replaceState(null,"","?section="+tab)}catch(e){}
+  if(me)load(tab);scrollTo(0,0)}
 function home(){try{history.replaceState(null,"",location.pathname)}catch(e){}$("#console").classList.remove("on");$("#site").style.display=""}
 $$("[data-go]").forEach(e=>e.addEventListener("click",ev=>{ev.preventDefault();show(e.dataset.go)}));
 $$("aside [data-tab]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.tab)));
 $("#exit").addEventListener("click",home);
-const q=new URLSearchParams(location.search).get("section");if(q&&names[q])show(q);
+$("#newkey").addEventListener("click",async()=>{const name=prompt("Name for this key","default");if(name===null)return;
+  try{const k=await api("/api/keys",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({name})});$("#newkey-val").textContent=k.key;$("#newkey-box").style.display="";load("keys")}catch(e){alert(e.message)}});
+(async()=>{cfg=await (await fetch("/api/config")).json();
+  const btns=$("#login-btns");
+  if(cfg.oauth){const a=document.createElement("a");a.className="btn solid";a.href="/auth/github";a.textContent="Sign in with GitHub";btns.appendChild(a)}
+  if(cfg.dev){const a=document.createElement("a");a.className="btn"+(cfg.oauth?"":" solid");a.href="/auth/dev";a.textContent=cfg.oauth?"Use local gh login":"Sign in with local GitHub (gh)";btns.appendChild(a);$("#login-note").textContent="Local dev sign-in: uses the GitHub account that `gh` is logged in as on the machine running this server."}
+  if(!cfg.oauth&&!cfg.dev)$("#login-note").textContent="Sign-in is not configured on this server.";
+  const q=new URLSearchParams(location.search).get("section");if(q&&names[q])show(q)})();
 </script>
 </body></html>
