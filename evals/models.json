@@ -1,8 +1,38 @@
 [
-  { "label": "Claude Haiku 5.5", "kind": "Large hosted model", "file": "haiku.json", "how": "run blind as a separate Claude Haiku instance. It saw only the questions and the one-sentence instruction. Answer length was not measured." },
-  { "label": "Claude Sonnet 5.5", "kind": "Large hosted model", "file": "sonnet.json", "how": "run blind as a separate Claude Sonnet instance, the same way. Answer length was not measured." },
-  { "label": "flisk-wolf (prompted)", "kind": "Small open model + long instructions", "file": "wolf-prompted.json", "how": "Qwen2.5-Coder 7B with the Flisk rules and four worked examples built into its prompt (about 1,100 extra tokens on every call). Not trained." },
-  { "label": "Qwen2.5-Coder 7B (plain)", "kind": "Small open model, untouched", "file": "qwen7b-plain.json", "how": "the base model with the same short instruction as the others. No Flisk rules, no training." },
-  { "label": "Qwen2.5-Coder 1.5B (plain)", "kind": "Tiny open model, untouched", "file": "qwen1.5b-plain.json", "how": "the base model with the short instruction. No Flisk rules, no training." },
-  { "label": "flisk-wolf 1.5B (trained)", "kind": "Tiny open model + our training", "file": "wolf-trained-1.5b.json", "how": "Qwen2.5-Coder 1.5B fine-tuned with a LoRA on 2,243 verified examples, then asked with the short instruction only. Trained on a MacBook Pro M1." }
+ {
+  "label": "Claude Haiku 5.5",
+  "kind": "Large hosted model",
+  "file": "haiku.json",
+  "how": "run blind as a separate Claude Haiku instance. It saw only the questions and the one-sentence instruction. Answer length was not measured."
+ },
+ {
+  "label": "Claude Sonnet 5.5",
+  "kind": "Large hosted model",
+  "file": "sonnet.json",
+  "how": "run blind as a separate Claude Sonnet instance, the same way. Answer length was not measured."
+ },
+ {
+  "label": "flisk-wolf (prompted)",
+  "kind": "Small open model + long instructions",
+  "file": "wolf-prompted.json",
+  "how": "Qwen2.5-Coder 7B with the Flisk rules and four worked examples built into its prompt (about 1,100 extra tokens on every call). Not trained."
+ },
+ {
+  "label": "Qwen2.5-Coder 7B (plain)",
+  "kind": "Small open model, untouched",
+  "file": "qwen7b-plain.json",
+  "how": "the base model with the same short instruction as the others. No Flisk rules, no training."
+ },
+ {
+  "label": "Qwen2.5-Coder 1.5B (plain)",
+  "kind": "Tiny open model, untouched",
+  "file": "qwen1.5b-plain.json",
+  "how": "the base model with the short instruction. No Flisk rules, no training."
+ },
+ {
+  "label": "flisk-wolf 1.5B (trained, step 125)",
+  "kind": "Tiny open model + our training",
+  "file": "wolf-trained-1.5b.json",
+  "how": "Qwen2.5-Coder 1.5B fine-tuned with a LoRA on 2,243 verified examples on a MacBook Pro M1, asked with the short instruction only. Scored on the last saved checkpoint, step 125 of a planned 150: the run then crashed (GPU out of memory), and a first version of the training data had also cut stack answers short."
+ }
 ]

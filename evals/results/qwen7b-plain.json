@@ -1,0 +1,539 @@
+{
+  "model": "qwen2.5-coder:7b",
+  "prompt": "v1",
+  "passed": 16,
+  "total": 62,
+  "totalTokens": 5094,
+  "results": [
+    {
+      "id": "b-single-0",
+      "pass": true,
+      "tokens": 41,
+      "problems": []
+    },
+    {
+      "id": "b-single-1",
+      "pass": false,
+      "tokens": 93,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"service\"",
+        "port: expected 4953, got undefined",
+        "restart: expected \"on-failure\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-2",
+      "pass": false,
+      "tokens": 68,
+      "problems": [
+        "service.json.stack: expected a string",
+        "appType: expected \"backend\", got \"java\"",
+        "port: expected 7967, got undefined",
+        "command: expected \"java -jar app.jar\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-3",
+      "pass": false,
+      "tokens": 67,
+      "problems": [
+        "appType: expected \"backend\", got \"api\"",
+        "healthCheckPath: expected \"/alive\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-4",
+      "pass": false,
+      "tokens": 41,
+      "problems": [
+        "appType: expected \"mcp\", got \"MCP\""
+      ]
+    },
+    {
+      "id": "b-single-5",
+      "pass": false,
+      "tokens": 85,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"container\"",
+        "port: expected 5551, got undefined",
+        "image: expected \"caddy:2\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-6",
+      "pass": false,
+      "tokens": 89,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"web\"",
+        "port: expected 5070, got undefined",
+        "healthCheckPath: expected \"/livez\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-7",
+      "pass": false,
+      "tokens": 68,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"couchdb:3\"",
+        "image: expected \"couchdb:3\", got undefined",
+        "restart: expected \"always\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-8",
+      "pass": true,
+      "tokens": 58,
+      "problems": []
+    },
+    {
+      "id": "b-single-9",
+      "pass": false,
+      "tokens": 53,
+      "problems": [
+        "appType: expected \"migrator\", got \"database-migration\"",
+        "dependsOn: expected [\"rooster-queue\"], got undefined"
+      ]
+    },
+    {
+      "id": "b-single-10",
+      "pass": false,
+      "tokens": 64,
+      "problems": [
+        "appType: expected \"mcp\", got \"tool-server\"",
+        "dependsOn: expected [\"mosaic-queue\"], got undefined"
+      ]
+    },
+    {
+      "id": "b-single-11",
+      "pass": false,
+      "tokens": 69,
+      "problems": [
+        "service.json.stack: expected a string",
+        "appType: expected \"backend\", got \"HTTP API\"",
+        "port: expected 3073, got undefined",
+        "command: expected \"java -jar app.jar\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-12",
+      "pass": false,
+      "tokens": 107,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"service\"",
+        "port: expected 12674, got undefined",
+        "healthCheckPath: expected \"/state\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-13",
+      "pass": false,
+      "tokens": 55,
+      "problems": [
+        "appType: expected \"backend\", got \"api\""
+      ]
+    },
+    {
+      "id": "b-single-14",
+      "pass": false,
+      "tokens": 116,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"prebuilt\"",
+        "port: expected 10378, got undefined",
+        "healthCheckPath: expected \"/state\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-15",
+      "pass": false,
+      "tokens": 128,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"container\"",
+        "port: expected 11715, got undefined",
+        "image: expected \"etcd:3.5\", got undefined",
+        "healthCheckPath: expected \"/livez\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-16",
+      "pass": false,
+      "tokens": 87,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"docker\"",
+        "healthCheckPath: expected \"/state\", got undefined",
+        "restart: expected \"no\", got undefined",
+        "exposeViaProxy: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "b-single-17",
+      "pass": false,
+      "tokens": 69,
+      "problems": [
+        "appType: expected \"backend\", got \"api\"",
+        "dependsOn: expected [\"mosaic-db\",\"falcon-api\"], got undefined"
+      ]
+    },
+    {
+      "id": "b-single-18",
+      "pass": false,
+      "tokens": 68,
+      "problems": [
+        "service.json.stack: expected a string",
+        "appType: expected \"frontend\", got \"java\"",
+        "port: expected 8496, got undefined",
+        "command: expected \"java -jar app.jar\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-19",
+      "pass": false,
+      "tokens": 41,
+      "problems": [
+        "appType: expected \"backend\", got \"http-api\""
+      ]
+    },
+    {
+      "id": "b-single-20",
+      "pass": false,
+      "tokens": 50,
+      "problems": [
+        "appType: expected \"mcp\", got \"server\""
+      ]
+    },
+    {
+      "id": "b-single-21",
+      "pass": false,
+      "tokens": 68,
+      "problems": [
+        "appType: expected \"backend\", got \"REST\"",
+        "enabled: expected false, got undefined",
+        "dependsOn: expected [\"zephyr-db\"], got undefined"
+      ]
+    },
+    {
+      "id": "b-single-22",
+      "pass": false,
+      "tokens": 58,
+      "problems": [
+        "appType: expected \"frontend\", got \"web\"",
+        "healthCheckPath: expected \"/livez\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-23",
+      "pass": false,
+      "tokens": 54,
+      "problems": [
+        "appType: expected \"backend\", got \"rest\"",
+        "dependsOn: expected [\"tulip-api\"], got undefined"
+      ]
+    },
+    {
+      "id": "b-single-24",
+      "pass": true,
+      "tokens": 40,
+      "problems": []
+    },
+    {
+      "id": "b-single-25",
+      "pass": false,
+      "tokens": 63,
+      "problems": [
+        "appType: expected \"migrator\", got \"schema-migration-runner\"",
+        "dependsOn: expected [\"pebble-queue\"], got undefined"
+      ]
+    },
+    {
+      "id": "b-single-26",
+      "pass": true,
+      "tokens": 42,
+      "problems": []
+    },
+    {
+      "id": "b-single-27",
+      "pass": false,
+      "tokens": 49,
+      "problems": [
+        "appType: expected \"mcp\", got \"tool\""
+      ]
+    },
+    {
+      "id": "b-single-28",
+      "pass": false,
+      "tokens": 40,
+      "problems": [
+        "appType: expected \"agent\", got \"AI\""
+      ]
+    },
+    {
+      "id": "b-single-29",
+      "pass": false,
+      "tokens": 40,
+      "problems": [
+        "appType: expected \"migrator\", got \"service\""
+      ]
+    },
+    {
+      "id": "b-single-30",
+      "pass": false,
+      "tokens": 50,
+      "problems": [
+        "appType: expected \"mcp\", got \"tool\""
+      ]
+    },
+    {
+      "id": "b-single-31",
+      "pass": false,
+      "tokens": 40,
+      "problems": [
+        "appType: expected \"agent\", got \"service\""
+      ]
+    },
+    {
+      "id": "b-single-32",
+      "pass": false,
+      "tokens": 77,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"prebuilt\"",
+        "healthCheckPath: expected \"/hc\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-33",
+      "pass": false,
+      "tokens": 88,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"container\"",
+        "port: expected 17173, got undefined"
+      ]
+    },
+    {
+      "id": "b-single-34",
+      "pass": false,
+      "tokens": 78,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"container\""
+      ]
+    },
+    {
+      "id": "b-single-35",
+      "pass": false,
+      "tokens": 67,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"container\"",
+        "healthCheckPath: expected \"/alive\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-36",
+      "pass": false,
+      "tokens": 82,
+      "problems": [
+        "service.json.stack: expected a string",
+        "appType: expected \"backend\", got \"HTTP API\"",
+        "port: expected 3227, got undefined",
+        "command: expected \"elixir app.exs\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-37",
+      "pass": false,
+      "tokens": 39,
+      "problems": [
+        "appType: expected \"agent\", got \"web\""
+      ]
+    },
+    {
+      "id": "b-single-38",
+      "pass": false,
+      "tokens": 67,
+      "problems": [
+        "appType: expected \"agent\", got \"api\"",
+        "dependsOn: expected [\"lantern-api\"], got undefined"
+      ]
+    },
+    {
+      "id": "b-single-39",
+      "pass": false,
+      "tokens": 56,
+      "problems": [
+        "agent: expected {\"durability\":\"files\"}, got undefined"
+      ]
+    },
+    {
+      "id": "b-stack-0",
+      "pass": false,
+      "tokens": 259,
+      "problems": [
+        "lantern-cache.appType: expected \"bring-your-own\", got \"prebuilt\"",
+        "lantern-cache.healthCheckPath: expected \"/livez\", got undefined",
+        "lantern-cache.exposeViaProxy: expected false, got undefined",
+        "walnut-app.appType: expected \"backend\", got \"http-api\"",
+        "walnut-api.appType: expected \"agent\", got \"ai-agent\"",
+        "walnut-api.agent: expected {\"durability\":\"files\"}, got undefined"
+      ]
+    },
+    {
+      "id": "b-stack-1",
+      "pass": false,
+      "tokens": 165,
+      "problems": [
+        "falcon-job.appType: expected \"backend\", got \"rest\"",
+        "falcon-job.healthCheckPath: expected \"/livez\", got undefined",
+        "meadow-app.appType: expected \"migrator\", got \"migration\""
+      ]
+    },
+    {
+      "id": "b-stack-2",
+      "pass": false,
+      "tokens": 157,
+      "problems": [
+        "pebble-api.appType: expected \"frontend\", got \"web\"",
+        "walnut-api.appType: expected \"backend\", got \"api\"",
+        "walnut-api.healthCheckPath: expected \"/state\", got undefined"
+      ]
+    },
+    {
+      "id": "b-stack-3",
+      "pass": false,
+      "tokens": 145,
+      "problems": [
+        "meadow-api.appType: expected \"mcp\", got \"server\""
+      ]
+    },
+    {
+      "id": "b-stack-4",
+      "pass": false,
+      "tokens": 95,
+      "problems": [
+        "rooster-web.appType: expected \"migrator\", got \"database-migration\"",
+        "rooster-job.appType: expected \"migrator\", got \"database-migration\""
+      ]
+    },
+    {
+      "id": "b-stack-5",
+      "pass": false,
+      "tokens": 179,
+      "problems": [
+        "walnut-box.appType: expected \"bring-your-own\", got \"container\"",
+        "walnut-box.healthCheckPath: expected \"/hc\", got undefined",
+        "walnut-box.exposeViaProxy: expected false, got undefined",
+        "rooster-web.appType: expected \"mcp\", got \"tool\""
+      ]
+    },
+    {
+      "id": "b-stack-6",
+      "pass": false,
+      "tokens": 198,
+      "problems": [
+        "ember-store.appType: expected \"bring-your-own\", got \"third-party\"",
+        "ember-store.exposeViaProxy: expected false, got undefined",
+        "ember-api.appType: expected \"frontend\", got \"single-page\""
+      ]
+    },
+    {
+      "id": "b-stack-7",
+      "pass": false,
+      "tokens": 222,
+      "problems": [
+        "rooster-store.appType: expected \"bring-your-own\", got \"service\"",
+        "rooster-store.exposeViaProxy: expected false, got undefined",
+        "rooster-queue.appType: expected \"bring-your-own\", got \"service\"",
+        "rooster-queue.exposeViaProxy: expected false, got undefined",
+        "saffron-api.appType: expected \"worker\", got \"job\""
+      ]
+    },
+    {
+      "id": "b-stack-8",
+      "pass": false,
+      "tokens": 252,
+      "problems": [
+        "walnut-cache.appType: expected \"bring-your-own\", got \"prebuilt\"",
+        "walnut-cache.healthCheckPath: expected \"/hc\", got undefined",
+        "rooster-svc.appType: expected \"backend\", got \"api\"",
+        "rooster-svc.healthCheckPath: expected \"/state\", got undefined",
+        "zephyr-app.appType: expected \"backend\", got \"api\""
+      ]
+    },
+    {
+      "id": "b-stack-9",
+      "pass": false,
+      "tokens": 122,
+      "problems": [
+        "rooster-job.appType: expected \"mcp\", got \"model-context-protocol\""
+      ]
+    },
+    {
+      "id": "b-repair-0",
+      "pass": true,
+      "tokens": 77,
+      "problems": []
+    },
+    {
+      "id": "b-repair-1",
+      "pass": true,
+      "tokens": 56,
+      "problems": []
+    },
+    {
+      "id": "b-repair-2",
+      "pass": true,
+      "tokens": 64,
+      "problems": []
+    },
+    {
+      "id": "b-repair-3",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "b-repair-4",
+      "pass": true,
+      "tokens": 60,
+      "problems": []
+    },
+    {
+      "id": "b-repair-5",
+      "pass": true,
+      "tokens": 66,
+      "problems": []
+    },
+    {
+      "id": "b-repair-6",
+      "pass": true,
+      "tokens": 52,
+      "problems": []
+    },
+    {
+      "id": "b-repair-7",
+      "pass": true,
+      "tokens": 68,
+      "problems": []
+    },
+    {
+      "id": "b-repair-8",
+      "pass": true,
+      "tokens": 63,
+      "problems": []
+    },
+    {
+      "id": "b-repair-9",
+      "pass": true,
+      "tokens": 59,
+      "problems": []
+    },
+    {
+      "id": "b-repair-10",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "b-repair-11",
+      "pass": true,
+      "tokens": 47,
+      "problems": []
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "model": "default_model",
+  "prompt": "v1",
+  "passed": 46,
+  "total": 62,
+  "totalTokens": 4648,
+  "results": [
+    {
+      "id": "b-single-0",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "b-single-1",
+      "pass": true,
+      "tokens": 66,
+      "problems": []
+    },
+    {
+      "id": "b-single-2",
+      "pass": true,
+      "tokens": 50,
+      "problems": []
+    },
+    {
+      "id": "b-single-3",
+      "pass": true,
+      "tokens": 64,
+      "problems": []
+    },
+    {
+      "id": "b-single-4",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "b-single-5",
+      "pass": false,
+      "tokens": 38,
+      "problems": [
+        "port: expected 5551, got undefined",
+        "image: expected \"caddy:2\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-6",
+      "pass": true,
+      "tokens": 70,
+      "problems": []
+    },
+    {
+      "id": "b-single-7",
+      "pass": true,
+      "tokens": 67,
+      "problems": []
+    },
+    {
+      "id": "b-single-8",
+      "pass": true,
+      "tokens": 54,
+      "problems": []
+    },
+    {
+      "id": "b-single-9",
+      "pass": true,
+      "tokens": 54,
+      "problems": []
+    },
+    {
+      "id": "b-single-10",
+      "pass": true,
+      "tokens": 61,
+      "problems": []
+    },
+    {
+      "id": "b-single-11",
+      "pass": true,
+      "tokens": 50,
+      "problems": []
+    },
+    {
+      "id": "b-single-12",
+      "pass": true,
+      "tokens": 70,
+      "problems": []
+    },
+    {
+      "id": "b-single-13",
+      "pass": true,
+      "tokens": 51,
+      "problems": []
+    },
+    {
+      "id": "b-single-14",
+      "pass": true,
+      "tokens": 72,
+      "problems": []
+    },
+    {
+      "id": "b-single-15",
+      "pass": true,
+      "tokens": 71,
+      "problems": []
+    },
+    {
+      "id": "b-single-16",
+      "pass": false,
+      "tokens": 114,
+      "problems": [
+        "exposeViaProxy: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "b-single-17",
+      "pass": false,
+      "tokens": 60,
+      "problems": [
+        "dependsOn: expected [\"mosaic-db\",\"falcon-api\"], got [\"mosaic-db\"]"
+      ]
+    },
+    {
+      "id": "b-single-18",
+      "pass": true,
+      "tokens": 50,
+      "problems": []
+    },
+    {
+      "id": "b-single-19",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "b-single-20",
+      "pass": true,
+      "tokens": 47,
+      "problems": []
+    },
+    {
+      "id": "b-single-21",
+      "pass": true,
+      "tokens": 64,
+      "problems": []
+    },
+    {
+      "id": "b-single-22",
+      "pass": true,
+      "tokens": 55,
+      "problems": []
+    },
+    {
+      "id": "b-single-23",
+      "pass": true,
+      "tokens": 51,
+      "problems": []
+    },
+    {
+      "id": "b-single-24",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "b-single-25",
+      "pass": true,
+      "tokens": 59,
+      "problems": []
+    },
+    {
+      "id": "b-single-26",
+      "pass": true,
+      "tokens": 38,
+      "problems": []
+    },
+    {
+      "id": "b-single-27",
+      "pass": true,
+      "tokens": 46,
+      "problems": []
+    },
+    {
+      "id": "b-single-28",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "b-single-29",
+      "pass": true,
+      "tokens": 38,
+      "problems": []
+    },
+    {
+      "id": "b-single-30",
+      "pass": true,
+      "tokens": 47,
+      "problems": []
+    },
+    {
+      "id": "b-single-31",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "b-single-32",
+      "pass": true,
+      "tokens": 70,
+      "problems": []
+    },
+    {
+      "id": "b-single-33",
+      "pass": false,
+      "tokens": 40,
+      "problems": [
+        "port: expected 17173, got undefined",
+        "image: expected \"influxdb:2\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-34",
+      "pass": false,
+      "tokens": 40,
+      "problems": [
+        "port: expected 2774, got undefined",
+        "image: expected \"etcd:3.5\", got undefined"
+      ]
+    },
+    {
+      "id": "b-single-35",
+      "pass": true,
+      "tokens": 67,
+      "problems": []
+    },
+    {
+      "id": "b-single-36",
+      "pass": true,
+      "tokens": 50,
+      "problems": []
+    },
+    {
+      "id": "b-single-37",
+      "pass": true,
+      "tokens": 35,
+      "problems": []
+    },
+    {
+      "id": "b-single-38",
+      "pass": true,
+      "tokens": 49,
+      "problems": []
+    },
+    {
+      "id": "b-single-39",
+      "pass": true,
+      "tokens": 51,
+      "problems": []
+    },
+    {
+      "id": "b-stack-0",
+      "pass": false,
+      "tokens": 84,
+      "problems": [
+        "not valid JSON"
+      ]
+    },
+    {
+      "id": "b-stack-1",
+      "pass": false,
+      "tokens": 512,
+      "problems": [
+        "not valid JSON"
+      ]
+    },
+    {
+      "id": "b-stack-2",
+      "pass": false,
+      "tokens": 77,
+      "problems": [
+        "pebble-api.basePath: expected \"/lab\", got undefined",
+        "walnut-api.healthCheckPath: expected \"/state\", got undefined",
+        "walnut-api.dependsOn: expected [\"pebble-api\"], got undefined",
+        "tulip-api: missing",
+        "expected 3 services, got 2"
+      ]
+    },
+    {
+      "id": "b-stack-3",
+      "pass": false,
+      "tokens": 53,
+      "problems": [
+        "lantern-app: missing",
+        "meadow-api: missing",
+        "expected 3 services, got 1"
+      ]
+    },
+    {
+      "id": "b-stack-4",
+      "pass": false,
+      "tokens": 81,
+      "problems": [
+        "rooster-job.dependsOn: expected [\"rooster-web\"], got undefined"
+      ]
+    },
+    {
+      "id": "b-stack-5",
+      "pass": false,
+      "tokens": 93,
+      "problems": [
+        "not valid JSON"
+      ]
+    },
+    {
+      "id": "b-stack-6",
+      "pass": false,
+      "tokens": 129,
+      "problems": [
+        "meadow-web: missing",
+        "expected 3 services, got 2"
+      ]
+    },
+    {
+      "id": "b-stack-7",
+      "pass": false,
+      "tokens": 145,
+      "problems": [
+        "rooster-queue.dependsOn: expected [\"rooster-store\"], got undefined",
+        "saffron-api: missing",
+        "expected 3 services, got 2"
+      ]
+    },
+    {
+      "id": "b-stack-8",
+      "pass": false,
+      "tokens": 152,
+      "problems": [
+        "ember-web: missing",
+        "zephyr-app: missing",
+        "expected 4 services, got 2"
+      ]
+    },
+    {
+      "id": "b-stack-9",
+      "pass": false,
+      "tokens": 512,
+      "problems": [
+        "not valid JSON"
+      ]
+    },
+    {
+      "id": "b-repair-0",
+      "pass": false,
+      "tokens": 69,
+      "problems": [
+        "dependsOn: expected [\"lantern-queue\",\"tulip-queue\"], got [\"lantern-queue\"]"
+      ]
+    },
+    {
+      "id": "b-repair-1",
+      "pass": true,
+      "tokens": 56,
+      "problems": []
+    },
+    {
+      "id": "b-repair-2",
+      "pass": true,
+      "tokens": 64,
+      "problems": []
+    },
+    {
+      "id": "b-repair-3",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "b-repair-4",
+      "pass": true,
+      "tokens": 60,
+      "problems": []
+    },
+    {
+      "id": "b-repair-5",
+      "pass": true,
+      "tokens": 66,
+      "problems": []
+    },
+    {
+      "id": "b-repair-6",
+      "pass": true,
+      "tokens": 52,
+      "problems": []
+    },
+    {
+      "id": "b-repair-7",
+      "pass": true,
+      "tokens": 71,
+      "problems": []
+    },
+    {
+      "id": "b-repair-8",
+      "pass": true,
+      "tokens": 63,
+      "problems": []
+    },
+    {
+      "id": "b-repair-9",
+      "pass": true,
+      "tokens": 62,
+      "problems": []
+    },
+    {
+      "id": "b-repair-10",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "b-repair-11",
+      "pass": true,
+      "tokens": 47,
+      "problems": []
+    }
+  ]
+}

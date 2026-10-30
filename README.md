@@ -1,69 +1,64 @@
 # flisk-model
 
-Step 1 of a Flisk-specialised model: an eval and a dataset. No training yet.
+**Can a small model write correct Flisk config files, and can we make it as good as the big ones?**
 
-The plan, Particle-style: keep a strong open base model, measure how well it does Flisk tasks, and only train a small LoRA adapter if the numbers say it is needed.
+[Flisk](https://github.com/flisk-sh/flisk) runs a software stack on your laptop from small `service.json` files. This repo tests how well different AI models write them, and trains a tiny one on a MacBook. How the test works, in plain English: **[TESTS.md](TESTS.md)**.
+
+## Results
+
+62 held-out questions, every model scored the same way (the real Flisk validator, no human judging).
+
+| Model | What it is | Passed (of 62) | Single (40) | Stack (10) | Repair (12) | Avg answer length |
+|---|---|---|---|---|---|---|
+| **Claude Haiku 5.5** | Large hosted model | **57** (92%) | 39/40 | 6/10 | 12/12 | not measured |
+| **Claude Sonnet 5.5** | Large hosted model | **57** (92%) | 39/40 | 6/10 | 12/12 | not measured |
+| **flisk-wolf (prompted)** | Small open model + long instructions | **54** (87%) | 34/40 | 8/10 | 12/12 | 78 tokens |
+| **flisk-wolf 1.5B (trained, step 125)** | Tiny open model + our training | **46** (74%) | 35/40 | 0/10 | 11/12 | 75 tokens |
+| **Qwen2.5-Coder 1.5B (plain)** | Tiny open model, untouched | **17** (27%) | 5/40 | 0/10 | 12/12 | 81 tokens |
+| **Qwen2.5-Coder 7B (plain)** | Small open model, untouched | **16** (26%) | 4/40 | 0/10 | 12/12 | 82 tokens |
+
+How each row was run:
+- **Claude Haiku 5.5**: run blind as a separate Claude Haiku instance. It saw only the questions and the one-sentence instruction. Answer length was not measured.
+- **Claude Sonnet 5.5**: run blind as a separate Claude Sonnet instance, the same way. Answer length was not measured.
+- **flisk-wolf (prompted)**: Qwen2.5-Coder 7B with the Flisk rules and four worked examples built into its prompt (about 1,100 extra tokens on every call). Not trained.
+- **Qwen2.5-Coder 7B (plain)**: the base model with the same short instruction as the others. No Flisk rules, no training.
+- **Qwen2.5-Coder 1.5B (plain)**: the base model with the short instruction. No Flisk rules, no training.
+- **flisk-wolf 1.5B (trained, step 125)**: Qwen2.5-Coder 1.5B fine-tuned with a LoRA on 2,243 verified examples on a MacBook Pro M1, asked with the short instruction only. Scored on the last saved checkpoint, step 125 of a planned 150: the run then crashed (GPU out of memory), and a first version of the training data had also cut stack answers short.
+
+### What the numbers say
+
+- **Training works.** The same tiny 1.5B model went from **17 to 46 of 62** after a short fine-tune on a laptop. On single-service questions it jumped from 5 to **35 of 40**, about the same as the prompted 7B model (34) and close to Claude (39).
+- **Big models are not magic here.** Claude Haiku and Sonnet both scored 57. They were never told Flisk's own setting names, so they missed the same question type: a service "that must not get a Traefik route" needs `exposeViaProxy: false`, which they did not know.
+- **Instructions can stand in for training, at a cost.** The prompted 7B model reached 54 by carrying about 1,100 extra words of rules on every request. It even beat Claude on whole stacks (8 of 10 vs 6). The trained model needs none of that.
+- **Weak spot: whole stacks (0 of 10).** The trained model fails the multi-file questions. The reason is visible: those answers are long, and my training run cut them off at 768 tokens, so it learned to stop early. The fix is already planned (shorter, compact JSON and a longer limit), and it is also the cheapest way to cut answer length.
+- **Plain small models fail the same test.** Untrained Qwen 1.5B and 7B pass the repair questions (the error message names the fix) but only 4 to 5 of 40 single-service questions.
+
+Caveat: 62 questions is a small sample, so one or two questions of difference is noise. Claude's answer length was not measured.
 
 ## What is here
 
-- `eval.mjs` runs 12 Flisk tasks (write a `service.json`) against any OpenAI-compatible server (Ollama, LM Studio, vLLM, a hosted API). A task passes when the output parses, the Flisk CLI's own validator accepts it, every expected field matches and no forbidden field is present. It also prints output tokens, the number Particle cut by ~45%.
-- `build-dataset.mjs` collects real `service.json` files, keeps the ones the validator accepts, and writes chat-format JSONL to `data/` (gitignored).
-- `lib/validate.mjs` imports the validator from a built flisk checkout.
+| File | What it does |
+|---|---|
+| [`TESTS.md`](TESTS.md) | The test, in plain English, with one example per question group |
+| [`RESULTS.md`](RESULTS.md) | The results table on its own |
+| `eval.mjs` | Scores any model (any OpenAI-compatible server, or a file of answers) |
+| `gen-dataset.mjs` | Builds the verified training data and the held-out test |
+| `report.mjs` | Builds the results table |
+| `make-modelfile.mjs` | Bakes the Flisk rules into an Ollama model called `flisk-wolf` |
+| `server.mjs` | Console with GitHub sign-in, API keys and a metered `/v1` endpoint |
+| `site/` | The Flisk Inference console page |
 
-## Run it
-
-```bash
-export FLISK_REPO=/path/to/flisk          # needs cli/dist built
-node eval.mjs --model qwen2.5-coder:7b    # defaults to http://localhost:11434/v1
-node build-dataset.mjs /path/to/flisk/examples /path/to/other/flisk/projects
-```
-
-Needs Node 18+ and nothing from npm.
-
-## Results (2026-10-30, Ollama on a 16 GB Mac, temperature 0)
-
-| Model | Prompt | Main (12) | Held-out (8) |
-|---|---|---|---|
-| qwen2.5-coder:3b | v1 short | 1/12 | not run |
-| qwen2.5-coder:3b | v2 Flisk rules + 4 examples | 12/12 | 8/8 |
-| qwen2.5-coder:7b | v2 | 11/12 | 8/8 |
-
-- The short prompt fails because the model invents `appType` values (`http`, `web`, `job`). The v2 prompt in `lib/templates.mjs` fixes that with no training.
-- Prompt rules were written after seeing failures on `tasks.json` and `tasks-hard.json`, so those two sets are contaminated. `tasks-heldout.json` was written afterwards and is the fair one. Write a new unseen set before each claim, and keep some tasks private.
-- `tasks-stack.json` (whole stacks, dependsOn must point at real services) and `tasks-repair.json` (fix a `service.json` the validator rejects) are the harder sets. They are uncontaminated: the v2 prompt has not been tuned on them.
-
-| Model (prompt v2) | Stack (3) | Repair (5) |
-|---|---|---|
-| qwen2.5-coder:3b | 1/3 | 5/5 |
-| qwen2.5-coder:7b | 1/3 | 5/5 |
-
-  Repair is solved because the validator message names the fix. Stacks failed because both models dropped the required `stack` field.
-
-### After the stack fix (prompt v2 + a `stack` rule + one worked array example)
-
-| Model | Stack, fresh (3) | Stack 2, seen (4) | Main (12) | Held-out (8) | Repair (5) |
-|---|---|---|---|---|---|
-| qwen2.5-coder:3b | 1/3 | 4/4 | 12/12 | 7/8 | 5/5 |
-| qwen2.5-coder:7b | 3/3 | 4/4 | 11/12 | 8/8 | 5/5 |
-
-- The 7B model now handles whole stacks. The 3B model does not reliably (1/3 on the fresh set) and slipped from 8/8 to 7/8 on held-out, so it is the one a trained model could help most.
-- `tasks-stack2` was written after the `stack` rule and the worked example resembles it (Redis plus API), so count it as seen. `tasks-stack3` is the fair one. Only 3 tasks: treat it as a signal, not a score.
-- `flisk doctor` output is still untested.
-
-## The wolf: `flisk-wolf`
-
-`make-modelfile.mjs` bakes the v2 prompt and examples into an Ollama model, so it needs no prompt at call time:
+## Reproduce
 
 ```bash
-node make-modelfile.mjs qwen2.5-coder:7b > Modelfile
-ollama create flisk-wolf -f Modelfile
-ollama run flisk-wolf "Write a Flisk service.json for a worker called \"emailer\" in the \"shop\" stack."
+export FLISK_REPO=/path/to/flisk      # a checkout with cli/dist built: the real validator
+node gen-dataset.mjs                  # training data and the held-out test
+node eval.mjs --model qwen2.5-coder:7b --tasks tasks-b --prompt v1
+node report.mjs                       # writes RESULTS.md
 ```
 
-It scores the same as the prompted 7B model (main 12/12, held-out 8/8, fresh stacks 3/3, repair 5/5, one-shot jobs 4/4, run with `--prompt none`). The main set is contaminated; the one-shot jobs set (4 tasks) was written after its rule, so treat it as a signal. It is a prompted model, not a trained one: the weights are Qwen's, so follow the Qwen license if you share it.
+Training uses [MLX](https://github.com/ml-explore/mlx-lm) on Apple Silicon: `python -m mlx_lm lora --model mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit --train --data data ...`. Qwen2.5-Coder 1.5B and 7B are Apache 2.0; the 3B model is research-only, so it is not used.
 
-## Next
+## Status
 
-1. Add more fresh stack tasks and `flisk doctor` output tasks. Use the 7B model with the v2 prompt as the working default; try a LoRA only for the 3B model if small and fast matters.
-2. If a model still fails those with the v2 prompt, grow the dataset and try a small LoRA. If not, ship the prompt as a Flisk skill and serve a base model with `flisk resource brain --type inference`.
-3. Keep data private until you have checked which source repos are public.
+Trained model: step 125 of 150, one checkpoint. Next: compact-JSON training data and a longer sequence limit to fix whole stacks, then a 7B version. The public demo of the prompted model runs on a Mac through a tunnel, so it is not always on.
