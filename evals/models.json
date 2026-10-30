@@ -4,21 +4,24 @@
   "kind": "Large hosted model",
   "file": "haiku.json",
   "how": "run blind as a separate Claude Haiku instance. It saw only the questions and the one-sentence instruction. Answer length was not measured.",
-  "wild": "wild-haiku.json"
+  "wild": "wild-haiku.json",
+  "wild2": "wild2-haiku.json"
  },
  {
   "label": "Claude Sonnet 5.5",
   "kind": "Large hosted model",
   "file": "sonnet.json",
   "how": "run blind as a separate Claude Sonnet instance, the same way. Answer length was not measured.",
-  "wild": "wild-sonnet.json"
+  "wild": "wild-sonnet.json",
+  "wild2": "wild2-sonnet.json"
  },
  {
   "label": "flisk-wolf (prompted)",
   "kind": "Small open model + long instructions",
   "file": "wolf-prompted.json",
   "how": "Qwen2.5-Coder 7B with the Flisk rules and four worked examples built into its prompt (about 1,100 extra tokens on every call). Not trained.",
-  "wild": "wild-wolf-prompted.json"
+  "wild": "wild-wolf-prompted.json",
+  "wild2": "wild2-wolf-prompted.json"
  },
  {
   "label": "Qwen2.5-Coder 7B (plain)",
@@ -35,10 +38,19 @@
   "wild": null
  },
  {
-  "label": "flisk-wolf 1.5B (trained)",
+  "label": "flisk-wolf 1.5B, trained (round 1)",
   "kind": "Tiny open model + our training",
   "file": "wolf-trained-v2.json",
   "wild": "wild-trained-v2.json",
-  "how": "Qwen2.5-Coder 1.5B fine-tuned with a LoRA for 400 steps on 2,170 verified examples with compact JSON answers, on a MacBook Pro M1 (about 80 minutes). Asked with the short instruction only."
+  "how": "Qwen2.5-Coder 1.5B fine-tuned with a LoRA for 400 steps on 2,170 machine-written examples (five phrasing styles), on a MacBook Pro M1. Short instruction only.",
+  "wild2": "wild2-trained-v2.json"
+ },
+ {
+  "label": "flisk-wolf 1.5B, trained (round 2)",
+  "kind": "Tiny open model + our training, wider phrasing",
+  "file": "v3-tasks-b.json",
+  "wild": "v3-tasks-wild.json",
+  "wild2": "v3-tasks-wild2.json",
+  "how": "Round 1 continued for 500 more steps on 3,300 examples in dozens of phrasing styles (terse, chatty, key-value, typos, shuffled order), on the same MacBook. Short instruction only."
  }
 ]

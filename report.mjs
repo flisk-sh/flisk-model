@@ -12,19 +12,20 @@ for (const m of models) {
   for (const t of r.results) { const k = group(t.id); g[k][1]++; if (t.pass) g[k][0]++; }
   const avgTok = r.totalTokens ? Math.round(r.totalTokens / r.total) : null;
   const wf = m.wild && existsSync(`evals/results/${m.wild}`) ? JSON.parse(readFileSync(`evals/results/${m.wild}`, "utf-8")) : null;
-  rows.push({ ...m, passed: r.passed, total: r.total, g, avgTok, wildPassed: wf ? wf.passed : null, wildTotal: wf ? wf.total : null });
+  const w2 = m.wild2 && existsSync(`evals/results/${m.wild2}`) ? JSON.parse(readFileSync(`evals/results/${m.wild2}`, "utf-8")) : null;
+  rows.push({ ...m, passed: r.passed, total: r.total, g, avgTok, wildPassed: wf ? wf.passed : null, wildTotal: wf ? wf.total : null, w2Passed: w2 ? w2.passed : null, w2Total: w2 ? w2.total : null });
 }
-rows.sort((a, b) => (b.passed ?? -1) - (a.passed ?? -1));
+rows.sort((a, b) => (b.w2Passed ?? -1) - (a.w2Passed ?? -1) || (b.passed ?? -1) - (a.passed ?? -1));
 const lines = [
-  "| Model | What it is | Machine-written test (62) | Natural-wording test (26) | Single | Stack | Repair | Avg answer length |",
-  "|---|---|---|---|---|---|---|---|",
+  "| Model | What it is | Machine-written (62) | Natural set 1 (26, development) | **Natural set 2 (29, clean)** | Avg answer length |",
+  "|---|---|---|---|---|---|",
   ...rows.map((r) => r.missing
-    ? `| ${r.label} | ${r.kind} | not run yet | | | | | |`
-    : `| **${r.label}** | ${r.kind} | **${r.passed}** (${Math.round((100 * r.passed) / r.total)}%) | ${r.wildTotal ? `**${r.wildPassed}** (${Math.round((100 * r.wildPassed) / r.wildTotal)}%)` : "not run"} | ${pct(...r.g.single)} | ${pct(...r.g.stack)} | ${pct(...r.g.repair)} | ${r.avgTok ? `${r.avgTok} tokens` : "not measured"} |`),
+    ? `| ${r.label} | ${r.kind} | not run yet | | | |`
+    : `| **${r.label}** | ${r.kind} | **${r.passed}** (${Math.round((100 * r.passed) / r.total)}%) | ${r.wildTotal ? `**${r.wildPassed}** (${Math.round((100 * r.wildPassed) / r.wildTotal)}%)` : "not run"} | ${r.w2Total ? `**${r.w2Passed}** (${Math.round((100 * r.w2Passed) / r.w2Total)}%)` : "not run"} | ${r.avgTok ? `${r.avgTok} tokens` : "not measured"} |`),
 ];
 const out = `# Results
 
-Two held-out tests, never trained on. **Machine-written (62):** generated from specs with phrasing and names unseen in training. **Natural wording (26):** written by hand in casual, terse and messy wording, with typos. How the tests work is in [TESTS.md](TESTS.md).
+Three held-out tests, never trained on. **Machine-written (62):** generated from specs, phrasing and names unseen in training. **Natural set 1 (26):** written by hand in casual, messy wording; now a development set, because I tuned the generator after seeing its failures. **Natural set 2 (29, clean):** written by hand and committed *before* the generator was widened. This is the fair one. How the tests work is in [TESTS.md](TESTS.md).
 
 ${lines.join("\n")}
 

@@ -1,0 +1,385 @@
+{
+  "model": "default_model",
+  "prompt": "v1",
+  "passed": 60,
+  "total": 62,
+  "totalTokens": 2968,
+  "results": [
+    {
+      "id": "b-single-0",
+      "pass": true,
+      "tokens": 24,
+      "problems": []
+    },
+    {
+      "id": "b-single-1",
+      "pass": true,
+      "tokens": 44,
+      "problems": []
+    },
+    {
+      "id": "b-single-2",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    },
+    {
+      "id": "b-single-3",
+      "pass": true,
+      "tokens": 42,
+      "problems": []
+    },
+    {
+      "id": "b-single-4",
+      "pass": true,
+      "tokens": 24,
+      "problems": []
+    },
+    {
+      "id": "b-single-5",
+      "pass": true,
+      "tokens": 39,
+      "problems": []
+    },
+    {
+      "id": "b-single-6",
+      "pass": true,
+      "tokens": 48,
+      "problems": []
+    },
+    {
+      "id": "b-single-7",
+      "pass": true,
+      "tokens": 45,
+      "problems": []
+    },
+    {
+      "id": "b-single-8",
+      "pass": true,
+      "tokens": 35,
+      "problems": []
+    },
+    {
+      "id": "b-single-9",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    },
+    {
+      "id": "b-single-10",
+      "pass": true,
+      "tokens": 38,
+      "problems": []
+    },
+    {
+      "id": "b-single-11",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    },
+    {
+      "id": "b-single-12",
+      "pass": true,
+      "tokens": 48,
+      "problems": []
+    },
+    {
+      "id": "b-single-13",
+      "pass": true,
+      "tokens": 33,
+      "problems": []
+    },
+    {
+      "id": "b-single-14",
+      "pass": true,
+      "tokens": 50,
+      "problems": []
+    },
+    {
+      "id": "b-single-15",
+      "pass": true,
+      "tokens": 49,
+      "problems": []
+    },
+    {
+      "id": "b-single-16",
+      "pass": true,
+      "tokens": 59,
+      "problems": []
+    },
+    {
+      "id": "b-single-17",
+      "pass": true,
+      "tokens": 41,
+      "problems": []
+    },
+    {
+      "id": "b-single-18",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    },
+    {
+      "id": "b-single-19",
+      "pass": true,
+      "tokens": 23,
+      "problems": []
+    },
+    {
+      "id": "b-single-20",
+      "pass": true,
+      "tokens": 31,
+      "problems": []
+    },
+    {
+      "id": "b-single-21",
+      "pass": true,
+      "tokens": 39,
+      "problems": []
+    },
+    {
+      "id": "b-single-22",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "b-single-23",
+      "pass": true,
+      "tokens": 31,
+      "problems": []
+    },
+    {
+      "id": "b-single-24",
+      "pass": true,
+      "tokens": 23,
+      "problems": []
+    },
+    {
+      "id": "b-single-25",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "b-single-26",
+      "pass": true,
+      "tokens": 25,
+      "problems": []
+    },
+    {
+      "id": "b-single-27",
+      "pass": true,
+      "tokens": 30,
+      "problems": []
+    },
+    {
+      "id": "b-single-28",
+      "pass": true,
+      "tokens": 23,
+      "problems": []
+    },
+    {
+      "id": "b-single-29",
+      "pass": true,
+      "tokens": 25,
+      "problems": []
+    },
+    {
+      "id": "b-single-30",
+      "pass": true,
+      "tokens": 31,
+      "problems": []
+    },
+    {
+      "id": "b-single-31",
+      "pass": true,
+      "tokens": 23,
+      "problems": []
+    },
+    {
+      "id": "b-single-32",
+      "pass": true,
+      "tokens": 48,
+      "problems": []
+    },
+    {
+      "id": "b-single-33",
+      "pass": true,
+      "tokens": 43,
+      "problems": []
+    },
+    {
+      "id": "b-single-34",
+      "pass": true,
+      "tokens": 43,
+      "problems": []
+    },
+    {
+      "id": "b-single-35",
+      "pass": true,
+      "tokens": 45,
+      "problems": []
+    },
+    {
+      "id": "b-single-36",
+      "pass": false,
+      "tokens": 33,
+      "problems": [
+        "command: expected \"elixir app.exs\", got \"elixir app.ex\""
+      ]
+    },
+    {
+      "id": "b-single-37",
+      "pass": true,
+      "tokens": 22,
+      "problems": []
+    },
+    {
+      "id": "b-single-38",
+      "pass": true,
+      "tokens": 29,
+      "problems": []
+    },
+    {
+      "id": "b-single-39",
+      "pass": true,
+      "tokens": 30,
+      "problems": []
+    },
+    {
+      "id": "b-stack-0",
+      "pass": true,
+      "tokens": 167,
+      "problems": []
+    },
+    {
+      "id": "b-stack-1",
+      "pass": true,
+      "tokens": 103,
+      "problems": []
+    },
+    {
+      "id": "b-stack-2",
+      "pass": true,
+      "tokens": 95,
+      "problems": []
+    },
+    {
+      "id": "b-stack-3",
+      "pass": true,
+      "tokens": 87,
+      "problems": []
+    },
+    {
+      "id": "b-stack-4",
+      "pass": true,
+      "tokens": 57,
+      "problems": []
+    },
+    {
+      "id": "b-stack-5",
+      "pass": true,
+      "tokens": 117,
+      "problems": []
+    },
+    {
+      "id": "b-stack-6",
+      "pass": true,
+      "tokens": 107,
+      "problems": []
+    },
+    {
+      "id": "b-stack-7",
+      "pass": false,
+      "tokens": 134,
+      "problems": [
+        "rooster-store.image: expected \"couchdb:3\", got \"couchdb/c3\""
+      ]
+    },
+    {
+      "id": "b-stack-8",
+      "pass": true,
+      "tokens": 161,
+      "problems": []
+    },
+    {
+      "id": "b-stack-9",
+      "pass": true,
+      "tokens": 73,
+      "problems": []
+    },
+    {
+      "id": "b-repair-0",
+      "pass": true,
+      "tokens": 49,
+      "problems": []
+    },
+    {
+      "id": "b-repair-1",
+      "pass": true,
+      "tokens": 33,
+      "problems": []
+    },
+    {
+      "id": "b-repair-2",
+      "pass": true,
+      "tokens": 39,
+      "problems": []
+    },
+    {
+      "id": "b-repair-3",
+      "pass": true,
+      "tokens": 24,
+      "problems": []
+    },
+    {
+      "id": "b-repair-4",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "b-repair-5",
+      "pass": true,
+      "tokens": 44,
+      "problems": []
+    },
+    {
+      "id": "b-repair-6",
+      "pass": true,
+      "tokens": 31,
+      "problems": []
+    },
+    {
+      "id": "b-repair-7",
+      "pass": true,
+      "tokens": 49,
+      "problems": []
+    },
+    {
+      "id": "b-repair-8",
+      "pass": true,
+      "tokens": 39,
+      "problems": []
+    },
+    {
+      "id": "b-repair-9",
+      "pass": true,
+      "tokens": 43,
+      "problems": []
+    },
+    {
+      "id": "b-repair-10",
+      "pass": true,
+      "tokens": 23,
+      "problems": []
+    },
+    {
+      "id": "b-repair-11",
+      "pass": true,
+      "tokens": 31,
+      "problems": []
+    }
+  ]
+}

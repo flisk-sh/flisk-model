@@ -7,7 +7,7 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 | | Status |
 |---|---|
 | Test | Two held-out tests (62 machine-written, 26 natural wording), graded by the real Flisk validator. Works, but small. |
-| Best small model | Trained 1.5B: **62/62** machine-written, **16/26** natural wording. Prompted 7B: 54/62 and **18/26**. Claude Haiku and Sonnet: 57/62 and 15 to 16/26, given no Flisk documentation. |
+| Best small model | Round-2 trained 1.5B: **60/62** machine-written, **18/26** and **17/29** on the two natural sets. Prompted 7B: 54/62, 18/26, 17/29. Claude Haiku and Sonnet: 57/62, 15 to 16/26, 18/29, given no Flisk documentation. |
 | Inference service | Live, but it runs on one Mac behind a tunnel, and only the owner can sign in. It is a demo, not a service. |
 | Users | None yet. Nobody has told us this solves a problem for them. |
 | Not measured | Cost per request, speed, and how Claude does when it is *given* the schema (which is how agents really use it). |
@@ -18,7 +18,8 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 
 ## Phase 0: make the claims solid (2 weeks)
 
-- **Fix phrasing coverage first.** The trained model scored 62/62 on generated wording but 16/26 on natural wording, because the generator had only five phrasing styles. Add many more (terse, casual, typos, reordered, chatty), keep the natural-wording test fully held out, and retrain. Target: 22+/26.
+- **Round 2 result: gate missed.** Widening phrasing moved the clean set from 14 to 17 of 29, not to the 22 of 26 target. The misses are wrong names, dropped images, exact-string slips and repairs that drop the stack (see the README). **Do not retrain the same night.** Read the misses, fix the data gaps, then try an 8-bit base or the 7B before adding more of the same data.
+- **(Done, for the record) Fix phrasing coverage first.** The trained model scored 62/62 on generated wording but 16/26 on natural wording, because the generator had only five phrasing styles. Add many more (terse, casual, typos, reordered, chatty), keep the natural-wording test fully held out, and retrain. Target: 22+/26.
 - Measure what we have not: **cost per 1,000 requests, time to first answer, and answer length** for every model, including Claude through the API.
 - Add the missing baseline: **Claude with the Flisk schema in its prompt.** This is the number that decides whether a small model has a point.
 - Grow the test from 62 to 200+ questions, with a second, private set that is never published, and run it in CI against the live validator.
@@ -75,7 +76,7 @@ A scan of the MLX fine-tuning ecosystem (`ml-explore/mlx-lm` is the only mainstr
 
 | Measure | Today | Target |
 |---|---|---|
-| Natural-wording score (small model) | 16 of 26 | 22+ of 26, then on 100+ questions |
+| Clean natural-wording score (small model) | 17 of 29 | 22+ of 26-sized sets, then 100+ questions |
 | Machine-written score | 62 of 62 | stays at 60+ while phrasing widens |
 | Invalid JSON | not tracked | 0%, by constrained decoding |
 | Cost per 1,000 requests | not measured | published, with Claude beside it |

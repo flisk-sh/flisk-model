@@ -1,0 +1,181 @@
+{
+  "model": "default_model",
+  "prompt": "v1",
+  "passed": 18,
+  "total": 26,
+  "totalTokens": 930,
+  "results": [
+    {
+      "id": "w-1",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "w-2",
+      "pass": true,
+      "tokens": 30,
+      "problems": []
+    },
+    {
+      "id": "w-3",
+      "pass": true,
+      "tokens": 27,
+      "problems": []
+    },
+    {
+      "id": "w-4",
+      "pass": false,
+      "tokens": 31,
+      "problems": [
+        "image: expected \"redis:7\", got undefined"
+      ]
+    },
+    {
+      "id": "w-5",
+      "pass": false,
+      "tokens": 36,
+      "problems": [
+        "image: expected \"postgres:16\", got undefined"
+      ]
+    },
+    {
+      "id": "w-6",
+      "pass": false,
+      "tokens": 31,
+      "problems": [
+        "stack: expected \"assistants\", got \"assistances\""
+      ]
+    },
+    {
+      "id": "w-7",
+      "pass": false,
+      "tokens": 29,
+      "problems": [
+        "stack: expected \"assistants\", got \"assistances\""
+      ]
+    },
+    {
+      "id": "w-8",
+      "pass": false,
+      "tokens": 25,
+      "problems": [
+        "appName: expected \"schema-migrate\", got \"stack-migrate\""
+      ]
+    },
+    {
+      "id": "w-9",
+      "pass": true,
+      "tokens": 23,
+      "problems": []
+    },
+    {
+      "id": "w-10",
+      "pass": true,
+      "tokens": 40,
+      "problems": []
+    },
+    {
+      "id": "w-11",
+      "pass": false,
+      "tokens": 27,
+      "problems": [
+        "appName: expected \"cleanup-job\", got \"worker-cleanup-job\""
+      ]
+    },
+    {
+      "id": "w-12",
+      "pass": true,
+      "tokens": 47,
+      "problems": []
+    },
+    {
+      "id": "w-13",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "w-14",
+      "pass": true,
+      "tokens": 21,
+      "problems": []
+    },
+    {
+      "id": "w-15",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    },
+    {
+      "id": "w-16",
+      "pass": true,
+      "tokens": 30,
+      "problems": []
+    },
+    {
+      "id": "w-17",
+      "pass": true,
+      "tokens": 46,
+      "problems": []
+    },
+    {
+      "id": "w-18",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "w-19",
+      "pass": true,
+      "tokens": 50,
+      "problems": []
+    },
+    {
+      "id": "w-20",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "w-21",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "w-stack-1",
+      "pass": true,
+      "tokens": 87,
+      "problems": []
+    },
+    {
+      "id": "w-stack-2",
+      "pass": false,
+      "tokens": 95,
+      "problems": [
+        "hotel-db.image: expected \"postgres:16\", got \"postgres\""
+      ]
+    },
+    {
+      "id": "w-repair-1",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "w-repair-2",
+      "pass": true,
+      "tokens": 21,
+      "problems": []
+    },
+    {
+      "id": "w-repair-3",
+      "pass": false,
+      "tokens": 23,
+      "problems": [
+        "stack: expected \"ops\", got undefined"
+      ]
+    }
+  ]
+}

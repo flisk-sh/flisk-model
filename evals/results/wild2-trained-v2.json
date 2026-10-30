@@ -1,0 +1,225 @@
+{
+  "model": "default_model",
+  "prompt": "v1",
+  "passed": 14,
+  "total": 29,
+  "totalTokens": 1026,
+  "results": [
+    {
+      "id": "v-1",
+      "pass": true,
+      "tokens": 29,
+      "problems": []
+    },
+    {
+      "id": "v-2",
+      "pass": true,
+      "tokens": 21,
+      "problems": []
+    },
+    {
+      "id": "v-3",
+      "pass": false,
+      "tokens": 29,
+      "problems": [
+        "basePath: expected \"/portal\", got undefined"
+      ]
+    },
+    {
+      "id": "v-4",
+      "pass": false,
+      "tokens": 40,
+      "problems": [
+        "service.json.appName: cannot be a Docker image name; use lowercase letters and digits joined by \"-\", \"_\" or \".\" (at most 59 characters)",
+        "appName: expected \"catalog-db\", got \"mongo:7\"",
+        "stack: expected \"catalog\", got \"catalog-db\""
+      ]
+    },
+    {
+      "id": "v-5",
+      "pass": false,
+      "tokens": 38,
+      "problems": [
+        "appName: expected \"page-cache\", got \"memcached\"",
+        "image: expected \"memcached:1.6\", got undefined"
+      ]
+    },
+    {
+      "id": "v-6",
+      "pass": false,
+      "tokens": 29,
+      "problems": [
+        "appName: expected \"pdf-tools\", got \"mcp\""
+      ]
+    },
+    {
+      "id": "v-7",
+      "pass": true,
+      "tokens": 29,
+      "problems": []
+    },
+    {
+      "id": "v-8",
+      "pass": true,
+      "tokens": 24,
+      "problems": []
+    },
+    {
+      "id": "v-9",
+      "pass": true,
+      "tokens": 25,
+      "problems": []
+    },
+    {
+      "id": "v-10",
+      "pass": false,
+      "tokens": 43,
+      "problems": [
+        "service.json.appName: cannot be a Docker image name; use lowercase letters and digits joined by \"-\", \"_\" or \".\" (at most 59 characters)",
+        "appType: expected \"backend\", got \"bring-your-own\"",
+        "appName: expected \"gateway-api\", got \"api gateway-api\""
+      ]
+    },
+    {
+      "id": "v-11",
+      "pass": true,
+      "tokens": 25,
+      "problems": []
+    },
+    {
+      "id": "v-12",
+      "pass": false,
+      "tokens": 37,
+      "problems": [
+        "stack: expected \"messaging\", got \"mcp\"",
+        "image: expected \"rabbitmq:3\", got undefined"
+      ]
+    },
+    {
+      "id": "v-13",
+      "pass": false,
+      "tokens": 40,
+      "problems": [
+        "appName: expected \"dashboards\", got \"grafana\"",
+        "image: expected \"grafana/grafana:11\", got undefined",
+        "exposeViaProxy: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "v-15",
+      "pass": false,
+      "tokens": 23,
+      "problems": [
+        "appName: expected \"price-updater\", got \"worker-price-updater\"",
+        "stack: expected \"pricing\", got \"worker\""
+      ]
+    },
+    {
+      "id": "v-16",
+      "pass": false,
+      "tokens": 21,
+      "problems": [
+        "port: expected 4222, got undefined"
+      ]
+    },
+    {
+      "id": "v-17",
+      "pass": true,
+      "tokens": 30,
+      "problems": []
+    },
+    {
+      "id": "v-18",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "v-19",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "v-20",
+      "pass": false,
+      "tokens": 35,
+      "problems": [
+        "service.json.appName: cannot be a Docker image name; use lowercase letters and digits joined by \"-\", \"_\" or \".\" (at most 59 characters)",
+        "appName: expected \"concierge-2\", got \"agent concierge-2\""
+      ]
+    },
+    {
+      "id": "v-21",
+      "pass": false,
+      "tokens": 44,
+      "problems": [
+        "appName: expected \"events-db\", got \"container-events-db\"",
+        "healthCheckPath: expected \"/ping\", got undefined"
+      ]
+    },
+    {
+      "id": "v-22",
+      "pass": true,
+      "tokens": 35,
+      "problems": []
+    },
+    {
+      "id": "v-23",
+      "pass": false,
+      "tokens": 27,
+      "problems": [
+        "service.json.appName: cannot be a Docker image name; use lowercase letters and digits joined by \"-\", \"_\" or \".\" (at most 59 characters)",
+        "appName: expected \"thumbnailer\", got \"tiny worker thumbnailer\""
+      ]
+    },
+    {
+      "id": "v-24",
+      "pass": false,
+      "tokens": 21,
+      "problems": [
+        "command: expected \"python sync.py\", got undefined"
+      ]
+    },
+    {
+      "id": "v-stack-1",
+      "pass": false,
+      "tokens": 107,
+      "problems": [
+        "blog-db.image: expected \"postgres:16\", got undefined"
+      ]
+    },
+    {
+      "id": "v-stack-2",
+      "pass": false,
+      "tokens": 96,
+      "problems": [
+        "stats-tools: missing"
+      ]
+    },
+    {
+      "id": "v-repair-1",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "v-repair-2",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "v-repair-3",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "v-repair-4",
+      "pass": true,
+      "tokens": 21,
+      "problems": []
+    }
+  ]
+}

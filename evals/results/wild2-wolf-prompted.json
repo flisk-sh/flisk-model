@@ -1,0 +1,252 @@
+{
+  "model": "flisk-wolf",
+  "prompt": "none",
+  "passed": 17,
+  "total": 29,
+  "totalTokens": 1912,
+  "results": [
+    {
+      "id": "v-1",
+      "pass": true,
+      "tokens": 45,
+      "problems": []
+    },
+    {
+      "id": "v-2",
+      "pass": false,
+      "tokens": 166,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"worker\", got undefined",
+        "appName: expected \"invoice-runner\", got undefined",
+        "stack: expected \"billing\", got undefined"
+      ]
+    },
+    {
+      "id": "v-3",
+      "pass": false,
+      "tokens": 56,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"frontend\", got undefined",
+        "appName: expected \"customer-portal\", got undefined",
+        "stack: expected \"support\", got undefined",
+        "basePath: expected \"/portal\", got undefined",
+        "port: expected 5180, got undefined"
+      ]
+    },
+    {
+      "id": "v-4",
+      "pass": false,
+      "tokens": 61,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"bring-your-own\", got undefined",
+        "appName: expected \"catalog-db\", got undefined",
+        "stack: expected \"catalog\", got undefined",
+        "image: expected \"mongo:7\", got undefined",
+        "port: expected 27017, got undefined"
+      ]
+    },
+    {
+      "id": "v-5",
+      "pass": false,
+      "tokens": 73,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"bring-your-own\", got undefined",
+        "appName: expected \"page-cache\", got undefined",
+        "stack: expected \"web\", got undefined",
+        "image: expected \"memcached:1.6\", got undefined",
+        "port: expected 11211, got undefined",
+        "healthCheckPath: expected \"/stats\", got undefined"
+      ]
+    },
+    {
+      "id": "v-6",
+      "pass": true,
+      "tokens": 45,
+      "problems": []
+    },
+    {
+      "id": "v-7",
+      "pass": true,
+      "tokens": 50,
+      "problems": []
+    },
+    {
+      "id": "v-8",
+      "pass": true,
+      "tokens": 44,
+      "problems": []
+    },
+    {
+      "id": "v-9",
+      "pass": true,
+      "tokens": 38,
+      "problems": []
+    },
+    {
+      "id": "v-10",
+      "pass": false,
+      "tokens": 63,
+      "problems": [
+        "appName: expected \"gateway-api\", got \"api-gateway-api\""
+      ]
+    },
+    {
+      "id": "v-11",
+      "pass": false,
+      "tokens": 44,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"frontend\", got undefined",
+        "appName: expected \"legacy-ui\", got undefined",
+        "stack: expected \"archive\", got undefined",
+        "enabled: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "v-12",
+      "pass": false,
+      "tokens": 70,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"bring-your-own\", got undefined",
+        "appName: expected \"mq-broker\", got undefined",
+        "stack: expected \"messaging\", got undefined",
+        "image: expected \"rabbitmq:3\", got undefined",
+        "port: expected 5672, got undefined",
+        "restart: expected \"no\", got undefined"
+      ]
+    },
+    {
+      "id": "v-13",
+      "pass": false,
+      "tokens": 86,
+      "problems": [
+        "appName: expected \"dashboards\", got \"grafana\""
+      ]
+    },
+    {
+      "id": "v-15",
+      "pass": true,
+      "tokens": 35,
+      "problems": []
+    },
+    {
+      "id": "v-16",
+      "pass": true,
+      "tokens": 44,
+      "problems": []
+    },
+    {
+      "id": "v-17",
+      "pass": false,
+      "tokens": 92,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"migrator\", got undefined",
+        "appName: expected \"sales-migrate\", got undefined",
+        "stack: expected \"sales\", got undefined",
+        "dependsOn: expected [\"sales-db\"], got undefined"
+      ]
+    },
+    {
+      "id": "v-18",
+      "pass": true,
+      "tokens": 55,
+      "problems": []
+    },
+    {
+      "id": "v-19",
+      "pass": false,
+      "tokens": 58,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"frontend\", got undefined",
+        "appName: expected \"dash-ui\", got undefined",
+        "stack: expected \"comms\", got undefined",
+        "healthCheckPath: expected \"/ready\", got undefined"
+      ]
+    },
+    {
+      "id": "v-20",
+      "pass": false,
+      "tokens": 75,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"agent\", got undefined",
+        "appName: expected \"concierge-2\", got undefined",
+        "stack: expected \"travel\", got undefined",
+        "dependsOn: expected [\"flights-api\",\"hotels-api\"], got undefined"
+      ]
+    },
+    {
+      "id": "v-21",
+      "pass": true,
+      "tokens": 71,
+      "problems": []
+    },
+    {
+      "id": "v-22",
+      "pass": true,
+      "tokens": 58,
+      "problems": []
+    },
+    {
+      "id": "v-23",
+      "pass": false,
+      "tokens": 44,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"worker\", got undefined",
+        "appName: expected \"thumbnailer\", got undefined",
+        "stack: expected \"media\", got undefined",
+        "enabled: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "v-24",
+      "pass": true,
+      "tokens": 40,
+      "problems": []
+    },
+    {
+      "id": "v-stack-1",
+      "pass": true,
+      "tokens": 170,
+      "problems": []
+    },
+    {
+      "id": "v-stack-2",
+      "pass": true,
+      "tokens": 151,
+      "problems": []
+    },
+    {
+      "id": "v-repair-1",
+      "pass": true,
+      "tokens": 56,
+      "problems": []
+    },
+    {
+      "id": "v-repair-2",
+      "pass": true,
+      "tokens": 44,
+      "problems": []
+    },
+    {
+      "id": "v-repair-3",
+      "pass": true,
+      "tokens": 44,
+      "problems": []
+    },
+    {
+      "id": "v-repair-4",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    }
+  ]
+}

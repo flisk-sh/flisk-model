@@ -1,0 +1,216 @@
+{
+  "model": "default_model",
+  "prompt": "v1",
+  "passed": 17,
+  "total": 29,
+  "totalTokens": 1044,
+  "results": [
+    {
+      "id": "v-1",
+      "pass": true,
+      "tokens": 29,
+      "problems": []
+    },
+    {
+      "id": "v-2",
+      "pass": true,
+      "tokens": 21,
+      "problems": []
+    },
+    {
+      "id": "v-3",
+      "pass": true,
+      "tokens": 33,
+      "problems": []
+    },
+    {
+      "id": "v-4",
+      "pass": false,
+      "tokens": 32,
+      "problems": [
+        "stack: expected \"catalog\", got \"mongo\"",
+        "image: expected \"mongo:7\", got undefined"
+      ]
+    },
+    {
+      "id": "v-5",
+      "pass": false,
+      "tokens": 46,
+      "problems": [
+        "service.json.appName: cannot be a Docker image name; use lowercase letters and digits joined by \"-\", \"_\" or \".\" (at most 59 characters)",
+        "appName: expected \"page-cache\", got \"memcached:1.6\"",
+        "image: expected \"memcached:1.6\", got \"health\""
+      ]
+    },
+    {
+      "id": "v-6",
+      "pass": true,
+      "tokens": 29,
+      "problems": []
+    },
+    {
+      "id": "v-7",
+      "pass": true,
+      "tokens": 29,
+      "problems": []
+    },
+    {
+      "id": "v-8",
+      "pass": true,
+      "tokens": 24,
+      "problems": []
+    },
+    {
+      "id": "v-9",
+      "pass": false,
+      "tokens": 32,
+      "problems": [
+        "appName: expected \"feed-poller\", got \"poller.js\""
+      ]
+    },
+    {
+      "id": "v-10",
+      "pass": false,
+      "tokens": 40,
+      "problems": [
+        "appName: expected \"gateway-api\", got \"api-gateway\""
+      ]
+    },
+    {
+      "id": "v-11",
+      "pass": true,
+      "tokens": 25,
+      "problems": []
+    },
+    {
+      "id": "v-12",
+      "pass": false,
+      "tokens": 37,
+      "problems": [
+        "image: expected \"rabbitmq:3\", got undefined"
+      ]
+    },
+    {
+      "id": "v-13",
+      "pass": false,
+      "tokens": 57,
+      "problems": [
+        "service.json.appName: cannot be a Docker image name; use lowercase letters and digits joined by \"-\", \"_\" or \".\" (at most 59 characters)",
+        "appName: expected \"dashboards\", got \"grafana/grafana:11\"",
+        "image: expected \"grafana/grafana:11\", got \"health\""
+      ]
+    },
+    {
+      "id": "v-15",
+      "pass": false,
+      "tokens": 23,
+      "problems": [
+        "appName: expected \"price-updater\", got \"worker-price-updater\""
+      ]
+    },
+    {
+      "id": "v-16",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "v-17",
+      "pass": true,
+      "tokens": 30,
+      "problems": []
+    },
+    {
+      "id": "v-18",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "v-19",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "v-20",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    },
+    {
+      "id": "v-21",
+      "pass": false,
+      "tokens": 49,
+      "problems": [
+        "appName: expected \"events-db\", got \"container-db\""
+      ]
+    },
+    {
+      "id": "v-22",
+      "pass": true,
+      "tokens": 35,
+      "problems": []
+    },
+    {
+      "id": "v-23",
+      "pass": true,
+      "tokens": 25,
+      "problems": []
+    },
+    {
+      "id": "v-24",
+      "pass": false,
+      "tokens": 21,
+      "problems": [
+        "command: expected \"python sync.py\", got undefined"
+      ]
+    },
+    {
+      "id": "v-stack-1",
+      "pass": false,
+      "tokens": 105,
+      "problems": [
+        "blog-db.stack: expected \"blogging\", got \"blog\"",
+        "blog-api.stack: expected \"blogging\", got \"blog\"",
+        "blog-web.stack: expected \"blogging\", got \"blog\""
+      ]
+    },
+    {
+      "id": "v-stack-2",
+      "pass": false,
+      "tokens": 86,
+      "problems": [
+        "event-ingest: missing",
+        "stats-api.dependsOn: expected [\"event-ingest\"], got [\"worker-event-ingest\"]",
+        "stats-tools: missing"
+      ]
+    },
+    {
+      "id": "v-repair-1",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "v-repair-2",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "v-repair-3",
+      "pass": false,
+      "tokens": 24,
+      "problems": [
+        "stack: expected \"ops\", got undefined"
+      ]
+    },
+    {
+      "id": "v-repair-4",
+      "pass": true,
+      "tokens": 21,
+      "problems": []
+    }
+  ]
+}
