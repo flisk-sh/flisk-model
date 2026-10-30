@@ -129,12 +129,12 @@ const stackPrompt = (svcs, r, set) => {
 };
 
 const msg = (user, assistant) => JSON.stringify({ messages: [{ role: "system", content: SYSTEM }, { role: "user", content: user }, { role: "assistant", content: assistant }] });
-const N = { single: 1500, stack: 400, repair: 400, valid: 120 };
+const N = { single: 1200, stack: 700, repair: 350, valid: 120 };
 const rt = rng(1234), train = [], valid = [], seen = new Set();
 const add = (line, key, into) => { if (!seen.has(key)) { seen.add(key); into.push(line); } };
-for (let i = 0; i < N.single * 1.1; i++) { const s = single(rt, "A"); const u = nl(s, rt, "A"); add(msg(u, JSON.stringify(s, null, 2)), u, i % 12 === 0 ? valid : train); }
-for (let i = 0; i < N.stack; i++) { const sv = stackOf(rt, "A"); if (sv.length < 2) continue; const u = stackPrompt(sv, rt, "A"); add(msg(u, JSON.stringify(sv, null, 2)), u, i % 12 === 0 ? valid : train); }
-for (let i = 0; i < N.repair; i++) { const { good, bad } = repair(rt, "A"); const u = repairPrompt(bad); add(msg(u, JSON.stringify(good, null, 2)), u, i % 12 === 0 ? valid : train); }
+for (let i = 0; i < N.single * 1.1; i++) { const s = single(rt, "A"); const u = nl(s, rt, "A"); add(msg(u, JSON.stringify(s)), u, i % 12 === 0 ? valid : train); }
+for (let i = 0; i < N.stack; i++) { const sv = stackOf(rt, "A"); if (sv.length < 2) continue; const u = stackPrompt(sv, rt, "A"); add(msg(u, JSON.stringify(sv)), u, i % 12 === 0 ? valid : train); }
+for (let i = 0; i < N.repair; i++) { const { good, bad } = repair(rt, "A"); const u = repairPrompt(bad); add(msg(u, JSON.stringify(good)), u, i % 12 === 0 ? valid : train); }
 writeFileSync("data/train.jsonl", train.join("\n") + "\n"); writeFileSync("data/valid.jsonl", valid.join("\n") + "\n");
 
 // Held-out eval: pool B, style set B, a different seed. Nothing here is reachable from the training generator.
