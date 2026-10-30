@@ -19,6 +19,6 @@ How each row was run:
 - **flisk-wolf (prompted)**: Qwen2.5-Coder 7B with the Flisk rules and four worked examples built into its prompt (about 1,100 extra tokens on every call). Not trained.
 - **Qwen2.5-Coder 7B (plain)**: the base model with the same short instruction as the others. No Flisk rules, no training.
 - **Qwen2.5-Coder 1.5B (plain)**: the base model with the short instruction. No Flisk rules, no training.
-- **flisk-wolf 1.5B (trained, step 125)**: Qwen2.5-Coder 1.5B fine-tuned with a LoRA on 2,243 verified examples on a MacBook Pro M1, asked with the short instruction only. Scored on the last saved checkpoint, step 125 of a planned 150: the run then crashed (GPU out of memory), and a first version of the training data had also cut stack answers short.
+- **flisk-wolf 1.5B (trained, step 125)**: Qwen2.5-Coder 1.5B fine-tuned with a LoRA on a MacBook Pro M1, asked with the short instruction only. Scored on the last saved checkpoint, step 125 of a planned 150: the run then crashed (GPU out of memory). By step 125 it had seen about 500 of the 2,243 training examples.
 
 Read this honestly: 62 questions is a small test, it measures one narrow job (writing Flisk config files), and Claude Haiku and Sonnet are far larger general models. The point is how close a small model can get to them on this one job, and at what cost.

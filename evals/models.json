@@ -33,6 +33,6 @@
   "label": "flisk-wolf 1.5B (trained, step 125)",
   "kind": "Tiny open model + our training",
   "file": "wolf-trained-1.5b.json",
-  "how": "Qwen2.5-Coder 1.5B fine-tuned with a LoRA on 2,243 verified examples on a MacBook Pro M1, asked with the short instruction only. Scored on the last saved checkpoint, step 125 of a planned 150: the run then crashed (GPU out of memory), and a first version of the training data had also cut stack answers short."
+  "how": "Qwen2.5-Coder 1.5B fine-tuned with a LoRA on a MacBook Pro M1, asked with the short instruction only. Scored on the last saved checkpoint, step 125 of a planned 150: the run then crashed (GPU out of memory). By step 125 it had seen about 500 of the 2,243 training examples."
  }
 ]

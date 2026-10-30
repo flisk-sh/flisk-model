@@ -30,7 +30,7 @@ How each row was run:
 - **Training works.** The same tiny 1.5B model went from **17 to 46 of 62** after a short fine-tune on a laptop. On single-service questions it jumped from 5 to **35 of 40**, about the same as the prompted 7B model (34) and close to Claude (39).
 - **Big models are not magic here.** Claude Haiku and Sonnet both scored 57. They were never told Flisk's own setting names, so they missed the same question type: a service "that must not get a Traefik route" needs `exposeViaProxy: false`, which they did not know.
 - **Instructions can stand in for training, at a cost.** The prompted 7B model reached 54 by carrying about 1,100 extra words of rules on every request. It even beat Claude on whole stacks (8 of 10 vs 6). The trained model needs none of that.
-- **Weak spot: whole stacks (0 of 10).** The trained model fails the multi-file questions. The reason is visible: those answers are long, and my training run cut them off at 768 tokens, so it learned to stop early. The fix is already planned (shorter, compact JSON and a longer limit), and it is also the cheapest way to cut answer length.
+- **Weak spot: whole stacks (0 of 10).** The trained model fails the multi-file questions: it writes too few services, drops "depends on" links, or produces broken JSON. I first suspected training answers were cut off, then measured it: the longest stack example is 560 tokens, under the 768 limit, so that was **not** the cause. The likelier cause (not yet proven) is that the run stopped at step 125 having seen only about 500 of the 2,243 training examples, roughly 80 stack examples. The next run will cover the data fully and use compact JSON, which also cuts answer length.
 - **Plain small models fail the same test.** Untrained Qwen 1.5B and 7B pass the repair questions (the error message names the fix) but only 4 to 5 of 40 single-service questions.
 
 Caveat: 62 questions is a small sample, so one or two questions of difference is noise. Claude's answer length was not measured.
@@ -61,4 +61,4 @@ Training uses [MLX](https://github.com/ml-explore/mlx-lm) on Apple Silicon: `pyt
 
 ## Status
 
-Trained model: step 125 of 150, one checkpoint. Next: compact-JSON training data and a longer sequence limit to fix whole stacks, then a 7B version. The public demo of the prompted model runs on a Mac through a tunnel, so it is not always on.
+Trained model: step 125 of 150, one checkpoint. Next: a full pass over the training data with compact JSON answers to fix whole stacks, then a 7B version. The public demo of the prompted model runs on a Mac through a tunnel, so it is not always on.
