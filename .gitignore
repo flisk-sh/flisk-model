@@ -5,3 +5,4 @@ adapters/
 *.gguf
 .ollama-bin/
 Modelfile
+ollama.log
