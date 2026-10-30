@@ -1,0 +1,106 @@
+{
+"b-single-0": {"schemaVersion":1,"appName":"falcon-job","appType":"migrator","stack":"farm"},
+"b-single-1": {"schemaVersion":1,"appName":"ember-box","appType":"bring-your-own","stack":"clinic","port":4953,"image":"caddy:2","restart":"on-failure"},
+"b-single-2": {"schemaVersion":1,"appName":"zephyr-api","appType":"backend","stack":"default","port":7967,"command":"java -jar app.jar"},
+"b-single-3": {"schemaVersion":1,"appName":"zephyr-web","appType":"backend","stack":"atlas","port":3157,"healthCheckPath":"/alive","replicas":2},
+"b-single-4": {"schemaVersion":1,"appName":"lantern-svc","appType":"mcp","stack":"orbit"},
+"b-single-5": {"schemaVersion":1,"appName":"mosaic-db","appType":"bring-your-own","stack":"clinic","port":5551,"image":"caddy:2"},
+"b-single-6": {"schemaVersion":1,"appName":"zephyr-db","appType":"bring-your-own","stack":"quartz","port":5070,"image":"caddy:2","healthCheckPath":"/livez"},
+"b-single-7": {"schemaVersion":1,"appName":"falcon-cache","appType":"bring-your-own","stack":"studio","port":11746,"image":"couchdb:3","restart":"always"},
+"b-single-8": {"schemaVersion":1,"appName":"mosaic-svc","appType":"frontend","stack":"atlas","port":4842,"basePath":"/tools"},
+"b-single-9": {"schemaVersion":1,"appName":"saffron-app","appType":"migrator","stack":"harbor","dependsOn":["rooster-queue"]},
+"b-single-10": {"schemaVersion":1,"appName":"falcon-app","appType":"mcp","stack":"orbit","port":4880,"dependsOn":["mosaic-queue"]},
+"b-single-11": {"schemaVersion":1,"appName":"rooster-svc","appType":"backend","stack":"default","port":3073,"command":"java -jar app.jar"},
+"b-single-12": {"schemaVersion":1,"appName":"tundra-cache","appType":"bring-your-own","stack":"farm","port":12674,"image":"etcd:3.5","healthCheckPath":"/state"},
+"b-single-13": {"schemaVersion":1,"appName":"tundra-api","appType":"backend","stack":"farm","port":5333,"enabled":false},
+"b-single-14": {"schemaVersion":1,"appName":"tulip-cache","appType":"bring-your-own","stack":"atlas","port":10378,"image":"etcd:3.5","healthCheckPath":"/state"},
+"b-single-15": {"schemaVersion":1,"appName":"walnut-db","appType":"bring-your-own","stack":"lab","port":11715,"image":"etcd:3.5","healthCheckPath":"/livez"},
+"b-single-16": {"schemaVersion":1,"appName":"zephyr-cache","appType":"bring-your-own","stack":"nimbus","port":16790,"image":"nats:2","healthCheckPath":"/state","restart":"never","traefik":false},
+"b-single-17": {"schemaVersion":1,"appName":"rooster-api","appType":"backend","stack":"garage","port":5783,"dependsOn":["mosaic-db","falcon-api"]},
+"b-single-18": {"schemaVersion":1,"appName":"zephyr-api","appType":"frontend","stack":"default","port":8496,"command":"java -jar app.jar"},
+"b-single-19": {"schemaVersion":1,"appName":"lantern-job","appType":"backend","stack":"harbor"},
+"b-single-20": {"schemaVersion":1,"appName":"pebble-app","appType":"mcp","stack":"nimbus","port":4293},
+"b-single-21": {"schemaVersion":1,"appName":"pebble-web","appType":"backend","stack":"farm","replicas":3,"enabled":false,"dependsOn":["zephyr-db"]},
+"b-single-22": {"schemaVersion":1,"appName":"lantern-web","appType":"frontend","stack":"orbit","port":5560,"healthCheckPath":"/livez"},
+"b-single-23": {"schemaVersion":1,"appName":"mosaic-api","appType":"backend","stack":"quartz","dependsOn":["tulip-api"]},
+"b-single-24": {"schemaVersion":1,"appName":"tulip-app","appType":"worker","stack":"clinic"},
+"b-single-25": {"schemaVersion":1,"appName":"meadow-app","appType":"migrator","stack":"nimbus","enabled":false,"dependsOn":["pebble-queue"]},
+"b-single-26": {"schemaVersion":1,"appName":"lantern-job","appType":"migrator","stack":"harbor"},
+"b-single-27": {"schemaVersion":1,"appName":"ember-app","appType":"mcp","stack":"atlas","port":3901},
+"b-single-28": {"schemaVersion":1,"appName":"walnut-svc","appType":"agent","stack":"lab"},
+"b-single-29": {"schemaVersion":1,"appName":"rooster-job","appType":"migrator","stack":"garage"},
+"b-single-30": {"schemaVersion":1,"appName":"lantern-svc","appType":"mcp","stack":"farm","port":3434},
+"b-single-31": {"schemaVersion":1,"appName":"tulip-api","appType":"agent","stack":"farm"},
+"b-single-32": {"schemaVersion":1,"appName":"saffron-store","appType":"bring-your-own","stack":"lab","port":11186,"image":"influxdb:2","healthCheckPath":"/hc"},
+"b-single-33": {"schemaVersion":1,"appName":"zephyr-queue","appType":"bring-your-own","stack":"farm","port":17173,"image":"influxdb:2"},
+"b-single-34": {"schemaVersion":1,"appName":"tulip-queue","appType":"bring-your-own","stack":"studio","port":2774,"image":"etcd:3.5"},
+"b-single-35": {"schemaVersion":1,"appName":"meadow-cache","appType":"bring-your-own","stack":"farm","port":5779,"image":"nats:2","healthCheckPath":"/alive"},
+"b-single-36": {"schemaVersion":1,"appName":"saffron-api","appType":"backend","stack":"default","port":3227,"command":"elixir app.exs"},
+"b-single-37": {"schemaVersion":1,"appName":"pebble-web","appType":"agent","stack":"orbit"},
+"b-single-38": {"schemaVersion":1,"appName":"tundra-api","appType":"agent","stack":"clinic","dependsOn":["lantern-api"]},
+"b-single-39": {"schemaVersion":1,"appName":"mosaic-web","appType":"agent","stack":"garage","agent":{"durability":"files"}},
+
+"b-stack-0": [
+{"schemaVersion":1,"appName":"lantern-cache","appType":"bring-your-own","stack":"nimbus","port":13618,"image":"valkey/valkey:8","healthCheckPath":"/livez","traefik":false},
+{"schemaVersion":1,"appName":"walnut-app","appType":"backend","stack":"nimbus","port":3311,"dependsOn":["lantern-cache"]},
+{"schemaVersion":1,"appName":"rooster-job","appType":"frontend","stack":"nimbus","port":5842,"dependsOn":["walnut-app"]},
+{"schemaVersion":1,"appName":"walnut-api","appType":"agent","stack":"nimbus","agent":{"durability":"files"},"dependsOn":["lantern-cache"]}
+],
+"b-stack-1": [
+{"schemaVersion":1,"appName":"falcon-job","appType":"backend","stack":"clinic","port":4677,"healthCheckPath":"/livez"},
+{"schemaVersion":1,"appName":"pebble-app","appType":"mcp","stack":"clinic","port":3154,"dependsOn":["falcon-job"]},
+{"schemaVersion":1,"appName":"meadow-app","appType":"migrator","stack":"clinic","dependsOn":["pebble-app"]}
+],
+"b-stack-2": [
+{"schemaVersion":1,"appName":"pebble-api","appType":"frontend","stack":"garage","basePath":"/lab"},
+{"schemaVersion":1,"appName":"walnut-api","appType":"backend","stack":"garage","healthCheckPath":"/state","dependsOn":["pebble-api"]},
+{"schemaVersion":1,"appName":"tulip-api","appType":"migrator","stack":"garage","dependsOn":["walnut-api"]}
+],
+"b-stack-3": [
+{"schemaVersion":1,"appName":"walnut-api","appType":"worker","stack":"orbit"},
+{"schemaVersion":1,"appName":"lantern-app","appType":"frontend","stack":"orbit","dependsOn":["walnut-api"]},
+{"schemaVersion":1,"appName":"meadow-api","appType":"mcp","stack":"orbit","port":3542,"dependsOn":["walnut-api"]}
+],
+"b-stack-4": [
+{"schemaVersion":1,"appName":"rooster-web","appType":"migrator","stack":"atlas"},
+{"schemaVersion":1,"appName":"rooster-job","appType":"migrator","stack":"atlas","dependsOn":["rooster-web"]}
+],
+"b-stack-5": [
+{"schemaVersion":1,"appName":"pebble-app","appType":"worker","stack":"quartz"},
+{"schemaVersion":1,"appName":"walnut-box","appType":"bring-your-own","stack":"quartz","port":15817,"image":"valkey/valkey:8","healthCheckPath":"/hc","traefik":false,"dependsOn":["pebble-app"]},
+{"schemaVersion":1,"appName":"rooster-web","appType":"agent","stack":"quartz","dependsOn":["pebble-app"]}
+],
+"b-stack-6": [
+{"schemaVersion":1,"appName":"ember-store","appType":"bring-your-own","stack":"farm","port":11800,"image":"caddy:2","traefik":false},
+{"schemaVersion":1,"appName":"ember-api","appType":"frontend","stack":"farm","port":7796,"dependsOn":["ember-store"]},
+{"schemaVersion":1,"appName":"meadow-web","appType":"agent","stack":"farm","dependsOn":["ember-api"]}
+],
+"b-stack-7": [
+{"schemaVersion":1,"appName":"rooster-store","appType":"bring-your-own","stack":"studio","port":14461,"image":"couchdb:3","traefik":false},
+{"schemaVersion":1,"appName":"rooster-queue","appType":"bring-your-own","stack":"studio","port":5754,"image":"keycloak/keycloak:25","traefik":false,"dependsOn":["rooster-store"]},
+{"schemaVersion":1,"appName":"saffron-api","appType":"worker","stack":"studio","dependsOn":["rooster-store"]}
+],
+"b-stack-8": [
+{"schemaVersion":1,"appName":"walnut-cache","appType":"bring-your-own","stack":"clinic","port":19923,"image":"keycloak/keycloak:25","healthCheckPath":"/hc"},
+{"schemaVersion":1,"appName":"ember-web","appType":"migrator","stack":"clinic","dependsOn":["walnut-cache"]},
+{"schemaVersion":1,"appName":"rooster-svc","appType":"backend","stack":"clinic","port":5320,"healthCheckPath":"/state","replicas":3,"dependsOn":["walnut-cache"]},
+{"schemaVersion":1,"appName":"zephyr-app","appType":"backend","stack":"clinic","port":4301,"dependsOn":["ember-web"]}
+],
+"b-stack-9": [
+{"schemaVersion":1,"appName":"saffron-web","appType":"backend","stack":"studio","port":4768,"replicas":4},
+{"schemaVersion":1,"appName":"rooster-job","appType":"mcp","stack":"studio","port":5028,"dependsOn":["saffron-web"]}
+],
+
+"b-repair-0": {"schemaVersion":1,"appName":"tulip-job","appType":"backend","stack":"default","port":4348,"replicas":4,"dependsOn":["lantern-queue","tulip-queue"]},
+"b-repair-1": {"schemaVersion":1,"appName":"meadow-web","appType":"agent","stack":"farm","agent":{"durability":"files"},"enabled":false},
+"b-repair-2": {"schemaVersion":1,"appName":"ember-svc","appType":"backend","stack":"default","healthCheckPath":"/alive","dependsOn":["rooster-queue","ember-db"]},
+"b-repair-3": {"schemaVersion":1,"appName":"tundra-job","appType":"migrator","stack":"lab"},
+"b-repair-4": {"schemaVersion":1,"appName":"tundra-api","appType":"backend","stack":"quartz","port":4188,"dependsOn":["walnut-api"]},
+"b-repair-5": {"schemaVersion":1,"appName":"ember-cache","appType":"bring-your-own","stack":"quartz","port":19445,"image":"nats:2","restart":"always"},
+"b-repair-6": {"schemaVersion":1,"appName":"tulip-job","appType":"agent","stack":"quartz","agent":{"durability":"files"}},
+"b-repair-7": {"schemaVersion":1,"appName":"lantern-queue","appType":"bring-your-own","stack":"clinic","port":9488,"image":"keycloak/keycloak:25","healthCheckPath":"/state"},
+"b-repair-8": {"schemaVersion":1,"appName":"pebble-app","appType":"backend","port":4652,"command":"elixir app.exs","env":{"MODE":"3"}},
+"b-repair-9": {"schemaVersion":1,"appName":"pebble-cache","appType":"bring-your-own","stack":"farm","port":10996,"image":"keycloak/keycloak:25"},
+"b-repair-10": {"schemaVersion":1,"appName":"meadow-web","appType":"worker","stack":"harbor"},
+"b-repair-11": {"schemaVersion":1,"appName":"tulip-api","appType":"backend","stack":"atlas","port":5844}
+}
