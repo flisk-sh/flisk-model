@@ -1,0 +1,39 @@
+{
+  "v-1": {"schemaVersion": 1, "appName": "ticketing-api", "appType": "backend", "stack": "support", "port": 4510},
+  "v-2": {"schemaVersion": 1, "appName": "invoice-runner", "appType": "worker", "stack": "billing"},
+  "v-3": {"schemaVersion": 1, "appName": "customer-portal", "appType": "frontend", "stack": "support", "port": 5180, "route": "/portal"},
+  "v-4": {"schemaVersion": 1, "appName": "catalog-db", "appType": "container", "stack": "catalog", "image": "mongo:7", "port": 27017},
+  "v-5": {"schemaVersion": 1, "appName": "page-cache", "appType": "container", "stack": "web", "image": "memcached:1.6", "port": 11211, "healthPath": "/stats"},
+  "v-6": {"schemaVersion": 1, "appName": "pdf-tools", "appType": "mcp", "stack": "docs", "port": 4650},
+  "v-7": {"schemaVersion": 1, "appName": "triage-bot", "appType": "agent", "stack": "support", "checkpointStore": "file"},
+  "v-8": {"schemaVersion": 1, "appName": "billing-migrate", "appType": "migrator", "stack": "billing"},
+  "v-9": {"schemaVersion": 1, "appName": "feed-poller", "appType": "worker", "stack": "default", "command": "node poller.js"},
+  "v-10": {"schemaVersion": 1, "appName": "gateway-api", "appType": "backend", "stack": "edge", "port": 4020, "healthPath": "/up", "replicas": 4},
+  "v-11": {"schemaVersion": 1, "appName": "legacy-ui", "appType": "frontend", "stack": "archive", "enabled": false},
+  "v-12": {"schemaVersion": 1, "appName": "mq-broker", "appType": "container", "stack": "messaging", "image": "rabbitmq:3", "port": 5672, "restart": "no"},
+  "v-13": {"schemaVersion": 1, "appName": "dashboards", "appType": "container", "stack": "observability", "image": "grafana/grafana:11", "port": 3000, "healthPath": "/api/health", "route": false},
+  "v-15": {"schemaVersion": 1, "appName": "price-updater", "appType": "worker", "stack": "pricing"},
+  "v-16": {"schemaVersion": 1, "appName": "quote-api", "appType": "backend", "stack": "sales", "port": 4222},
+  "v-17": {"schemaVersion": 1, "appName": "sales-migrate", "appType": "migrator", "stack": "sales", "dependsOn": ["sales-db"]},
+  "v-18": {"schemaVersion": 1, "appName": "mailer-svc", "appType": "backend", "stack": "comms", "port": 4321, "healthPath": "/health"},
+  "v-19": {"schemaVersion": 1, "appName": "dash-ui", "appType": "frontend", "stack": "comms", "healthPath": "/ready"},
+  "v-20": {"schemaVersion": 1, "appName": "concierge-2", "appType": "agent", "stack": "travel", "dependsOn": ["flights-api", "hotels-api"]},
+  "v-21": {"schemaVersion": 1, "appName": "events-db", "appType": "container", "stack": "analytics", "image": "clickhouse/clickhouse-server:24", "port": 8123, "healthPath": "/ping"},
+  "v-22": {"schemaVersion": 1, "appName": "crm-tools", "appType": "mcp", "stack": "sales", "port": 4701, "dependsOn": ["quote-api"]},
+  "v-23": {"schemaVersion": 1, "appName": "thumbnailer", "appType": "worker", "stack": "media", "enabled": false},
+  "v-24": {"schemaVersion": 1, "appName": "syncer", "appType": "worker", "stack": "default", "command": "python sync.py"},
+  "v-stack-1": [
+    {"schemaVersion": 1, "appName": "blog-db", "appType": "container", "stack": "blogging", "image": "postgres:16", "port": 5432},
+    {"schemaVersion": 1, "appName": "blog-api", "appType": "backend", "stack": "blogging", "port": 4100, "dependsOn": ["blog-db"]},
+    {"schemaVersion": 1, "appName": "blog-web", "appType": "frontend", "stack": "blogging", "dependsOn": ["blog-api"]}
+  ],
+  "v-stack-2": [
+    {"schemaVersion": 1, "appName": "event-ingest", "appType": "worker", "stack": "analytics"},
+    {"schemaVersion": 1, "appName": "stats-api", "appType": "backend", "stack": "analytics", "port": 4300, "dependsOn": ["event-ingest"]},
+    {"schemaVersion": 1, "appName": "stats-tools", "appType": "mcp", "stack": "analytics", "dependsOn": ["stats-api"]}
+  ],
+  "v-repair-1": {"schemaVersion": 1, "appName": "queue-cache", "appType": "container", "stack": "web", "image": "redis:7", "port": 6379},
+  "v-repair-2": {"schemaVersion": 1, "appName": "stats-api", "appType": "backend", "stack": "analytics", "port": 4300},
+  "v-repair-3": {"schemaVersion": 1, "appName": "poller", "appType": "worker", "stack": "ops", "command": "node poller.js"},
+  "v-repair-4": {"schemaVersion": 1, "appName": "archiver", "appType": "worker", "stack": "ops"}
+}
