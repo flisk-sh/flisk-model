@@ -9,9 +9,11 @@ const arg = (name, fallback) => {
   const i = process.argv.indexOf(`--${name}`);
   return i > -1 ? process.argv[i + 1] : fallback;
 };
+const answersFile = arg("answers");
+const answers = answersFile ? JSON.parse(readFileSync(answersFile, "utf-8")) : null; // score hand-written answers instead of calling a server
 const baseUrl = arg("base-url", "http://localhost:11434/v1");
 const model = arg("model");
-if (!model) { console.error("usage: node eval.mjs --model <name> [--base-url <url>] [--out <file>]"); process.exit(2); }
+if (!model && !answers) { console.error("usage: node eval.mjs --model <name> [--base-url <url>] [--out <file>]"); process.exit(2); }
 // --prompt v1 is the short prompt (what training data uses); v2 adds the Flisk rules and worked examples.
 const promptVersion = arg("prompt", "v1");
 const preamble = promptVersion === "none" ? [] : promptVersion === "v2" ? [{ role: "system", content: SYSTEM_V2 }, ...FEW_SHOTS] : [{ role: "system", content: SYSTEM }];
@@ -70,7 +72,10 @@ function scoreStack(parsed, task, problems) {
 
 for (const task of tasks) {
   let text = "", tokens = 0, error;
-  try {
+  if (answers) {
+    if (!(task.id in answers)) error = "no answer given";
+    else { text = JSON.stringify(answers[task.id]); tokens = 0; }
+  } else try {
     const res = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST", headers,
       body: JSON.stringify({ model, temperature: 0, messages: [...preamble, { role: "user", content: buildPrompt(task) + (KIND_NOTE[task.kind] ?? "") }] }),
@@ -92,7 +97,8 @@ for (const task of tasks) {
 }
 const passed = results.filter((r) => r.pass).length;
 const totalTokens = results.reduce((n, r) => n + r.tokens, 0);
-console.log(`\n${model} (prompt ${promptVersion}): ${passed}/${results.length} passed, ${totalTokens} output tokens`);
+const cat = (id) => id.replace(/^b-/, "").replace(/-\d+$/, "");
+console.log(`\n${model ?? "answers"} (prompt ${promptVersion}): ${passed}/${results.length} passed, ${totalTokens} output tokens`);
 const out = arg("out");
 if (out) writeFileSync(out, JSON.stringify({ model, prompt: promptVersion, passed, total: results.length, totalTokens, results }, null, 2));
 process.exit(passed === results.length ? 0 : 1);

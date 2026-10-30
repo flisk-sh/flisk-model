@@ -73,7 +73,7 @@ function makeSpec(r, pool, kindHint) {
 }
 function clauses(s, r, set) {
   const pick = (a) => a[Math.floor(r() * a.length)];
-  const word = s.command ? pick(["backend API", "service", "app"]) : pick(TYPE_WORD[s.appType]);
+  const word = pick(TYPE_WORD[s.appType]);
   const what = `${/^[aeiou]/i.test(word) ? "an" : "a"} ${word} called "${s.appName}"`;
   const t = [];
   if (s.stack) t.push(pick([`in the "${s.stack}" stack`, `in the ${s.stack} stack`, `for the "${s.stack}" stack`]));
@@ -112,14 +112,16 @@ function stackOf(r, set) {
   }
   return svcs.filter((s) => !validateService(s).errors.length);
 }
+// Every repair must be answerable from the prompt alone: a removed stack is restored as "default" (any stack passes the test),
+// a numeric env value was a string of the same digits, and an appType of 7 is only used when other fields reveal the right type.
 const BREAKS = [
-  (s) => { const { stack, ...x } = s; return stack ? x : null; },
-  (s) => ({ ...s, schemaVersion: 2 }),
-  (s) => (s.command ? { ...s, image: "node:22" } : null),
-  (s) => (s.env ? { ...s, env: { [Object.keys(s.env)[0]]: 3 } } : null),
-  (s) => ({ ...s, appType: 7 }),
+  (s) => { const { stack, ...x } = s; return stack ? { bad: x, good: sorted({ ...s, stack: "default" }) } : null; },
+  (s) => ({ bad: { ...s, schemaVersion: 2 }, good: s }),
+  (s) => (s.command ? { bad: { ...s, image: "node:22" }, good: s } : null),
+  (s) => (s.env ? { bad: { ...s, env: { [Object.keys(s.env)[0]]: 3 } }, good: { ...s, env: { [Object.keys(s.env)[0]]: "3" } } } : null),
+  (s) => (s.image || s.agent || s.basePath ? { bad: { ...s, appType: 7 }, good: s } : null),
 ];
-function repair(r, set) { for (;;) { const s = single(r, set); const b = BREAKS[Math.floor(r() * BREAKS.length)](s); if (b && validateService(b).errors.length) return { good: s, bad: b }; } }
+function repair(r, set) { for (;;) { const s = single(r, set); const br = BREAKS[Math.floor(r() * BREAKS.length)](s); if (br && validateService(br.bad).errors.length) return { good: br.good, bad: br.bad }; } }
 const repairPrompt = (bad) => `This Flisk service.json is rejected:\n${JSON.stringify(bad, null, 2)}\n\nThe validator says:\n${validateService(bad).errors.join("\n")}\n\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only.`;
 const stackPrompt = (svcs, r, set) => {
   const parts = svcs.map((s) => { const c = clauses({ ...s, stack: undefined, dependsOn: s.dependsOn }, r, set); return `${c.what}${c.tail}`; });
@@ -139,7 +141,8 @@ writeFileSync("data/train.jsonl", train.join("\n") + "\n"); writeFileSync("data/
 const re = rng(98765), tasks = [];
 for (let i = 0; i < 40; i++) { const s = single(re, "B"); tasks.push({ id: `b-single-${i}`, prompt: nl(s, re, "B") + " Reply with the JSON only.", expect: expectOf(s), absent: s.image && !s.healthCheckPath ? ["healthCheckPath"] : [] }); }
 for (let i = 0; i < 10; i++) { const sv = stackOf(re, "B"); if (sv.length < 2) continue; tasks.push({ id: `b-stack-${i}`, kind: "stack", prompt: stackPrompt(sv, re, "B"), services: sv.map(expectOf) }); }
-for (let i = 0; i < 12; i++) { const { good, bad } = repair(re, "B"); tasks.push({ id: `b-repair-${i}`, broken: bad, keep: expectOf(good), mustHave: ["stack", "appType"].filter((k) => !(k in bad) || typeof bad[k] !== "string") }); }
+for (let i = 0; i < 12; i++) { const { good, bad } = repair(re, "B"); const lost = Object.keys(good).filter((k) => JSON.stringify(good[k]) !== JSON.stringify(bad[k]) && !["schemaVersion", "env"].includes(k));
+  tasks.push({ id: `b-repair-${i}`, broken: bad, keep: expectOf(Object.fromEntries(Object.entries(good).filter(([k]) => !lost.includes(k)))), mustHave: lost.filter((k) => ["stack", "appType"].includes(k)) }); }
 writeFileSync("evals/tasks-b.json", JSON.stringify(tasks, null, 2));
 console.log(`train ${train.length}, valid ${valid.length}, held-out eval tasks ${tasks.length}`);
 const trainText = train.join("\n");

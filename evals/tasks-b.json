@@ -141,7 +141,7 @@
   },
   {
     "id": "b-single-11",
-    "prompt": "service.json needed -- a backend API called \"rooster-svc\", on port 3073, started by `java -jar app.jar`, no image and no Dockerfile. No commentary. Reply with the JSON only.",
+    "prompt": "service.json needed -- a HTTP API backend called \"rooster-svc\", on port 3073, started by `java -jar app.jar`, no image and no Dockerfile. No commentary. Reply with the JSON only.",
     "expect": {
       "appName": "rooster-svc",
       "appType": "backend",
@@ -233,7 +233,7 @@
   },
   {
     "id": "b-single-18",
-    "prompt": "Our team is adding a service called \"zephyr-api\", listening on 8496, started by `java -jar app.jar`, no image and no Dockerfile. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "prompt": "Our team is adding a frontend called \"zephyr-api\", listening on 8496, started by `java -jar app.jar`, no image and no Dockerfile. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
     "expect": {
       "appName": "zephyr-api",
       "appType": "frontend",
@@ -445,7 +445,7 @@
   },
   {
     "id": "b-single-36",
-    "prompt": "service.json needed -- a backend API called \"saffron-api\", on port 3227, run locally with the command \"elixir app.exs\", no image and no Dockerfile. No commentary. Reply with the JSON only.",
+    "prompt": "service.json needed -- a HTTP API backend called \"saffron-api\", on port 3227, run locally with the command \"elixir app.exs\", no image and no Dockerfile. No commentary. Reply with the JSON only.",
     "expect": {
       "appName": "saffron-api",
       "appType": "backend",
@@ -825,7 +825,6 @@
     "keep": {
       "appName": "tulip-job",
       "appType": "backend",
-      "stack": "nimbus",
       "port": 4348,
       "replicas": 4,
       "dependsOn": [
@@ -851,7 +850,6 @@
     },
     "keep": {
       "appName": "meadow-web",
-      "appType": "agent",
       "stack": "farm",
       "agent": {
         "durability": "files"
@@ -877,7 +875,6 @@
     "keep": {
       "appName": "ember-svc",
       "appType": "backend",
-      "stack": "clinic",
       "healthCheckPath": "/alive",
       "dependsOn": [
         "rooster-queue",
@@ -981,7 +978,6 @@
     },
     "keep": {
       "appName": "lantern-queue",
-      "appType": "bring-your-own",
       "stack": "clinic",
       "port": 9488,
       "image": "keycloak/keycloak:25",
@@ -993,54 +989,6 @@
   },
   {
     "id": "b-repair-8",
-    "broken": {
-      "schemaVersion": 1,
-      "appName": "rooster-app",
-      "appType": 7,
-      "stack": "orbit",
-      "port": 4347
-    },
-    "keep": {
-      "appName": "rooster-app",
-      "appType": "backend",
-      "stack": "orbit",
-      "port": 4347
-    },
-    "mustHave": [
-      "appType"
-    ]
-  },
-  {
-    "id": "b-repair-9",
-    "broken": {
-      "schemaVersion": 1,
-      "appName": "zephyr-api",
-      "appType": 7,
-      "stack": "studio",
-      "port": 4023,
-      "healthCheckPath": "/alive",
-      "dependsOn": [
-        "rooster-api",
-        "meadow-db"
-      ]
-    },
-    "keep": {
-      "appName": "zephyr-api",
-      "appType": "backend",
-      "stack": "studio",
-      "port": 4023,
-      "healthCheckPath": "/alive",
-      "dependsOn": [
-        "rooster-api",
-        "meadow-db"
-      ]
-    },
-    "mustHave": [
-      "appType"
-    ]
-  },
-  {
-    "id": "b-repair-10",
     "broken": {
       "schemaVersion": 1,
       "appName": "pebble-app",
@@ -1057,15 +1005,13 @@
       "port": 4652,
       "command": "elixir app.exs",
       "env": {
-        "MODE": "prod"
+        "MODE": "3"
       }
     },
-    "mustHave": [
-      "stack"
-    ]
+    "mustHave": []
   },
   {
-    "id": "b-repair-11",
+    "id": "b-repair-9",
     "broken": {
       "schemaVersion": 1,
       "appName": "pebble-cache",
@@ -1076,7 +1022,6 @@
     },
     "keep": {
       "appName": "pebble-cache",
-      "appType": "bring-your-own",
       "stack": "farm",
       "port": 10996,
       "image": "keycloak/keycloak:25"
@@ -1084,5 +1029,37 @@
     "mustHave": [
       "appType"
     ]
+  },
+  {
+    "id": "b-repair-10",
+    "broken": {
+      "schemaVersion": 2,
+      "appName": "meadow-web",
+      "appType": "worker",
+      "stack": "harbor"
+    },
+    "keep": {
+      "appName": "meadow-web",
+      "appType": "worker",
+      "stack": "harbor"
+    },
+    "mustHave": []
+  },
+  {
+    "id": "b-repair-11",
+    "broken": {
+      "schemaVersion": 2,
+      "appName": "tulip-api",
+      "appType": "backend",
+      "stack": "atlas",
+      "port": 5844
+    },
+    "keep": {
+      "appName": "tulip-api",
+      "appType": "backend",
+      "stack": "atlas",
+      "port": 5844
+    },
+    "mustHave": []
   }
 ]
