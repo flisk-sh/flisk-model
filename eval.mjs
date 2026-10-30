@@ -14,7 +14,7 @@ const model = arg("model");
 if (!model) { console.error("usage: node eval.mjs --model <name> [--base-url <url>] [--out <file>]"); process.exit(2); }
 // --prompt v1 is the short prompt (what training data uses); v2 adds the Flisk rules and worked examples.
 const promptVersion = arg("prompt", "v1");
-const preamble = promptVersion === "v2" ? [{ role: "system", content: SYSTEM_V2 }, ...FEW_SHOTS] : [{ role: "system", content: SYSTEM }];
+const preamble = promptVersion === "none" ? [] : promptVersion === "v2" ? [{ role: "system", content: SYSTEM_V2 }, ...FEW_SHOTS] : [{ role: "system", content: SYSTEM }];
 const headers = { "content-type": "application/json", ...(process.env.OPENAI_API_KEY ? { authorization: `Bearer ${process.env.OPENAI_API_KEY}` } : {}) };
 
 function extractJson(text) {

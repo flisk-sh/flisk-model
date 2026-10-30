@@ -50,6 +50,18 @@ Needs Node 18+ and nothing from npm.
 - `tasks-stack2` was written after the `stack` rule and the worked example resembles it (Redis plus API), so count it as seen. `tasks-stack3` is the fair one. Only 3 tasks: treat it as a signal, not a score.
 - `flisk doctor` output is still untested.
 
+## The wolf: `flisk-wolf`
+
+`make-modelfile.mjs` bakes the v2 prompt and examples into an Ollama model, so it needs no prompt at call time:
+
+```bash
+node make-modelfile.mjs qwen2.5-coder:7b > Modelfile
+ollama create flisk-wolf -f Modelfile
+ollama run flisk-wolf "Write a Flisk service.json for a worker called \"emailer\" in the \"shop\" stack."
+```
+
+It scores the same as the prompted 7B model (main 11/12, held-out 8/8, fresh stacks 3/3, repair 5/5, run with `--prompt none`). It is a prompted model, not a trained one: the weights are Qwen's, so follow the Qwen license if you share it.
+
 ## Next
 
 1. Add more fresh stack tasks and `flisk doctor` output tasks. Use the 7B model with the v2 prompt as the working default; try a LoRA only for the 3B model if small and fast matters.
