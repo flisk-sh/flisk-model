@@ -1,21 +1,0 @@
-Loading pretrained model
-Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 3313.91it/s]
-Loading datasets
-Training
-Loading fine-tuned weights from /tmp/wolf-step50.safetensors
-[34m╭─[0m[34m [0m[1;35mmlx_lm.lora[0m[34m [0m[34m───────────────────────────────────────────────────────────────────────────────────────────────────────[0m[34m─╮[0m
-[34m│[0m    [39mmodel        [0m   [1mmlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit[0m                                                    [34m│[0m
-[34m│[0m    [39mtype         [0m   [1mlora · 16 layers · rank 8[0m                                                                         [34m│[0m
-[34m│[0m    [39mdataset      [0m   [1mdata[0m                                                                                              [34m│[0m
-[34m│[0m    [39moptimizer    [0m   [1madam · lr 1.0e-04[0m                                                                                 [34m│[0m
-[34m│[0m    [39mbatch · iters[0m   [1m4 · 150[0m                                                                                           [34m│[0m
-[34m│[0m    [39mmax seq      [0m   [1m768[0m                                                                                               [34m│[0m
-[34m╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯[0m
-Trainable parameters: 0.342% (5.276M/1543.714M)
-  [1miter   train_loss     tok/s     tokens[0m
-  [38;5;244m   1[0m    [1;35mval[0m [1m0.066[0m    [38;5;244m101.18s[0m
-  [38;5;244m  10[0m    [1;32m0.215 ▼[0m    [1m   44[0m    [38;5;244m  3.4k[0m
-  [38;5;244m  20[0m    [1;32m0.093 ▼[0m    [1m   42[0m    [38;5;244m  6.1k[0m
-  [1;32msave[0m  [38;5;244m0000025_adapters.safetensors[0m
-  [38;5;244m  30[0m    [1;33m0.144 ▲[0m    [1m   34[0m    [38;5;244m  9.1k[0m
-  [38;5;244m  40[0m    [1;32m0.088 ▼[0m    [1m   33[0m    [38;5;244m 12.5k[0m

@@ -1,1 +1,0 @@
-./run-all-local.sh: line 12: 95572 Terminated: 15          ./.venv-mlx/bin/python -m mlx_lm server --model mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit --adapter-path adapters/wolf-1.5b --port 8090 > mlx-server.log 2>&1

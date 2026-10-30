@@ -10,3 +10,6 @@ ollama.log
 server.log
 .cf-bin/
 .venv-mlx/
+*.log
+train-v2.status
+train-v2.eval.txt
