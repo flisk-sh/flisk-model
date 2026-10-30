@@ -17,6 +17,8 @@ const OLLAMA = process.env.OLLAMA_URL ?? "http://127.0.0.1:11434";
 const MODEL = "flisk-wolf";
 const OAUTH = Boolean(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET);
 const DEV = process.env.FLISK_DEV_LOGIN === "1";
+// Only these GitHub logins may sign in (comma-separated, case-insensitive). Empty means anyone, so set it on a public host.
+const ALLOWED = (process.env.ALLOWED_LOGINS ?? "").split(",").map((x) => x.trim().toLowerCase()).filter(Boolean);
 const MAX_BODY = 64 * 1024, MAX_TOKENS = 1024, RATE_PER_MIN = 30;
 
 mkdirSync(join(ROOT, "data"), { recursive: true });
@@ -87,6 +89,8 @@ createServer(async (req, res) => {
       const t = await (await fetch("https://github.com/login/oauth/access_token", { method: "POST", headers: { accept: "application/json", "content-type": "application/json" }, body: JSON.stringify({ client_id: process.env.GITHUB_CLIENT_ID, client_secret: process.env.GITHUB_CLIENT_SECRET, code }) })).json();
       if (!t.access_token) return json(res, 400, { error: "GitHub did not return a token" });
       const gh = await (await fetch("https://api.github.com/user", { headers: { authorization: `Bearer ${t.access_token}`, "user-agent": "flisk-inference" } })).json();
+      if (!gh.login) return json(res, 400, { error: "could not read the GitHub profile" });
+      if (ALLOWED.length && !ALLOWED.includes(String(gh.login).toLowerCase())) return json(res, 403, { error: `@${gh.login} is not on the allowlist for this preview` });
       setSession(res, upsertUser(gh));
       res.writeHead(302, { location: "/?section=keys" }); return res.end();
     }
@@ -152,4 +156,4 @@ createServer(async (req, res) => {
     json(res, e.code === 413 ? 413 : 500, { error: e.code === 413 ? "body too large" : "server error" });
     if (e.code !== 413) console.error(e);
   }
-}).listen(PORT, HOST, () => console.log(`Flisk Inference on ${BASE}  (oauth: ${OAUTH}, dev login: ${DEV}, backend: ${OLLAMA})`));
+}).listen(PORT, HOST, () => console.log(`Flisk Inference on ${BASE}  (oauth: ${OAUTH}, dev login: ${DEV}, allowlist: ${ALLOWED.length ? ALLOWED.join(",") : "none"}, backend: ${OLLAMA})`));
