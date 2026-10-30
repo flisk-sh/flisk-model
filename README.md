@@ -60,7 +60,7 @@ ollama create flisk-wolf -f Modelfile
 ollama run flisk-wolf "Write a Flisk service.json for a worker called \"emailer\" in the \"shop\" stack."
 ```
 
-It scores the same as the prompted 7B model (main 11/12, held-out 8/8, fresh stacks 3/3, repair 5/5, run with `--prompt none`). It is a prompted model, not a trained one: the weights are Qwen's, so follow the Qwen license if you share it.
+It scores the same as the prompted 7B model (main 12/12, held-out 8/8, fresh stacks 3/3, repair 5/5, one-shot jobs 4/4, run with `--prompt none`). The main set is contaminated; the one-shot jobs set (4 tasks) was written after its rule, so treat it as a signal. It is a prompted model, not a trained one: the weights are Qwen's, so follow the Qwen license if you share it.
 
 ## Next
 

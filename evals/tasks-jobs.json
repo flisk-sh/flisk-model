@@ -1,0 +1,6 @@
+[
+  { "id": "j-backup", "prompt": "Write a Flisk service.json for a one-shot backup job called \"backup\" in the \"ops\" stack using the image acme/backup:3 that must not restart after it exits. Reply with the JSON only.", "expect": { "appType": "bring-your-own", "appName": "backup", "stack": "ops", "image": "acme/backup:3", "restart": "no" } },
+  { "id": "j-import", "prompt": "Write a Flisk service.json for a one-shot data import called \"importer\" in the \"ops\" stack using the image acme/import:9 that runs once and stops. Reply with the JSON only.", "expect": { "appType": "bring-your-own", "appName": "importer", "stack": "ops", "image": "acme/import:9", "restart": "no" } },
+  { "id": "j-migrate", "prompt": "Write a Flisk service.json for a database migration job called \"db-migrate\" in the \"ops\" stack. Reply with the JSON only.", "expect": { "appType": "migrator", "appName": "db-migrate", "stack": "ops" } },
+  { "id": "j-worker", "prompt": "Write a Flisk service.json for a long-running background worker called \"queue-worker\" in the \"ops\" stack. Reply with the JSON only.", "expect": { "appType": "worker", "appName": "queue-worker", "stack": "ops" } }
+]
