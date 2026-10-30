@@ -1,0 +1,1088 @@
+[
+  {
+    "id": "b-single-0",
+    "prompt": "Set up a migrator called \"falcon-job\", for the \"farm\" stack in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "falcon-job",
+      "appType": "migrator",
+      "stack": "farm"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-1",
+    "prompt": "Our team is adding a third-party service called \"ember-box\", for the \"clinic\" stack, listening on 4953, using the image caddy:2, it does not speak HTTP, so no health path, that restarts only on failure. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "ember-box",
+      "appType": "bring-your-own",
+      "stack": "clinic",
+      "port": 4953,
+      "image": "caddy:2",
+      "restart": "on-failure"
+    },
+    "absent": [
+      "healthCheckPath"
+    ]
+  },
+  {
+    "id": "b-single-2",
+    "prompt": "Set up a backend API called \"zephyr-api\", listening on 7967, started by `java -jar app.jar`, no image and no Dockerfile in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "zephyr-api",
+      "appType": "backend",
+      "port": 7967,
+      "command": "java -jar app.jar"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-3",
+    "prompt": "service.json needed -- a backend API called \"zephyr-web\", in the \"atlas\" stack, listening on 3157, health path /alive, running 2 replicas. No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "zephyr-web",
+      "appType": "backend",
+      "stack": "atlas",
+      "port": 3157,
+      "healthCheckPath": "/alive",
+      "replicas": 2
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-4",
+    "prompt": "service.json needed -- a MCP server called \"lantern-svc\", in the \"orbit\" stack. No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "lantern-svc",
+      "appType": "mcp",
+      "stack": "orbit"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-5",
+    "prompt": "Our team is adding an existing container called \"mosaic-db\", for the \"clinic\" stack, listening on 5551, from the Docker image caddy:2, with no HTTP health path. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "mosaic-db",
+      "appType": "bring-your-own",
+      "stack": "clinic",
+      "port": 5551,
+      "image": "caddy:2"
+    },
+    "absent": [
+      "healthCheckPath"
+    ]
+  },
+  {
+    "id": "b-single-6",
+    "prompt": "service.json needed -- a third-party service called \"zephyr-db\", for the \"quartz\" stack, listening on 5070, from the Docker image caddy:2, with health check /livez. No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "zephyr-db",
+      "appType": "bring-your-own",
+      "stack": "quartz",
+      "port": 5070,
+      "image": "caddy:2",
+      "healthCheckPath": "/livez"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-7",
+    "prompt": "Our team is adding a prebuilt service called \"falcon-cache\", in the \"studio\" stack, listening on 11746, running couchdb:3, with no HTTP health path, that always restarts. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "falcon-cache",
+      "appType": "bring-your-own",
+      "stack": "studio",
+      "port": 11746,
+      "image": "couchdb:3",
+      "restart": "always"
+    },
+    "absent": [
+      "healthCheckPath"
+    ]
+  },
+  {
+    "id": "b-single-8",
+    "prompt": "service.json needed -- a single-page frontend called \"mosaic-svc\", in the atlas stack, on port 4842, served under the base path /tools. No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "mosaic-svc",
+      "appType": "frontend",
+      "stack": "atlas",
+      "port": 4842,
+      "basePath": "/tools"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-9",
+    "prompt": "service.json needed -- a database migration job called \"saffron-app\", for the \"harbor\" stack, that depends on \"rooster-queue\". No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "saffron-app",
+      "appType": "migrator",
+      "stack": "harbor",
+      "dependsOn": [
+        "rooster-queue"
+      ]
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-10",
+    "prompt": "service.json needed -- a tool server for agents called \"falcon-app\", in the \"orbit\" stack, on port 4880, that depends on \"mosaic-queue\". No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "falcon-app",
+      "appType": "mcp",
+      "stack": "orbit",
+      "port": 4880,
+      "dependsOn": [
+        "mosaic-queue"
+      ]
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-11",
+    "prompt": "service.json needed -- a backend API called \"rooster-svc\", on port 3073, started by `java -jar app.jar`, no image and no Dockerfile. No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "rooster-svc",
+      "appType": "backend",
+      "port": 3073,
+      "command": "java -jar app.jar"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-12",
+    "prompt": "Set up a third-party service called \"tundra-cache\", in the farm stack, on port 12674, using the image etcd:3.5, with health check /state in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "tundra-cache",
+      "appType": "bring-your-own",
+      "stack": "farm",
+      "port": 12674,
+      "image": "etcd:3.5",
+      "healthCheckPath": "/state"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-13",
+    "prompt": "Our team is adding an API server called \"tundra-api\", for the \"farm\" stack, on port 5333, switched off for now. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "tundra-api",
+      "appType": "backend",
+      "stack": "farm",
+      "port": 5333,
+      "enabled": false
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-14",
+    "prompt": "Set up a prebuilt service called \"tulip-cache\", in the atlas stack, listening on 10378, from the Docker image etcd:3.5, with health check /state in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "tulip-cache",
+      "appType": "bring-your-own",
+      "stack": "atlas",
+      "port": 10378,
+      "image": "etcd:3.5",
+      "healthCheckPath": "/state"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-15",
+    "prompt": "Set up an existing container called \"walnut-db\", for the \"lab\" stack, listening on 11715, from the Docker image etcd:3.5, with health check /livez in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "walnut-db",
+      "appType": "bring-your-own",
+      "stack": "lab",
+      "port": 11715,
+      "image": "etcd:3.5",
+      "healthCheckPath": "/livez"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-16",
+    "prompt": "Our team is adding a third-party service called \"zephyr-cache\", in the nimbus stack, on port 16790, from the Docker image nats:2, health path /state, that must not restart after it exits, that must not get a Traefik route. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "zephyr-cache",
+      "appType": "bring-your-own",
+      "stack": "nimbus",
+      "port": 16790,
+      "image": "nats:2",
+      "healthCheckPath": "/state",
+      "restart": "no",
+      "exposeViaProxy": false
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-17",
+    "prompt": "Our team is adding a backend API called \"rooster-api\", in the \"garage\" stack, on port 5783, that depends on \"mosaic-db\" and \"falcon-api\". What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "rooster-api",
+      "appType": "backend",
+      "stack": "garage",
+      "port": 5783,
+      "dependsOn": [
+        "mosaic-db",
+        "falcon-api"
+      ]
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-18",
+    "prompt": "Our team is adding a service called \"zephyr-api\", listening on 8496, started by `java -jar app.jar`, no image and no Dockerfile. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "zephyr-api",
+      "appType": "frontend",
+      "port": 8496,
+      "command": "java -jar app.jar"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-19",
+    "prompt": "service.json needed -- a HTTP API backend called \"lantern-job\", in the harbor stack. No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "lantern-job",
+      "appType": "backend",
+      "stack": "harbor"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-20",
+    "prompt": "Set up a Model Context Protocol server called \"pebble-app\", in the nimbus stack, on port 4293 in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "pebble-app",
+      "appType": "mcp",
+      "stack": "nimbus",
+      "port": 4293
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-21",
+    "prompt": "service.json needed -- a REST service called \"pebble-web\", for the \"farm\" stack, running 3 replicas, switched off for now, that depends on \"zephyr-db\". No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "pebble-web",
+      "appType": "backend",
+      "stack": "farm",
+      "replicas": 3,
+      "enabled": false,
+      "dependsOn": [
+        "zephyr-db"
+      ]
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-22",
+    "prompt": "Set up a web frontend called \"lantern-web\", in the orbit stack, using port 5560, health path /livez in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "lantern-web",
+      "appType": "frontend",
+      "stack": "orbit",
+      "port": 5560,
+      "healthCheckPath": "/livez"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-23",
+    "prompt": "service.json needed -- a REST service called \"mosaic-api\", for the \"quartz\" stack, that depends on \"tulip-api\". No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "mosaic-api",
+      "appType": "backend",
+      "stack": "quartz",
+      "dependsOn": [
+        "tulip-api"
+      ]
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-24",
+    "prompt": "Set up a worker called \"tulip-app\", in the \"clinic\" stack in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "tulip-app",
+      "appType": "worker",
+      "stack": "clinic"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-25",
+    "prompt": "service.json needed -- a schema migration runner called \"meadow-app\", for the \"nimbus\" stack, switched off for now, that depends on \"pebble-queue\". No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "meadow-app",
+      "appType": "migrator",
+      "stack": "nimbus",
+      "enabled": false,
+      "dependsOn": [
+        "pebble-queue"
+      ]
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-26",
+    "prompt": "Our team is adding a migrator called \"lantern-job\", for the \"harbor\" stack. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "lantern-job",
+      "appType": "migrator",
+      "stack": "harbor"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-27",
+    "prompt": "Our team is adding a tool server for agents called \"ember-app\", in the \"atlas\" stack, using port 3901. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "ember-app",
+      "appType": "mcp",
+      "stack": "atlas",
+      "port": 3901
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-28",
+    "prompt": "service.json needed -- an AI agent called \"walnut-svc\", in the \"lab\" stack. No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "walnut-svc",
+      "appType": "agent",
+      "stack": "lab"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-29",
+    "prompt": "Our team is adding a schema migration runner called \"rooster-job\", in the \"garage\" stack. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "rooster-job",
+      "appType": "migrator",
+      "stack": "garage"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-30",
+    "prompt": "Set up a tool server for agents called \"lantern-svc\", in the \"farm\" stack, on port 3434 in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "lantern-svc",
+      "appType": "mcp",
+      "stack": "farm",
+      "port": 3434
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-31",
+    "prompt": "Set up an AI agent called \"tulip-api\", in the farm stack in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "tulip-api",
+      "appType": "agent",
+      "stack": "farm"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-32",
+    "prompt": "Set up a prebuilt service called \"saffron-store\", in the lab stack, listening on 11186, using the image influxdb:2, health path /hc in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "saffron-store",
+      "appType": "bring-your-own",
+      "stack": "lab",
+      "port": 11186,
+      "image": "influxdb:2",
+      "healthCheckPath": "/hc"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-33",
+    "prompt": "Set up a container called \"zephyr-queue\", for the \"farm\" stack, using port 17173, running influxdb:2, it does not speak HTTP, so no health path in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "zephyr-queue",
+      "appType": "bring-your-own",
+      "stack": "farm",
+      "port": 17173,
+      "image": "influxdb:2"
+    },
+    "absent": [
+      "healthCheckPath"
+    ]
+  },
+  {
+    "id": "b-single-34",
+    "prompt": "Our team is adding an existing container called \"tulip-queue\", for the \"studio\" stack, using port 2774, using the image etcd:3.5, with no HTTP health path. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "tulip-queue",
+      "appType": "bring-your-own",
+      "stack": "studio",
+      "port": 2774,
+      "image": "etcd:3.5"
+    },
+    "absent": [
+      "healthCheckPath"
+    ]
+  },
+  {
+    "id": "b-single-35",
+    "prompt": "service.json needed -- a container called \"meadow-cache\", in the farm stack, on port 5779, using the image nats:2, with health check /alive. No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "meadow-cache",
+      "appType": "bring-your-own",
+      "stack": "farm",
+      "port": 5779,
+      "image": "nats:2",
+      "healthCheckPath": "/alive"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-36",
+    "prompt": "service.json needed -- a backend API called \"saffron-api\", on port 3227, run locally with the command \"elixir app.exs\", no image and no Dockerfile. No commentary. Reply with the JSON only.",
+    "expect": {
+      "appName": "saffron-api",
+      "appType": "backend",
+      "port": 3227,
+      "command": "elixir app.exs"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-37",
+    "prompt": "Set up an AI agent called \"pebble-web\", in the \"orbit\" stack in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "pebble-web",
+      "appType": "agent",
+      "stack": "orbit"
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-38",
+    "prompt": "Set up an AI agent called \"tundra-api\", in the \"clinic\" stack, that depends on \"lantern-api\" in Flisk and show me the manifest as JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "tundra-api",
+      "appType": "agent",
+      "stack": "clinic",
+      "dependsOn": [
+        "lantern-api"
+      ]
+    },
+    "absent": []
+  },
+  {
+    "id": "b-single-39",
+    "prompt": "Our team is adding an agent service called \"mosaic-web\", in the garage stack, keeping its session checkpoints in files. What should its Flisk service.json contain? Just the JSON. Reply with the JSON only.",
+    "expect": {
+      "appName": "mosaic-web",
+      "appType": "agent",
+      "stack": "garage",
+      "agent": {
+        "durability": "files"
+      }
+    },
+    "absent": []
+  },
+  {
+    "id": "b-stack-0",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"nimbus\" stack: a prebuilt service called \"lantern-cache\", on port 13618, running valkey/valkey:8, with health check /livez, that must not get a Traefik route; a HTTP API backend called \"walnut-app\", using port 3311, that depends on \"lantern-cache\"; a frontend called \"rooster-job\", on port 5842, that depends on \"walnut-app\"; an AI agent called \"walnut-api\", keeping its session checkpoints in files, that depends on \"lantern-cache\". Reply with a JSON array of the 4 objects and nothing else.",
+    "services": [
+      {
+        "appName": "lantern-cache",
+        "appType": "bring-your-own",
+        "stack": "nimbus",
+        "port": 13618,
+        "image": "valkey/valkey:8",
+        "healthCheckPath": "/livez",
+        "exposeViaProxy": false
+      },
+      {
+        "appName": "walnut-app",
+        "appType": "backend",
+        "stack": "nimbus",
+        "port": 3311,
+        "dependsOn": [
+          "lantern-cache"
+        ]
+      },
+      {
+        "appName": "rooster-job",
+        "appType": "frontend",
+        "stack": "nimbus",
+        "port": 5842,
+        "dependsOn": [
+          "walnut-app"
+        ]
+      },
+      {
+        "appName": "walnut-api",
+        "appType": "agent",
+        "stack": "nimbus",
+        "agent": {
+          "durability": "files"
+        },
+        "dependsOn": [
+          "lantern-cache"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-stack-1",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"clinic\" stack: a REST service called \"falcon-job\", on port 4677, with health check /livez; a Model Context Protocol server called \"pebble-app\", listening on 3154, that depends on \"falcon-job\"; a schema migration runner called \"meadow-app\", that depends on \"pebble-app\". Reply with a JSON array of the 3 objects and nothing else.",
+    "services": [
+      {
+        "appName": "falcon-job",
+        "appType": "backend",
+        "stack": "clinic",
+        "port": 4677,
+        "healthCheckPath": "/livez"
+      },
+      {
+        "appName": "pebble-app",
+        "appType": "mcp",
+        "stack": "clinic",
+        "port": 3154,
+        "dependsOn": [
+          "falcon-job"
+        ]
+      },
+      {
+        "appName": "meadow-app",
+        "appType": "migrator",
+        "stack": "clinic",
+        "dependsOn": [
+          "pebble-app"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-stack-2",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"garage\" stack: a web frontend called \"pebble-api\", served under the base path /lab; a HTTP API backend called \"walnut-api\", health path /state, that depends on \"pebble-api\"; a migrator called \"tulip-api\", that depends on \"walnut-api\". Reply with a JSON array of the 3 objects and nothing else.",
+    "services": [
+      {
+        "appName": "pebble-api",
+        "appType": "frontend",
+        "stack": "garage",
+        "basePath": "/lab"
+      },
+      {
+        "appName": "walnut-api",
+        "appType": "backend",
+        "stack": "garage",
+        "healthCheckPath": "/state",
+        "dependsOn": [
+          "pebble-api"
+        ]
+      },
+      {
+        "appName": "tulip-api",
+        "appType": "migrator",
+        "stack": "garage",
+        "dependsOn": [
+          "walnut-api"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-stack-3",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"orbit\" stack: a background worker called \"walnut-api\"; a frontend called \"lantern-app\", that depends on \"walnut-api\"; a MCP server called \"meadow-api\", on port 3542, that depends on \"walnut-api\". Reply with a JSON array of the 3 objects and nothing else.",
+    "services": [
+      {
+        "appName": "walnut-api",
+        "appType": "worker",
+        "stack": "orbit"
+      },
+      {
+        "appName": "lantern-app",
+        "appType": "frontend",
+        "stack": "orbit",
+        "dependsOn": [
+          "walnut-api"
+        ]
+      },
+      {
+        "appName": "meadow-api",
+        "appType": "mcp",
+        "stack": "orbit",
+        "port": 3542,
+        "dependsOn": [
+          "walnut-api"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-stack-4",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"atlas\" stack: a database migration job called \"rooster-web\"; a database migration job called \"rooster-job\", that depends on \"rooster-web\". Reply with a JSON array of the 2 objects and nothing else.",
+    "services": [
+      {
+        "appName": "rooster-web",
+        "appType": "migrator",
+        "stack": "atlas"
+      },
+      {
+        "appName": "rooster-job",
+        "appType": "migrator",
+        "stack": "atlas",
+        "dependsOn": [
+          "rooster-web"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-stack-5",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"quartz\" stack: a worker called \"pebble-app\"; a container called \"walnut-box\", listening on 15817, running valkey/valkey:8, health path /hc, that must not get a Traefik route, that depends on \"pebble-app\"; a tool server for agents called \"rooster-web\", that depends on \"pebble-app\". Reply with a JSON array of the 3 objects and nothing else.",
+    "services": [
+      {
+        "appName": "pebble-app",
+        "appType": "worker",
+        "stack": "quartz"
+      },
+      {
+        "appName": "walnut-box",
+        "appType": "bring-your-own",
+        "stack": "quartz",
+        "port": 15817,
+        "image": "valkey/valkey:8",
+        "healthCheckPath": "/hc",
+        "exposeViaProxy": false,
+        "dependsOn": [
+          "pebble-app"
+        ]
+      },
+      {
+        "appName": "rooster-web",
+        "appType": "mcp",
+        "stack": "quartz",
+        "dependsOn": [
+          "pebble-app"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-stack-6",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"farm\" stack: a third-party service called \"ember-store\", using port 11800, using the image caddy:2, it does not speak HTTP, so no health path, that must not get a Traefik route; a single-page frontend called \"ember-api\", listening on 7796, that depends on \"ember-store\"; a long-running agent called \"meadow-web\", that depends on \"ember-api\". Reply with a JSON array of the 3 objects and nothing else.",
+    "services": [
+      {
+        "appName": "ember-store",
+        "appType": "bring-your-own",
+        "stack": "farm",
+        "port": 11800,
+        "image": "caddy:2",
+        "exposeViaProxy": false
+      },
+      {
+        "appName": "ember-api",
+        "appType": "frontend",
+        "stack": "farm",
+        "port": 7796,
+        "dependsOn": [
+          "ember-store"
+        ]
+      },
+      {
+        "appName": "meadow-web",
+        "appType": "agent",
+        "stack": "farm",
+        "dependsOn": [
+          "ember-api"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-stack-7",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"studio\" stack: a prebuilt service called \"rooster-store\", on port 14461, using the image couchdb:3, with no HTTP health path, that must not get a Traefik route; a container called \"rooster-queue\", using port 5754, from the Docker image keycloak/keycloak:25, with no HTTP health path, that must not get a Traefik route, that depends on \"rooster-store\"; a job processor called \"saffron-api\", that depends on \"rooster-store\". Reply with a JSON array of the 3 objects and nothing else.",
+    "services": [
+      {
+        "appName": "rooster-store",
+        "appType": "bring-your-own",
+        "stack": "studio",
+        "port": 14461,
+        "image": "couchdb:3",
+        "exposeViaProxy": false
+      },
+      {
+        "appName": "rooster-queue",
+        "appType": "bring-your-own",
+        "stack": "studio",
+        "port": 5754,
+        "image": "keycloak/keycloak:25",
+        "exposeViaProxy": false,
+        "dependsOn": [
+          "rooster-store"
+        ]
+      },
+      {
+        "appName": "saffron-api",
+        "appType": "worker",
+        "stack": "studio",
+        "dependsOn": [
+          "rooster-store"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-stack-8",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"clinic\" stack: a prebuilt service called \"walnut-cache\", using port 19923, using the image keycloak/keycloak:25, with health check /hc; a migrator called \"ember-web\", that depends on \"walnut-cache\"; an API server called \"rooster-svc\", listening on 5320, health path /state, running 3 replicas, that depends on \"walnut-cache\"; an API server called \"zephyr-app\", using port 4301, that depends on \"ember-web\". Reply with a JSON array of the 4 objects and nothing else.",
+    "services": [
+      {
+        "appName": "walnut-cache",
+        "appType": "bring-your-own",
+        "stack": "clinic",
+        "port": 19923,
+        "image": "keycloak/keycloak:25",
+        "healthCheckPath": "/hc"
+      },
+      {
+        "appName": "ember-web",
+        "appType": "migrator",
+        "stack": "clinic",
+        "dependsOn": [
+          "walnut-cache"
+        ]
+      },
+      {
+        "appName": "rooster-svc",
+        "appType": "backend",
+        "stack": "clinic",
+        "port": 5320,
+        "healthCheckPath": "/state",
+        "replicas": 3,
+        "dependsOn": [
+          "walnut-cache"
+        ]
+      },
+      {
+        "appName": "zephyr-app",
+        "appType": "backend",
+        "stack": "clinic",
+        "port": 4301,
+        "dependsOn": [
+          "ember-web"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-stack-9",
+    "kind": "stack",
+    "prompt": "Write the Flisk service.json files for a \"studio\" stack: a backend API called \"saffron-web\", on port 4768, running 4 replicas; a Model Context Protocol server called \"rooster-job\", listening on 5028, that depends on \"saffron-web\". Reply with a JSON array of the 2 objects and nothing else.",
+    "services": [
+      {
+        "appName": "saffron-web",
+        "appType": "backend",
+        "stack": "studio",
+        "port": 4768,
+        "replicas": 4
+      },
+      {
+        "appName": "rooster-job",
+        "appType": "mcp",
+        "stack": "studio",
+        "port": 5028,
+        "dependsOn": [
+          "saffron-web"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b-repair-0",
+    "broken": {
+      "schemaVersion": 1,
+      "appName": "tulip-job",
+      "appType": "backend",
+      "port": 4348,
+      "replicas": 4,
+      "dependsOn": [
+        "lantern-queue",
+        "tulip-queue"
+      ]
+    },
+    "keep": {
+      "appName": "tulip-job",
+      "appType": "backend",
+      "stack": "nimbus",
+      "port": 4348,
+      "replicas": 4,
+      "dependsOn": [
+        "lantern-queue",
+        "tulip-queue"
+      ]
+    },
+    "mustHave": [
+      "stack"
+    ]
+  },
+  {
+    "id": "b-repair-1",
+    "broken": {
+      "schemaVersion": 1,
+      "appName": "meadow-web",
+      "appType": 7,
+      "stack": "farm",
+      "agent": {
+        "durability": "files"
+      },
+      "enabled": false
+    },
+    "keep": {
+      "appName": "meadow-web",
+      "appType": "agent",
+      "stack": "farm",
+      "agent": {
+        "durability": "files"
+      },
+      "enabled": false
+    },
+    "mustHave": [
+      "appType"
+    ]
+  },
+  {
+    "id": "b-repair-2",
+    "broken": {
+      "schemaVersion": 1,
+      "appName": "ember-svc",
+      "appType": "backend",
+      "healthCheckPath": "/alive",
+      "dependsOn": [
+        "rooster-queue",
+        "ember-db"
+      ]
+    },
+    "keep": {
+      "appName": "ember-svc",
+      "appType": "backend",
+      "stack": "clinic",
+      "healthCheckPath": "/alive",
+      "dependsOn": [
+        "rooster-queue",
+        "ember-db"
+      ]
+    },
+    "mustHave": [
+      "stack"
+    ]
+  },
+  {
+    "id": "b-repair-3",
+    "broken": {
+      "schemaVersion": 2,
+      "appName": "tundra-job",
+      "appType": "migrator",
+      "stack": "lab"
+    },
+    "keep": {
+      "appName": "tundra-job",
+      "appType": "migrator",
+      "stack": "lab"
+    },
+    "mustHave": []
+  },
+  {
+    "id": "b-repair-4",
+    "broken": {
+      "schemaVersion": 2,
+      "appName": "tundra-api",
+      "appType": "backend",
+      "stack": "quartz",
+      "port": 4188,
+      "dependsOn": [
+        "walnut-api"
+      ]
+    },
+    "keep": {
+      "appName": "tundra-api",
+      "appType": "backend",
+      "stack": "quartz",
+      "port": 4188,
+      "dependsOn": [
+        "walnut-api"
+      ]
+    },
+    "mustHave": []
+  },
+  {
+    "id": "b-repair-5",
+    "broken": {
+      "schemaVersion": 2,
+      "appName": "ember-cache",
+      "appType": "bring-your-own",
+      "stack": "quartz",
+      "port": 19445,
+      "image": "nats:2",
+      "restart": "always"
+    },
+    "keep": {
+      "appName": "ember-cache",
+      "appType": "bring-your-own",
+      "stack": "quartz",
+      "port": 19445,
+      "image": "nats:2",
+      "restart": "always"
+    },
+    "mustHave": []
+  },
+  {
+    "id": "b-repair-6",
+    "broken": {
+      "schemaVersion": 2,
+      "appName": "tulip-job",
+      "appType": "agent",
+      "stack": "quartz",
+      "agent": {
+        "durability": "files"
+      }
+    },
+    "keep": {
+      "appName": "tulip-job",
+      "appType": "agent",
+      "stack": "quartz",
+      "agent": {
+        "durability": "files"
+      }
+    },
+    "mustHave": []
+  },
+  {
+    "id": "b-repair-7",
+    "broken": {
+      "schemaVersion": 1,
+      "appName": "lantern-queue",
+      "appType": 7,
+      "stack": "clinic",
+      "port": 9488,
+      "image": "keycloak/keycloak:25",
+      "healthCheckPath": "/state"
+    },
+    "keep": {
+      "appName": "lantern-queue",
+      "appType": "bring-your-own",
+      "stack": "clinic",
+      "port": 9488,
+      "image": "keycloak/keycloak:25",
+      "healthCheckPath": "/state"
+    },
+    "mustHave": [
+      "appType"
+    ]
+  },
+  {
+    "id": "b-repair-8",
+    "broken": {
+      "schemaVersion": 1,
+      "appName": "rooster-app",
+      "appType": 7,
+      "stack": "orbit",
+      "port": 4347
+    },
+    "keep": {
+      "appName": "rooster-app",
+      "appType": "backend",
+      "stack": "orbit",
+      "port": 4347
+    },
+    "mustHave": [
+      "appType"
+    ]
+  },
+  {
+    "id": "b-repair-9",
+    "broken": {
+      "schemaVersion": 1,
+      "appName": "zephyr-api",
+      "appType": 7,
+      "stack": "studio",
+      "port": 4023,
+      "healthCheckPath": "/alive",
+      "dependsOn": [
+        "rooster-api",
+        "meadow-db"
+      ]
+    },
+    "keep": {
+      "appName": "zephyr-api",
+      "appType": "backend",
+      "stack": "studio",
+      "port": 4023,
+      "healthCheckPath": "/alive",
+      "dependsOn": [
+        "rooster-api",
+        "meadow-db"
+      ]
+    },
+    "mustHave": [
+      "appType"
+    ]
+  },
+  {
+    "id": "b-repair-10",
+    "broken": {
+      "schemaVersion": 1,
+      "appName": "pebble-app",
+      "appType": "backend",
+      "port": 4652,
+      "command": "elixir app.exs",
+      "env": {
+        "MODE": 3
+      }
+    },
+    "keep": {
+      "appName": "pebble-app",
+      "appType": "backend",
+      "port": 4652,
+      "command": "elixir app.exs",
+      "env": {
+        "MODE": "prod"
+      }
+    },
+    "mustHave": [
+      "stack"
+    ]
+  },
+  {
+    "id": "b-repair-11",
+    "broken": {
+      "schemaVersion": 1,
+      "appName": "pebble-cache",
+      "appType": 7,
+      "stack": "farm",
+      "port": 10996,
+      "image": "keycloak/keycloak:25"
+    },
+    "keep": {
+      "appName": "pebble-cache",
+      "appType": "bring-your-own",
+      "stack": "farm",
+      "port": 10996,
+      "image": "keycloak/keycloak:25"
+    },
+    "mustHave": [
+      "appType"
+    ]
+  }
+]
