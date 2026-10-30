@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Small Wolf</title>
+<style>
+:root{--bg:#f2f1ec;--panel:#fbfaf6;--ink:#17181a;--mut:#6b6d70;--line:#d9d7cf;--acc:#e8590c;--acc2:#1c7c54;--side:#141516;--sideink:#f2f1ec;--tile:#e9e7dd}
+@media (prefers-color-scheme:dark){:root{--bg:#121314;--panel:#1a1b1d;--ink:#eeede8;--mut:#9a9b9e;--line:#2c2d30;--tile:#202124;--side:#0b0b0c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",sans-serif}
+h1,h2,h3{font-family:ui-serif,Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em;margin:0}
+a{color:inherit}code,pre{font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+nav.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:ui-serif,Georgia,serif;font-size:22px;font-weight:700}
+.logo svg{width:26px;height:26px}
+.btn{display:inline-block;border:1px solid var(--ink);padding:9px 16px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;background:transparent;color:var(--ink);cursor:pointer}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.hero{padding:64px 0 40px}.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.05;max-width:14em}
+.hero p{max-width:34em;color:var(--mut);font-size:18px;margin:18px 0 26px}
+.kicker{color:var(--acc);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+section{padding:36px 0;border-top:1px solid var(--line)}section h2{font-size:28px;margin-bottom:6px}.sub{color:var(--mut);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.cell{background:var(--panel);padding:18px}.cell h3{font-size:17px;margin-bottom:6px}.cell p{margin:0;color:var(--mut);font-size:14px}
+.tag{display:inline-block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;margin-bottom:8px;border:1px solid var(--line);color:var(--mut)}
+.tag.ok{border-color:var(--acc2);color:var(--acc2)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}@media(max-width:720px){.two{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);padding:18px}
+pre{background:var(--tile);padding:14px;overflow:auto;margin:0;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:14px}th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);text-align:left;font-weight:500}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line)}th{border-bottom:2px solid var(--ink)}
+footer{padding:28px 0 48px;color:var(--mut);font-size:13px;border-top:1px solid var(--line)}
+/* console */
+#console{display:none;min-height:100vh}#console.on{display:grid;grid-template-columns:200px 1fr}
+@media(max-width:720px){#console.on{grid-template-columns:1fr}}
+aside{background:var(--side);color:var(--sideink);display:flex;flex-direction:column}
+aside .logo{padding:16px 14px;font-size:20px;border-bottom:1px solid #2a2b2d}
+aside .org{margin:12px;border:1px solid #3a3b3e;padding:8px 10px;font-size:13px}aside .role{margin:-6px 12px 10px;font-size:12px;color:#9a9b9e}
+aside button{all:unset;cursor:pointer;display:block;padding:11px 14px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;border-top:1px solid #2a2b2d}
+aside button.on{background:#f2c200;color:#141516}
+aside .who{margin-top:auto;padding:14px;font-size:12px;color:#9a9b9e;border-top:1px solid #2a2b2d}
+main{background:var(--bg);padding:0}main header{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}main header h2{font-size:26px}
+.pane{display:none;padding:22px}.pane.on{display:block}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-bottom:26px}@media(max-width:720px){.tiles{grid-template-columns:1fr}}
+.tile{background:var(--tile);padding:16px 18px;border-bottom:4px solid var(--c)}.tile small{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}.tile b{display:block;font-size:34px;font-weight:500;margin-top:6px}
+.note{font-size:12px;color:var(--mut);border:1px dashed var(--line);padding:8px 10px;margin-bottom:16px;background:var(--panel)}
+.input{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 10px;font:inherit;width:100%;max-width:420px}
+</style>
+</head>
+<body>
+
+<div id="site">
+<div class="wrap">
+  <nav class="top">
+    <div class="logo"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 6l7 5h10l7-5-2 11-6 9h-8l-6-9z"/><circle cx="12.5" cy="16" r="1" fill="currentColor"/><circle cx="19.5" cy="16" r="1" fill="currentColor"/></svg>Small Wolf</div>
+    <div><a class="btn" href="#docs" data-go="docs">Docs</a> <button class="btn solid" data-go="usage">Console</button></div>
+  </nav>
+
+  <div class="hero">
+    <div class="kicker">A small model. On purpose.</div>
+    <h1>The intern, not the genius.</h1>
+    <p>Small Wolf is a small model for small jobs: read this, return that, as JSON, fast and cheap. It will not write your novel or reason about your startup. It will fix your config at 3 a.m. for a fraction of a cent.</p>
+    <button class="btn solid" data-go="keys">Get an API key</button> <a class="btn" href="#cases">See 10 jobs</a>
+  </div>
+
+  <section id="why">
+    <h2>Why small is the pitch</h2>
+    <p class="sub">Most agent traffic is boring: classify, extract, route, repair. Sending it to a frontier model is paying a surgeon to apply a plaster.</p>
+    <div class="grid">
+      <div class="cell"><h3>Cheap per job</h3><p>A 7B-class model answers a config request in about 50 output tokens. Pricing is not set yet; see the console for the placeholder plan.</p></div>
+      <div class="cell"><h3>Narrow and checked</h3><p>Every claim on this page names how it was tested. Where we have no test, we say so.</p></div>
+      <div class="cell"><h3>OpenAI-compatible</h3><p>Change the base URL and the key. Your SDK, agent framework or MCP server keeps working.</p></div>
+      <div class="cell"><h3>Runs where you want</h3><p>Hosted, or the same model on your own machine through a local server. Same API either way.</p></div>
+    </div>
+  </section>
+
+  <section id="cases">
+    <h2>10 jobs for a small model</h2>
+    <p class="sub">Two are measured on a public eval. The rest are what small models are good at, and are labelled until we measure them.</p>
+    <div class="grid">
+      <div class="cell"><span class="tag ok">Tested</span><h3>1. Write a config</h3><p>Turn a plain-English request into a valid Flisk <code>service.json</code>. 20 of 20 held-out and stack tasks passed on the 7B base.</p></div>
+      <div class="cell"><span class="tag ok">Tested</span><h3>2. Repair a rejected config</h3><p>Feed it the validator error and the broken file; get the smallest fix back. 5 of 5.</p></div>
+      <div class="cell"><span class="tag">Not yet tested</span><h3>3. Route support tickets</h3><p>Label each ticket billing, bug or how-to and pick the queue. A cheap first hop before a human or a big model.</p></div>
+      <div class="cell"><span class="tag">Not yet tested</span><h3>4. Extract fields to JSON</h3><p>Invoices, emails and receipts into a fixed schema: vendor, date, total.</p></div>
+      <div class="cell"><span class="tag">Not yet tested</span><h3>5. Triage log lines</h3><p>Mark a stack trace as noise, known issue or page-someone.</p></div>
+      <div class="cell"><span class="tag">Not yet tested</span><h3>6. Agent router</h3><p>Decide whether a request needs a tool, a big model or a canned answer, then hand it on.</p></div>
+      <div class="cell"><span class="tag">Not yet tested</span><h3>7. Tag and summarise short docs</h3><p>One-line summaries and tags for notes, tickets and changelog entries.</p></div>
+      <div class="cell"><span class="tag">Not yet tested</span><h3>8. Normalise messy input</h3><p>Names, addresses, units and dates into one clean format.</p></div>
+      <div class="cell"><span class="tag">Not yet tested</span><h3>9. Draft commit and PR titles</h3><p>Short, conventional titles from a diff stat or a file list.</p></div>
+      <div class="cell"><span class="tag">Not yet tested</span><h3>10. Make test data</h3><p>Synthetic rows and fixtures that match a schema, for demos and tests.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>One endpoint</h2>
+    <div class="two">
+      <pre><code>curl https://api.example.com/v1/chat/completions \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "small-wolf",
+    "messages": [{"role":"user",
+      "content":"Write a Flisk service.json for a worker called emailer in the shop stack."}]
+  }'</code></pre>
+      <div class="card"><b>How it was tested</b><p style="color:var(--mut);margin:8px 0 0">Scored with the Flisk CLI's own validator, temperature 0, on tasks the prompt was never tuned on. Sets, scripts and results live in the open <code>flisk-model</code> repo. Small models make small mistakes: it once called a one-shot job a <code>migrator</code>. We fixed the prompt and wrote down that we did.</p></div>
+    </div>
+  </section>
+  <footer>Mockup for a working brand. Domain, pricing and hosting are not decided. All console figures are sample data.</footer>
+</div>
+</div>
+
+<div id="console">
+  <aside>
+    <div class="logo"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 6l7 5h10l7-5-2 11-6 9h-8l-6-9z"/></svg>Wolf <span style="font-size:10px;border:1px solid #f2f1ec;padding:0 4px;margin-left:4px">API</span></div>
+    <div class="org">Your team ▾</div><div class="role">Owner</div>
+    <button data-tab="usage">Usage</button><button data-tab="billing">Billing</button><button data-tab="keys">API keys</button><button data-tab="team">Team</button><button data-tab="docs">Developer docs ↗</button>
+    <div class="who">you@example.com<br><br><button style="padding:0;border:0" id="exit">← Back to site</button></div>
+  </aside>
+  <main>
+    <header><h2 id="title">Usage</h2><span style="color:var(--mut);font-size:13px">Last 30 days</span></header>
+
+    <div class="pane" id="p-usage">
+      <div class="note">Sample data. Nothing here is connected to a real service.</div>
+      <div class="tiles">
+        <div class="tile" style="--c:#d6409f"><small>Total tokens</small><b id="t1">48,210</b></div>
+        <div class="tile" style="--c:#2b8fc7"><small>Requests</small><b id="t2">312</b></div>
+        <div class="tile" style="--c:#1c9c4f"><small>Usage cost</small><b id="t3">$0.04</b></div>
+      </div>
+      <h3 style="margin-bottom:8px">Usage by API key</h3>
+      <table><tr><th>Key</th><th>Requests</th><th>Input</th><th>Output</th><th>Total</th><th>Cost</th><th>Last used</th></tr>
+      <tr><td>default</td><td>312</td><td>39,870</td><td>8,340</td><td>48,210</td><td>$0.04</td><td>2 min ago</td></tr></table>
+    </div>
+
+    <div class="pane" id="p-billing">
+      <div class="note">Placeholder plan. Prices are not decided.</div>
+      <div class="card" style="max-width:560px"><small style="color:var(--mut)">Remaining balance</small><div style="font-size:34px;font-weight:600">$5.00</div><p style="color:var(--mut)">$5.00 sample credit minus $0.04 of usage.</p><button class="btn solid">Add credits</button></div>
+      <h3 style="margin:24px 0 8px">Current prices per million tokens</h3>
+      <table style="max-width:560px"><tr><th>Model</th><th>Input</th><th>Output</th></tr><tr><td><code>small-wolf</code></td><td>TBD</td><td>TBD</td></tr></table>
+    </div>
+
+    <div class="pane" id="p-keys">
+      <h3 style="margin-bottom:6px">Make your first request</h3><p style="color:var(--mut);margin-top:0">Replace <code>YOUR_API_KEY</code> with your key.</p>
+      <pre><code>curl https://api.example.com/v1/chat/completions \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"small-wolf","messages":[{"role":"user","content":"Say hello!"}],"max_tokens":256}'</code></pre>
+      <p style="color:var(--mut)">Keys authenticate requests. Keep them secret; never put one in client-side code.</p>
+      <table><tr><th>Name</th><th>Key</th><th>Created</th><th></th></tr><tr><td>default</td><td><code>wolf-••••…K3QZ</code></td><td>30 Oct 2026</td><td><button class="btn">Revoke</button></td></tr></table>
+    </div>
+
+    <div class="pane" id="p-team">
+      <p style="color:var(--mut)">Team name</p><input class="input" value="Your team"> 
+      <h3 style="margin:24px 0 8px">Members</h3>
+      <table><tr><th>Email</th><th>Role</th><th>Joined</th></tr><tr><td>you@example.com (you)</td><td>Owner</td><td>30 Oct 2026</td></tr></table>
+      <p style="color:var(--mut)">Members use shared keys and credits. Admins also manage billing and members.</p>
+    </div>
+
+    <div class="pane" id="p-docs">
+      <h3>Small Wolf API</h3>
+      <p style="color:var(--mut);max-width:40em">OpenAI-compatible chat completions for <code>small-wolf</code>. Point an OpenAI SDK at the base URL and use your key.</p>
+      <pre><code>from openai import OpenAI
+
+client = OpenAI(base_url="https://api.example.com/v1", api_key="wolf-...")
+r = client.chat.completions.create(
+    model="small-wolf",
+    messages=[{"role": "user", "content": "Write a Flisk service.json for a backend called api."}],
+)
+print(r.choices[0].message.content)</code></pre>
+      <p style="color:var(--mut);max-width:40em">Best at short structured answers. For long reasoning, call a bigger model.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const names={usage:"Usage",billing:"Billing",keys:"API keys",team:"Team",docs:"Developer docs"};
+function show(tab){tab=names[tab]?tab:"usage";$("#site").style.display="none";$("#console").classList.add("on");
+ $$(".pane").forEach(p=>p.classList.toggle("on",p.id==="p-"+tab));$$("aside [data-tab]").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));$("#title").textContent=names[tab];scrollTo(0,0)}
+function home(){$("#console").classList.remove("on");$("#site").style.display=""}
+$$("[data-go]").forEach(e=>e.addEventListener("click",ev=>{ev.preventDefault();show(e.dataset.go)}));
+$$("aside [data-tab]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.tab)));
+$("#exit").addEventListener("click",home);
+</script>
+</body></html>
