@@ -1,0 +1,187 @@
+{
+  "model": "default_model",
+  "prompt": "v1",
+  "passed": 16,
+  "total": 26,
+  "totalTokens": 908,
+  "results": [
+    {
+      "id": "w-1",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "w-2",
+      "pass": true,
+      "tokens": 30,
+      "problems": []
+    },
+    {
+      "id": "w-3",
+      "pass": false,
+      "tokens": 30,
+      "problems": [
+        "basePath: expected \"/store\", got undefined"
+      ]
+    },
+    {
+      "id": "w-4",
+      "pass": false,
+      "tokens": 31,
+      "problems": [
+        "image: expected \"redis:7\", got undefined"
+      ]
+    },
+    {
+      "id": "w-5",
+      "pass": false,
+      "tokens": 36,
+      "problems": [
+        "image: expected \"postgres:16\", got undefined"
+      ]
+    },
+    {
+      "id": "w-6",
+      "pass": true,
+      "tokens": 30,
+      "problems": []
+    },
+    {
+      "id": "w-7",
+      "pass": true,
+      "tokens": 29,
+      "problems": []
+    },
+    {
+      "id": "w-8",
+      "pass": true,
+      "tokens": 25,
+      "problems": []
+    },
+    {
+      "id": "w-9",
+      "pass": true,
+      "tokens": 23,
+      "problems": []
+    },
+    {
+      "id": "w-10",
+      "pass": false,
+      "tokens": 43,
+      "problems": [
+        "appType: expected \"backend\", got \"bring-your-own\""
+      ]
+    },
+    {
+      "id": "w-11",
+      "pass": false,
+      "tokens": 26,
+      "problems": [
+        "appName: expected \"cleanup-job\", got \"worker_cleanup-job\""
+      ]
+    },
+    {
+      "id": "w-12",
+      "pass": false,
+      "tokens": 31,
+      "problems": [
+        "image: expected \"mariadb:11\", got undefined",
+        "exposeViaProxy: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "w-13",
+      "pass": false,
+      "tokens": 27,
+      "problems": [
+        "appName: expected \"pricing-api\", got \"backend\""
+      ]
+    },
+    {
+      "id": "w-14",
+      "pass": false,
+      "tokens": 22,
+      "problems": [
+        "service.json.appName: cannot be a Docker image name; use lowercase letters and digits joined by \"-\", \"_\" or \".\" (at most 59 characters)",
+        "appName: expected \"audit-log\", got \"worker audit-log\""
+      ]
+    },
+    {
+      "id": "w-15",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    },
+    {
+      "id": "w-16",
+      "pass": true,
+      "tokens": 30,
+      "problems": []
+    },
+    {
+      "id": "w-17",
+      "pass": false,
+      "tokens": 37,
+      "problems": [
+        "image: expected \"nginx:1.27\", got undefined"
+      ]
+    },
+    {
+      "id": "w-18",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "w-19",
+      "pass": false,
+      "tokens": 41,
+      "problems": [
+        "image: expected \"etcd:3.5\", got undefined"
+      ]
+    },
+    {
+      "id": "w-20",
+      "pass": true,
+      "tokens": 37,
+      "problems": []
+    },
+    {
+      "id": "w-21",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "w-stack-1",
+      "pass": true,
+      "tokens": 95,
+      "problems": []
+    },
+    {
+      "id": "w-stack-2",
+      "pass": true,
+      "tokens": 91,
+      "problems": []
+    },
+    {
+      "id": "w-repair-1",
+      "pass": true,
+      "tokens": 28,
+      "problems": []
+    },
+    {
+      "id": "w-repair-2",
+      "pass": true,
+      "tokens": 21,
+      "problems": []
+    },
+    {
+      "id": "w-repair-3",
+      "pass": true,
+      "tokens": 27,
+      "problems": []
+    }
+  ]
+}

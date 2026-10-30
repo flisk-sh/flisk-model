@@ -4,7 +4,7 @@
 
 Flisk is a tool that runs a software stack on your laptop. Every service in a stack has a small settings file called `service.json`. Writing it wrong means the stack does not start, so a wrong answer is easy to spot.
 
-There are **62 questions** in three groups.
+There are **two tests**. The first has **62 machine-written questions** in three groups (below). The second has **26 questions written by hand** in casual, terse and messy wording, with typos, to check that a model copes with how real people ask. Same grading rules for both.
 
 ## 1. Single (40 questions): write one file
 

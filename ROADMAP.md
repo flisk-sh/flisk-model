@@ -6,8 +6,8 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 
 | | Status |
 |---|---|
-| Test | 62 held-out questions, graded by the real Flisk validator. Works, but small. |
-| Best small model | Prompted Qwen 7B: **54/62**. Trained 1.5B: **46/62** (partial run, **0/10 on whole stacks**). Claude Haiku and Sonnet: **57/62**, given no Flisk documentation. |
+| Test | Two held-out tests (62 machine-written, 26 natural wording), graded by the real Flisk validator. Works, but small. |
+| Best small model | Trained 1.5B: **62/62** machine-written, **16/26** natural wording. Prompted 7B: 54/62 and **18/26**. Claude Haiku and Sonnet: 57/62 and 15 to 16/26, given no Flisk documentation. |
 | Inference service | Live, but it runs on one Mac behind a tunnel, and only the owner can sign in. It is a demo, not a service. |
 | Users | None yet. Nobody has told us this solves a problem for them. |
 | Not measured | Cost per request, speed, and how Claude does when it is *given* the schema (which is how agents really use it). |
@@ -18,11 +18,11 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 
 ## Phase 0: make the claims solid (2 weeks)
 
-- Finish the full training run (compact JSON answers, 2,170 examples) and publish its score next to the partial one. If whole stacks are still weak, say so.
+- **Fix phrasing coverage first.** The trained model scored 62/62 on generated wording but 16/26 on natural wording, because the generator had only five phrasing styles. Add many more (terse, casual, typos, reordered, chatty), keep the natural-wording test fully held out, and retrain. Target: 22+/26.
 - Measure what we have not: **cost per 1,000 requests, time to first answer, and answer length** for every model, including Claude through the API.
 - Add the missing baseline: **Claude with the Flisk schema in its prompt.** This is the number that decides whether a small model has a point.
 - Grow the test from 62 to 200+ questions, with a second, private set that is never published, and run it in CI against the live validator.
-- **Gate:** the trained 1.5B reaches at least 54/62 and the cost and speed numbers exist. If not, stop and rethink before building more.
+- **Gate:** the trained 1.5B reaches at least 22/26 on natural wording and the cost and speed numbers exist. If not, stop and rethink before building more.
 
 ## Phase 1: make it reliable (1 to 2 months)
 
@@ -59,8 +59,8 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 
 | Measure | Today | Target |
 |---|---|---|
-| Held-out score (small model) | 46 to 54 of 62 | 58+ of 62, on 200+ questions |
-| Whole-stack questions | 0 to 8 of 10 | 9 of 10 |
+| Natural-wording score (small model) | 16 of 26 | 22+ of 26, then on 100+ questions |
+| Machine-written score | 62 of 62 | stays at 60+ while phrasing widens |
 | Invalid JSON | not tracked | 0%, by constrained decoding |
 | Cost per 1,000 requests | not measured | published, with Claude beside it |
 | Time to answer | about 20 s (cold), about 4 s (warm) | under 2 s |

@@ -33,7 +33,7 @@ const KIND_NOTE = {
   repair: "",
 };
 function buildPrompt(task) {
-  if (!task.broken) return task.prompt;
+  if (task.prompt) return task.prompt;
   const errors = validateService(task.broken).errors.join("\n");
   return `This Flisk service.json is rejected:\n${JSON.stringify(task.broken, null, 2)}\n\nThe validator says:\n${errors}\n\nFix it with the smallest change that makes it valid, keeping every other field. Reply with the corrected JSON object only.`;
 }

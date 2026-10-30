@@ -6,16 +6,19 @@
 
 ## Results
 
-62 held-out questions, every model scored the same way (the real Flisk validator, no human judging).
+Two held-out tests the models were never trained on. Every answer is graded by the real Flisk validator, with no human judging.
 
-| Model | What it is | Passed (of 62) | Single (40) | Stack (10) | Repair (12) | Avg answer length |
-|---|---|---|---|---|---|---|
-| **Claude Haiku 5.5** | Large hosted model | **57** (92%) | 39/40 | 6/10 | 12/12 | not measured |
-| **Claude Sonnet 5.5** | Large hosted model | **57** (92%) | 39/40 | 6/10 | 12/12 | not measured |
-| **flisk-wolf (prompted)** | Small open model + long instructions | **54** (87%) | 34/40 | 8/10 | 12/12 | 78 tokens |
-| **flisk-wolf 1.5B (trained, step 125)** | Tiny open model + our training | **46** (74%) | 35/40 | 0/10 | 11/12 | 75 tokens |
-| **Qwen2.5-Coder 1.5B (plain)** | Tiny open model, untouched | **17** (27%) | 5/40 | 0/10 | 12/12 | 81 tokens |
-| **Qwen2.5-Coder 7B (plain)** | Small open model, untouched | **16** (26%) | 4/40 | 0/10 | 12/12 | 82 tokens |
+- **Machine-written (62 questions):** generated from specs, with phrasing and names that do not appear in training.
+- **Natural wording (26 questions):** written by hand in casual, terse and messy language, with typos. The training generator never produced anything like it.
+
+| Model | What it is | Machine-written test (62) | Natural-wording test (26) | Single | Stack | Repair | Avg answer length |
+|---|---|---|---|---|---|---|---|
+| **flisk-wolf 1.5B (trained)** | Tiny open model + our training | **62** (100%) | **16** (62%) | 40/40 | 10/10 | 12/12 | 48 tokens |
+| **Claude Haiku 5.5** | Large hosted model | **57** (92%) | **15** (58%) | 39/40 | 6/10 | 12/12 | not measured |
+| **Claude Sonnet 5.5** | Large hosted model | **57** (92%) | **16** (62%) | 39/40 | 6/10 | 12/12 | not measured |
+| **flisk-wolf (prompted)** | Small open model + long instructions | **54** (87%) | **18** (69%) | 34/40 | 8/10 | 12/12 | 78 tokens |
+| **Qwen2.5-Coder 1.5B (plain)** | Tiny open model, untouched | **17** (27%) | not run | 5/40 | 0/10 | 12/12 | 81 tokens |
+| **Qwen2.5-Coder 7B (plain)** | Small open model, untouched | **16** (26%) | not run | 4/40 | 0/10 | 12/12 | 82 tokens |
 
 How each row was run:
 - **Claude Haiku 5.5**: run blind as a separate Claude Haiku instance. It saw only the questions and the one-sentence instruction. Answer length was not measured.
@@ -23,17 +26,18 @@ How each row was run:
 - **flisk-wolf (prompted)**: Qwen2.5-Coder 7B with the Flisk rules and four worked examples built into its prompt (about 1,100 extra tokens on every call). Not trained.
 - **Qwen2.5-Coder 7B (plain)**: the base model with the same short instruction as the others. No Flisk rules, no training.
 - **Qwen2.5-Coder 1.5B (plain)**: the base model with the short instruction. No Flisk rules, no training.
-- **flisk-wolf 1.5B (trained, step 125)**: Qwen2.5-Coder 1.5B fine-tuned with a LoRA on 2,243 verified examples on a MacBook Pro M1, asked with the short instruction only. Scored on the last saved checkpoint, step 125 of a planned 150: the run then crashed (GPU out of memory), and a first version of the training data had also cut stack answers short.
+- **flisk-wolf 1.5B (trained)**: Qwen2.5-Coder 1.5B fine-tuned with a LoRA for 400 steps on 2,170 verified examples with compact JSON answers, on a MacBook Pro M1 (about 80 minutes). Asked with the short instruction only.
 
 ### What the numbers say
 
-- **Training works.** The same tiny 1.5B model went from **17 to 46 of 62** after a short fine-tune on a laptop. On single-service questions it jumped from 5 to **35 of 40**, about the same as the prompted 7B model (34) and close to Claude (39).
-- **Big models are not magic here.** Claude Haiku and Sonnet both scored 57. They were never told Flisk's own setting names, so they missed the same question type: a service "that must not get a Traefik route" needs `exposeViaProxy: false`, which they did not know.
-- **Instructions can stand in for training, at a cost.** The prompted 7B model reached 54 by carrying about 1,100 extra words of rules on every request. It even beat Claude on whole stacks (8 of 10 vs 6). The trained model needs none of that.
-- **Weak spot: whole stacks (0 of 10).** The trained model fails the multi-file questions: it writes too few services, drops "depends on" links, or produces broken JSON. I first suspected training answers were cut off, then measured it: the longest stack example is 560 tokens, under the 768 limit, so that was **not** the cause. The likelier cause (not yet proven) is that the run stopped at step 125 having seen only about 500 of the 2,243 training examples, roughly 80 stack examples. The next run will cover the data fully and use compact JSON, which also cuts answer length.
-- **Plain small models fail the same test.** Untrained Qwen 1.5B and 7B pass the repair questions (the error message names the fix) but only 4 to 5 of 40 single-service questions.
+- **A perfect score that is not what it looks like.** The trained 1.5B model got **62 of 62** on the machine-written test, up from 17 for the same model untrained. On the natural-wording test it got **16 of 26 (62%)**, level with Claude Sonnet (16) and Haiku (15). The machine-written test used the same generator family as the training data (five phrasing styles, training loss 0.000), so the model learned that style very well. The natural-wording test is the honest one.
+- **On natural wording, nobody is good yet.** The prompted 7B model leads with 18, and the three others sit within two questions of each other. With only 26 questions, that gap is noise.
+- **Why Claude loses points.** It was never told Flisk's vocabulary. It writes `"container"` or `"backend"` where Flisk wants `bring-your-own`, leaves out health-check paths, and misses `exposeViaProxy`. Given the Flisk schema it would likely do much better; this test gave it none.
+- **Why the trained model loses points.** Mostly it drops the Docker image when the request is worded in an unfamiliar way ("a redis:7 container for the shop stack"): 5 of its 10 misses. It also garbled two names (`worker_cleanup-job`).
+- **Answers are short.** The trained model averages 48 tokens per answer on the machine-written test, against 78 for the prompted 7B, and it needs no 1,100-token prompt on every call.
+- **What it proves.** A small model trained on a laptop for about 80 minutes matches Claude on this narrow job when the wording is natural, and beats it on the generated test. What it does not yet prove is that it handles real users' wording, because it has not seen enough of it.
 
-Caveat: 62 questions is a small sample, so one or two questions of difference is noise. Claude's answer length was not measured.
+Caveat: 26 questions is a small sample, so one or two questions of difference is noise. Claude's answer length was not measured, and Claude was given no Flisk documentation.
 
 ## What is here
 
@@ -64,4 +68,4 @@ Training uses [MLX](https://github.com/ml-explore/mlx-lm) on Apple Silicon: `pyt
 
 ## Status
 
-Trained model: step 125 of 150, one checkpoint. Next: a full pass over the training data with compact JSON answers to fix whole stacks, then a 7B version. The public demo of the prompted model runs on a Mac through a tunnel, so it is not always on.
+Trained model: full 400-step run. Next: much more varied phrasing in the training data (the natural-wording test stays held out), then a 7B version. The public demo of the prompted model runs on a Mac through a tunnel, so it is not always on.

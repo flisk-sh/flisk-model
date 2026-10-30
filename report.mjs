@@ -11,19 +11,20 @@ for (const m of models) {
   const g = { single: [0, 0], stack: [0, 0], repair: [0, 0] };
   for (const t of r.results) { const k = group(t.id); g[k][1]++; if (t.pass) g[k][0]++; }
   const avgTok = r.totalTokens ? Math.round(r.totalTokens / r.total) : null;
-  rows.push({ ...m, passed: r.passed, total: r.total, g, avgTok });
+  const wf = m.wild && existsSync(`evals/results/${m.wild}`) ? JSON.parse(readFileSync(`evals/results/${m.wild}`, "utf-8")) : null;
+  rows.push({ ...m, passed: r.passed, total: r.total, g, avgTok, wildPassed: wf ? wf.passed : null, wildTotal: wf ? wf.total : null });
 }
 rows.sort((a, b) => (b.passed ?? -1) - (a.passed ?? -1));
 const lines = [
-  "| Model | What it is | Passed (of 62) | Single (40) | Stack (10) | Repair (12) | Avg answer length |",
-  "|---|---|---|---|---|---|---|",
+  "| Model | What it is | Machine-written test (62) | Natural-wording test (26) | Single | Stack | Repair | Avg answer length |",
+  "|---|---|---|---|---|---|---|---|",
   ...rows.map((r) => r.missing
-    ? `| ${r.label} | ${r.kind} | not run yet | | | | |`
-    : `| **${r.label}** | ${r.kind} | **${r.passed}** (${Math.round((100 * r.passed) / r.total)}%) | ${pct(...r.g.single)} | ${pct(...r.g.stack)} | ${pct(...r.g.repair)} | ${r.avgTok ? `${r.avgTok} tokens` : "not measured"} |`),
+    ? `| ${r.label} | ${r.kind} | not run yet | | | | | |`
+    : `| **${r.label}** | ${r.kind} | **${r.passed}** (${Math.round((100 * r.passed) / r.total)}%) | ${r.wildTotal ? `**${r.wildPassed}** (${Math.round((100 * r.wildPassed) / r.wildTotal)}%)` : "not run"} | ${pct(...r.g.single)} | ${pct(...r.g.stack)} | ${pct(...r.g.repair)} | ${r.avgTok ? `${r.avgTok} tokens` : "not measured"} |`),
 ];
 const out = `# Results
 
-Held-out test: 62 questions the models were never trained on. How the test works is in [TESTS.md](TESTS.md).
+Two held-out tests, never trained on. **Machine-written (62):** generated from specs with phrasing and names unseen in training. **Natural wording (26):** written by hand in casual, terse and messy wording, with typos. How the tests work is in [TESTS.md](TESTS.md).
 
 ${lines.join("\n")}
 

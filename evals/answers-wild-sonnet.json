@@ -1,0 +1,36 @@
+{
+"w-1": {"schemaVersion":1,"appName":"inventory-api","appType":"backend","stack":"stock","port":4210},
+"w-2": {"schemaVersion":1,"appName":"mail-sender","appType":"worker","stack":"comms","dependsOn":["queue-redis"]},
+"w-3": {"schemaVersion":1,"appName":"storefront-ui","appType":"frontend","stack":"retail","basePath":"/store"},
+"w-4": {"schemaVersion":1,"appName":"session-cache","appType":"backend","stack":"shop","image":"redis:7","port":6379},
+"w-5": {"schemaVersion":1,"appName":"orders-db","appType":"backend","stack":"retail","image":"postgres:16","port":5432,"restart":"no"},
+"w-6": {"schemaVersion":1,"appName":"calendar-tools","appType":"mcp","stack":"assistants","port":4600},
+"w-7": {"schemaVersion":1,"appName":"planner","appType":"agent","stack":"assistants","checkpointStore":"file"},
+"w-8": {"schemaVersion":1,"appName":"schema-migrate","appType":"migrator","stack":"retail"},
+"w-9": {"schemaVersion":1,"appName":"digest-job","appType":"worker","stack":"default","command":"python worker.py"},
+"w-10": {"schemaVersion":1,"appName":"billing-api","appType":"backend","stack":"pay","port":4300,"replicas":3,"healthPath":"/healthz"},
+"w-11": {"schemaVersion":1,"appName":"cleanup-job","appType":"worker","stack":"ops","enabled":false},
+"w-12": {"schemaVersion":1,"appName":"internal-db","appType":"backend","stack":"ops","image":"mariadb:11","port":3306,"route":false},
+"w-13": {"schemaVersion":1,"appName":"pricing-api","appType":"backend","stack":"finance","port":4101},
+"w-14": {"schemaVersion":1,"appName":"audit-log","appType":"worker","stack":"finance"},
+"w-15": {"schemaVersion":1,"appName":"admin-ui","appType":"frontend","stack":"finance","port":5174,"healthPath":"/ping"},
+"w-16": {"schemaVersion":1,"appName":"concierge","appType":"agent","stack":"hotel","dependsOn":["room-db","menu-tools"]},
+"w-17": {"schemaVersion":1,"appName":"gateway","appType":"backend","stack":"edge","image":"nginx:1.27","port":8080,"healthPath":"/healthz"},
+"w-18": {"schemaVersion":1,"appName":"search-api","appType":"backend","stack":"finder","port":4777},
+"w-19": {"schemaVersion":1,"appName":"config-store","appType":"backend","stack":"infra","image":"etcd:3.5","port":2379,"restart":"always","healthPath":"/health"},
+"w-20": {"schemaVersion":1,"appName":"feed-api","appType":"backend","stack":"social","port":4020,"replicas":2,"enabled":false},
+"w-21": {"schemaVersion":1,"appName":"docs-tools","appType":"mcp","stack":"docs","dependsOn":["search-api"]},
+"w-stack-1": [
+ {"schemaVersion":1,"appName":"transcoder","appType":"worker","stack":"media"},
+ {"schemaVersion":1,"appName":"media-api","appType":"backend","stack":"media","port":4900,"healthPath":"/health","dependsOn":["transcoder"]},
+ {"schemaVersion":1,"appName":"media-web","appType":"frontend","stack":"media","dependsOn":["media-api"]}
+],
+"w-stack-2": [
+ {"schemaVersion":1,"appName":"hotel-db","appType":"backend","stack":"hotel","image":"postgres:16","port":5432},
+ {"schemaVersion":1,"appName":"hotel-api","appType":"backend","stack":"hotel","dependsOn":["hotel-db"]},
+ {"schemaVersion":1,"appName":"hotel-agent","appType":"agent","stack":"hotel","dependsOn":["hotel-api"]}
+],
+"w-repair-1": {"schemaVersion":1,"appName":"ledger-api","appType":"backend","stack":"default","port":4400},
+"w-repair-2": {"schemaVersion":1,"appName":"report-job","appType":"worker","stack":"ops"},
+"w-repair-3": {"schemaVersion":1,"appName":"fetcher","appType":"worker","stack":"ops","command":"node fetch.js"}
+}

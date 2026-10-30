@@ -1,0 +1,187 @@
+{
+  "prompt": "v1",
+  "passed": 16,
+  "total": 26,
+  "totalTokens": 0,
+  "results": [
+    {
+      "id": "w-1",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-2",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-3",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-4",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"backend\""
+      ]
+    },
+    {
+      "id": "w-5",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"backend\""
+      ]
+    },
+    {
+      "id": "w-6",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-7",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "agent: expected {\"durability\":\"files\"}, got undefined"
+      ]
+    },
+    {
+      "id": "w-8",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-9",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-10",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "healthCheckPath: expected \"/healthz\", got undefined"
+      ]
+    },
+    {
+      "id": "w-11",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-12",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"backend\"",
+        "exposeViaProxy: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "w-13",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-14",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-15",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "healthCheckPath: expected \"/ping\", got undefined"
+      ]
+    },
+    {
+      "id": "w-16",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-17",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"backend\"",
+        "healthCheckPath: expected \"/healthz\", got undefined"
+      ]
+    },
+    {
+      "id": "w-18",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-19",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "appType: expected \"bring-your-own\", got \"backend\"",
+        "healthCheckPath: expected \"/health\", got undefined"
+      ]
+    },
+    {
+      "id": "w-20",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-21",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-stack-1",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "media-api.healthCheckPath: expected \"/health\", got undefined"
+      ]
+    },
+    {
+      "id": "w-stack-2",
+      "pass": false,
+      "tokens": 0,
+      "problems": [
+        "hotel-db.appType: expected \"bring-your-own\", got \"backend\""
+      ]
+    },
+    {
+      "id": "w-repair-1",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-repair-2",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    },
+    {
+      "id": "w-repair-3",
+      "pass": true,
+      "tokens": 0,
+      "problems": []
+    }
+  ]
+}

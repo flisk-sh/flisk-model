@@ -1,0 +1,219 @@
+{
+  "model": "flisk-wolf",
+  "prompt": "none",
+  "passed": 18,
+  "total": 26,
+  "totalTokens": 1614,
+  "results": [
+    {
+      "id": "w-1",
+      "pass": true,
+      "tokens": 48,
+      "problems": []
+    },
+    {
+      "id": "w-2",
+      "pass": true,
+      "tokens": 50,
+      "problems": []
+    },
+    {
+      "id": "w-3",
+      "pass": false,
+      "tokens": 59,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"frontend\", got undefined",
+        "appName: expected \"storefront-ui\", got undefined",
+        "stack: expected \"retail\", got undefined",
+        "basePath: expected \"/store\", got undefined"
+      ]
+    },
+    {
+      "id": "w-4",
+      "pass": false,
+      "tokens": 60,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"bring-your-own\", got undefined",
+        "appName: expected \"session-cache\", got undefined",
+        "stack: expected \"shop\", got undefined",
+        "image: expected \"redis:7\", got undefined",
+        "port: expected 6379, got undefined"
+      ]
+    },
+    {
+      "id": "w-5",
+      "pass": true,
+      "tokens": 69,
+      "problems": []
+    },
+    {
+      "id": "w-6",
+      "pass": true,
+      "tokens": 46,
+      "problems": []
+    },
+    {
+      "id": "w-7",
+      "pass": true,
+      "tokens": 50,
+      "problems": []
+    },
+    {
+      "id": "w-8",
+      "pass": true,
+      "tokens": 57,
+      "problems": []
+    },
+    {
+      "id": "w-9",
+      "pass": true,
+      "tokens": 36,
+      "problems": []
+    },
+    {
+      "id": "w-10",
+      "pass": true,
+      "tokens": 62,
+      "problems": []
+    },
+    {
+      "id": "w-11",
+      "pass": false,
+      "tokens": 44,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"worker\", got undefined",
+        "appName: expected \"cleanup-job\", got undefined",
+        "stack: expected \"ops\", got undefined",
+        "enabled: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "w-12",
+      "pass": false,
+      "tokens": 72,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"bring-your-own\", got undefined",
+        "appName: expected \"internal-db\", got undefined",
+        "stack: expected \"ops\", got undefined",
+        "image: expected \"mariadb:11\", got undefined",
+        "port: expected 3306, got undefined",
+        "exposeViaProxy: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "w-13",
+      "pass": true,
+      "tokens": 44,
+      "problems": []
+    },
+    {
+      "id": "w-14",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    },
+    {
+      "id": "w-15",
+      "pass": false,
+      "tokens": 57,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"frontend\", got undefined",
+        "appName: expected \"admin-ui\", got undefined",
+        "stack: expected \"finance\", got undefined",
+        "port: expected 5174, got undefined",
+        "healthCheckPath: expected \"/ping\", got undefined"
+      ]
+    },
+    {
+      "id": "w-16",
+      "pass": false,
+      "tokens": 71,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"agent\", got undefined",
+        "appName: expected \"concierge\", got undefined",
+        "stack: expected \"hotel\", got undefined",
+        "dependsOn: expected [\"room-db\",\"menu-tools\"], got undefined"
+      ]
+    },
+    {
+      "id": "w-17",
+      "pass": true,
+      "tokens": 68,
+      "problems": []
+    },
+    {
+      "id": "w-18",
+      "pass": true,
+      "tokens": 44,
+      "problems": []
+    },
+    {
+      "id": "w-19",
+      "pass": true,
+      "tokens": 79,
+      "problems": []
+    },
+    {
+      "id": "w-20",
+      "pass": false,
+      "tokens": 62,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"backend\", got undefined",
+        "appName: expected \"feed-api\", got undefined",
+        "stack: expected \"social\", got undefined",
+        "replicas: expected 2, got undefined",
+        "port: expected 4020, got undefined",
+        "enabled: expected false, got undefined"
+      ]
+    },
+    {
+      "id": "w-21",
+      "pass": false,
+      "tokens": 52,
+      "problems": [
+        "service.json: expected a JSON object",
+        "appType: expected \"mcp\", got undefined",
+        "appName: expected \"docs-tools\", got undefined",
+        "stack: expected \"docs\", got undefined",
+        "dependsOn: expected [\"search-api\"], got undefined"
+      ]
+    },
+    {
+      "id": "w-stack-1",
+      "pass": true,
+      "tokens": 157,
+      "problems": []
+    },
+    {
+      "id": "w-stack-2",
+      "pass": true,
+      "tokens": 172,
+      "problems": []
+    },
+    {
+      "id": "w-repair-1",
+      "pass": true,
+      "tokens": 44,
+      "problems": []
+    },
+    {
+      "id": "w-repair-2",
+      "pass": true,
+      "tokens": 34,
+      "problems": []
+    },
+    {
+      "id": "w-repair-3",
+      "pass": true,
+      "tokens": 43,
+      "problems": []
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+[
+ {
+  "id": "w-1",
+  "prompt": "need a backend api named inventory-api for the stock stack on 4210",
+  "expect": {
+   "appType": "backend",
+   "appName": "inventory-api",
+   "stack": "stock",
+   "port": 4210
+  }
+ },
+ {
+  "id": "w-2",
+  "prompt": "make me a service.json: worker 'mail-sender', stack comms, depends on queue-redis",
+  "expect": {
+   "appType": "worker",
+   "appName": "mail-sender",
+   "stack": "comms",
+   "dependsOn": [
+    "queue-redis"
+   ]
+  }
+ },
+ {
+  "id": "w-3",
+  "prompt": "Hey! Could you put together the config for our new React frontend called storefront-ui (stack: retail), served from /store? thanks",
+  "expect": {
+   "appType": "frontend",
+   "appName": "storefront-ui",
+   "stack": "retail",
+   "basePath": "/store"
+  }
+ },
+ {
+  "id": "w-4",
+  "prompt": "redis:7 container for the shop stack, name it session-cache, port 6379, it's not HTTP so no health check",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "session-cache",
+   "stack": "shop",
+   "image": "redis:7",
+   "port": 6379
+  },
+  "absent": [
+   "healthCheckPath"
+  ]
+ },
+ {
+  "id": "w-5",
+  "prompt": "postgres:16 database called orders-db in stack retail on 5432; it must not restart after it exits",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "orders-db",
+   "stack": "retail",
+   "image": "postgres:16",
+   "port": 5432,
+   "restart": "no"
+  }
+ },
+ {
+  "id": "w-6",
+  "prompt": "flisk service for an MCP server: calendar-tools, stack assistants, port 4600",
+  "expect": {
+   "appType": "mcp",
+   "appName": "calendar-tools",
+   "stack": "assistants",
+   "port": 4600
+  }
+ },
+ {
+  "id": "w-7",
+  "prompt": "AI agent called planner in the assistants stack, keep its checkpoints in files please",
+  "expect": {
+   "appType": "agent",
+   "appName": "planner",
+   "stack": "assistants",
+   "agent": {
+    "durability": "files"
+   }
+  }
+ },
+ {
+  "id": "w-8",
+  "prompt": "database migrations job named schema-migrate in retail",
+  "expect": {
+   "appType": "migrator",
+   "appName": "schema-migrate",
+   "stack": "retail"
+  }
+ },
+ {
+  "id": "w-9",
+  "prompt": "i want to run 'python worker.py' locally (no docker) as a worker called digest-job",
+  "expect": {
+   "appType": "worker",
+   "appName": "digest-job",
+   "command": "python worker.py"
+  },
+  "absent": [
+   "image",
+   "dockerfile"
+  ]
+ },
+ {
+  "id": "w-10",
+  "prompt": "backend called billing-api in the pay stack, 3 replicas, port 4300, health at /healthz",
+  "expect": {
+   "appType": "backend",
+   "appName": "billing-api",
+   "stack": "pay",
+   "replicas": 3,
+   "port": 4300,
+   "healthCheckPath": "/healthz"
+  }
+ },
+ {
+  "id": "w-11",
+  "prompt": "Turn off the worker cleanup-job in the ops stack for now.",
+  "expect": {
+   "appType": "worker",
+   "appName": "cleanup-job",
+   "stack": "ops",
+   "enabled": false
+  }
+ },
+ {
+  "id": "w-12",
+  "prompt": "no traefik route for the internal-db container please (image mariadb:11, stack ops, port 3306)",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "internal-db",
+   "stack": "ops",
+   "image": "mariadb:11",
+   "port": 3306,
+   "exposeViaProxy": false
+  }
+ },
+ {
+  "id": "w-13",
+  "prompt": "backend pricing-api stack finance port 4101",
+  "expect": {
+   "appType": "backend",
+   "appName": "pricing-api",
+   "stack": "finance",
+   "port": 4101
+  }
+ },
+ {
+  "id": "w-14",
+  "prompt": "worker audit-log stack finance",
+  "expect": {
+   "appType": "worker",
+   "appName": "audit-log",
+   "stack": "finance"
+  }
+ },
+ {
+  "id": "w-15",
+  "prompt": "frontend admin-ui, stack finance, port 5174, health /ping",
+  "expect": {
+   "appType": "frontend",
+   "appName": "admin-ui",
+   "stack": "finance",
+   "port": 5174,
+   "healthCheckPath": "/ping"
+  }
+ },
+ {
+  "id": "w-16",
+  "prompt": "agent named concierge in stack hotel, it depends on room-db and menu-tools",
+  "expect": {
+   "appType": "agent",
+   "appName": "concierge",
+   "stack": "hotel",
+   "dependsOn": [
+    "room-db",
+    "menu-tools"
+   ]
+  }
+ },
+ {
+  "id": "w-17",
+  "prompt": "Existing nginx:1.27 container as 'gateway' for stack edge on port 8080 with health check /healthz",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "gateway",
+   "stack": "edge",
+   "image": "nginx:1.27",
+   "port": 8080,
+   "healthCheckPath": "/healthz"
+  }
+ },
+ {
+  "id": "w-18",
+  "prompt": "bakcend serivce 'search-api' for stack finder, port 4777",
+  "expect": {
+   "appType": "backend",
+   "appName": "search-api",
+   "stack": "finder",
+   "port": 4777
+  }
+ },
+ {
+  "id": "w-19",
+  "prompt": "etcd:3.5 in stack infra called config-store on port 2379, always restart it, health path /health",
+  "expect": {
+   "appType": "bring-your-own",
+   "appName": "config-store",
+   "stack": "infra",
+   "image": "etcd:3.5",
+   "port": 2379,
+   "restart": "always",
+   "healthCheckPath": "/health"
+  }
+ },
+ {
+  "id": "w-20",
+  "prompt": "Two replicas of backend feed-api (stack social, port 4020), but disabled for now",
+  "expect": {
+   "appType": "backend",
+   "appName": "feed-api",
+   "stack": "social",
+   "replicas": 2,
+   "port": 4020,
+   "enabled": false
+  }
+ },
+ {
+  "id": "w-21",
+  "prompt": "mcp server 'docs-tools' in the docs stack that depends on 'search-api'",
+  "expect": {
+   "appType": "mcp",
+   "appName": "docs-tools",
+   "stack": "docs",
+   "dependsOn": [
+    "search-api"
+   ]
+  }
+ },
+ {
+  "id": "w-stack-1",
+  "kind": "stack",
+  "prompt": "build me a stack called media: a worker named transcoder, a backend media-api on port 4900 with health check /health that depends on transcoder, and a frontend media-web that depends on media-api. Give me a JSON array of the three service.json files.",
+  "services": [
+   {
+    "appName": "transcoder",
+    "appType": "worker",
+    "stack": "media"
+   },
+   {
+    "appName": "media-api",
+    "appType": "backend",
+    "stack": "media",
+    "port": 4900,
+    "healthCheckPath": "/health",
+    "dependsOn": [
+     "transcoder"
+    ]
+   },
+   {
+    "appName": "media-web",
+    "appType": "frontend",
+    "stack": "media",
+    "dependsOn": [
+     "media-api"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "w-stack-2",
+  "kind": "stack",
+  "prompt": "For the 'hotel' stack I need: a Postgres 16 container hotel-db on port 5432 (not HTTP, no health path), an api called hotel-api that depends on hotel-db, and an agent hotel-agent that depends on hotel-api. Reply with a JSON array.",
+  "services": [
+   {
+    "appName": "hotel-db",
+    "appType": "bring-your-own",
+    "stack": "hotel",
+    "image": "postgres:16",
+    "port": 5432
+   },
+   {
+    "appName": "hotel-api",
+    "appType": "backend",
+    "stack": "hotel",
+    "dependsOn": [
+     "hotel-db"
+    ]
+   },
+   {
+    "appName": "hotel-agent",
+    "appType": "agent",
+    "stack": "hotel",
+    "dependsOn": [
+     "hotel-api"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "w-repair-1",
+  "broken": {
+   "schemaVersion": 1,
+   "appName": "ledger-api",
+   "appType": "backend",
+   "port": 4400
+  },
+  "keep": {
+   "appName": "ledger-api",
+   "appType": "backend",
+   "port": 4400
+  },
+  "mustHave": [
+   "stack"
+  ],
+  "prompt": "Here is a service.json that Flisk rejected:\n{\"schemaVersion\":1,\"appName\":\"ledger-api\",\"appType\":\"backend\",\"port\":4400}\nFlisk says: service.json.stack: required field is missing\nCan you fix it? Just give me the corrected JSON."
+ },
+ {
+  "id": "w-repair-2",
+  "broken": {
+   "schemaVersion": 3,
+   "appName": "report-job",
+   "appType": "worker",
+   "stack": "ops"
+  },
+  "keep": {
+   "appName": "report-job",
+   "appType": "worker",
+   "stack": "ops",
+   "schemaVersion": 1
+  },
+  "prompt": "Here is a service.json that Flisk rejected:\n{\"schemaVersion\":3,\"appName\":\"report-job\",\"appType\":\"worker\",\"stack\":\"ops\"}\nFlisk says: service.json.schemaVersion: unsupported version 3 (supported: 1)\nCan you fix it? Just give me the corrected JSON."
+ },
+ {
+  "id": "w-repair-3",
+  "broken": {
+   "schemaVersion": 1,
+   "appName": "fetcher",
+   "appType": "worker",
+   "stack": "ops",
+   "command": "node fetch.js",
+   "image": "node:22"
+  },
+  "keep": {
+   "appName": "fetcher",
+   "appType": "worker",
+   "stack": "ops"
+  },
+  "prompt": "Here is a service.json that Flisk rejected:\n{\"schemaVersion\":1,\"appName\":\"fetcher\",\"appType\":\"worker\",\"stack\":\"ops\",\"command\":\"node fetch.js\",\"image\":\"node:22\"}\nFlisk says: service.json: service \"fetcher\": declares both command and image; a service has exactly one runtime source (remove it to run the command locally, or remove command to run in Docker)\nCan you fix it? Just give me the corrected JSON."
+ }
+]
