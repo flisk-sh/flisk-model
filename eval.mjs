@@ -3,6 +3,7 @@
 // every expected field matches, no forbidden field is present. Also reports output tokens, the number Particle optimises.
 import { readFileSync, writeFileSync } from "node:fs";
 import { validateService } from "./lib/validate.mjs";
+import { scoreSingle, scoreStack } from "./lib/score.mjs";
 import { SYSTEM, SYSTEM_V2, FEW_SHOTS } from "./lib/templates.mjs";
 
 const arg = (name, fallback) => {
@@ -10,7 +11,10 @@ const arg = (name, fallback) => {
   return i > -1 ? process.argv[i + 1] : fallback;
 };
 const answersFile = arg("answers");
-const answers = answersFile ? JSON.parse(readFileSync(answersFile, "utf-8")) : null; // score hand-written answers instead of calling a server
+// --answers scores saved answers instead of calling a server: either { taskId: answer } (hand-written) or a results file
+// written by --out, whose raw model text is kept in each result's `answer`, so a run can be graded again without the model.
+const answersRaw = answersFile ? JSON.parse(readFileSync(answersFile, "utf-8")) : null;
+const answers = answersRaw?.results ? Object.fromEntries(answersRaw.results.filter((r) => "answer" in r).map((r) => [r.id, r.answer])) : answersRaw;
 const baseUrl = arg("base-url", "http://localhost:11434/v1");
 const model = arg("model");
 if (!model && !answers) { console.error("usage: node eval.mjs --model <name> [--base-url <url>] [--out <file>]"); process.exit(2); }
@@ -44,37 +48,11 @@ function extractAny(text) {
   const end = Math.max(body.lastIndexOf("}"), body.lastIndexOf("]"));
   return a > -1 && end > a ? body.slice(a, end + 1) : body;
 }
-const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-
-function scoreSingle(parsed, task, problems) {
-  problems.push(...validateService(parsed).errors);
-  for (const [k, v] of Object.entries(task.expect ?? task.keep ?? {})) {
-    if (!same(parsed[k], v)) problems.push(`${k}: expected ${JSON.stringify(v)}, got ${JSON.stringify(parsed[k])}`);
-  }
-  for (const k of task.mustHave ?? []) if (!(k in parsed)) problems.push(`${k}: must be present`);
-  for (const k of task.absent ?? []) if (k in parsed) problems.push(`${k}: must not be present`);
-}
-function scoreStack(parsed, task, problems) {
-  if (!Array.isArray(parsed)) return problems.push("expected a JSON array");
-  const names = new Set(parsed.map((s) => s?.appName));
-  if (names.size !== parsed.length) problems.push("duplicate appName");
-  for (const want of task.services) {
-    const got = parsed.find((s) => s?.appName === want.appName);
-    if (!got) { problems.push(`${want.appName}: missing`); continue; }
-    for (const [k, v] of Object.entries(want)) if (!same(got[k], v)) problems.push(`${want.appName}.${k}: expected ${JSON.stringify(v)}, got ${JSON.stringify(got[k])}`);
-  }
-  for (const s of parsed) {
-    problems.push(...validateService(s).errors.map((e) => `${s?.appName}: ${e}`));
-    for (const d of s?.dependsOn ?? []) if (!names.has(d)) problems.push(`${s.appName}: depends on unknown "${d}"`);
-  }
-  if (parsed.length !== task.services.length) problems.push(`expected ${task.services.length} services, got ${parsed.length}`);
-}
-
 for (const task of tasks) {
   let text = "", tokens = 0, error;
   if (answers) {
     if (!(task.id in answers)) error = "no answer given";
-    else { text = JSON.stringify(answers[task.id]); tokens = 0; }
+    else { const a = answers[task.id]; text = typeof a === "string" ? a : JSON.stringify(a); tokens = answersRaw?.results?.find((r) => r.id === task.id)?.tokens ?? 0; }
   } else try {
     const res = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST", headers,
@@ -92,7 +70,7 @@ for (const task of tasks) {
     try { parsed = JSON.parse(extractAny(text)); } catch { problems.push("not valid JSON"); }
     if (parsed !== undefined) (task.kind === "stack" ? scoreStack : scoreSingle)(parsed, task, problems);
   }
-  results.push({ id: task.id, pass: problems.length === 0, tokens, problems });
+  results.push({ id: task.id, pass: problems.length === 0, tokens, problems, ...(error ? {} : { answer: text }) });
   console.log(`${problems.length === 0 ? "PASS" : "FAIL"} ${task.id} (${tokens} tokens)${problems.length ? "\n  " + problems.join("\n  ") : ""}`);
 }
 const passed = results.filter((r) => r.pass).length;
@@ -100,5 +78,5 @@ const totalTokens = results.reduce((n, r) => n + r.tokens, 0);
 const cat = (id) => id.replace(/^b-/, "").replace(/-\d+$/, "");
 console.log(`\n${model ?? "answers"} (prompt ${promptVersion}): ${passed}/${results.length} passed, ${totalTokens} output tokens`);
 const out = arg("out");
-if (out) writeFileSync(out, JSON.stringify({ model, prompt: promptVersion, passed, total: results.length, totalTokens, results }, null, 2));
+if (out) writeFileSync(out, JSON.stringify({ model: model ?? answersRaw?.model, prompt: answersRaw?.prompt ?? promptVersion, passed, total: results.length, totalTokens, results }, null, 2));
 process.exit(passed === results.length ? 0 : 1);

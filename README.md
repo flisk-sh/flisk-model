@@ -6,7 +6,7 @@
 
 ## Results
 
-Three held-out tests the models were never trained on. Every answer is graded by the real Flisk validator, with no human judging.
+Three held-out tests the models were never trained on. Every answer is graded by Flisk's own rules (the CLI validator plus Flisk's published service.json schema), with no human judging.
 
 - **Machine-written (62):** generated from specs, with phrasing and names unseen in training.
 - **Natural set 1 (26):** written by hand in casual, messy wording. It is now a *development* set, because I tuned the generator after seeing its failures.
@@ -14,13 +14,13 @@ Three held-out tests the models were never trained on. Every answer is graded by
 
 | Model | What it is | Machine-written (62) | Natural set 1 (26, development) | **Natural set 2 (29, clean)** | Avg answer length |
 |---|---|---|---|---|---|
-| **Claude Haiku 5.5** | Large hosted model | **57** (92%) | **15** (58%) | **18** (62%) | not measured |
-| **Claude Sonnet 5.5** | Large hosted model | **57** (92%) | **16** (62%) | **18** (62%) | not measured |
 | **flisk-wolf 1.5B, trained (round 2)** | Tiny open model + our training, wider phrasing | **60** (97%) | **18** (69%) | **17** (59%) | 48 tokens |
+| **Claude Haiku 5.5** | Large hosted model | **57** (92%) | **15** (58%) | **17** (59%) | not measured |
+| **Claude Sonnet 5.5** | Large hosted model | **57** (92%) | **16** (62%) | **17** (59%) | not measured |
 | **flisk-wolf (prompted)** | Small open model + long instructions | **54** (87%) | **18** (69%) | **17** (59%) | 78 tokens |
 | **flisk-wolf 1.5B, trained (round 1)** | Tiny open model + our training | **62** (100%) | **16** (62%) | **14** (48%) | 48 tokens |
-| **Qwen2.5-Coder 1.5B (plain)** | Tiny open model, untouched | **17** (27%) | not run | not run | 81 tokens |
-| **Qwen2.5-Coder 7B (plain)** | Small open model, untouched | **16** (26%) | not run | not run | 82 tokens |
+| **Qwen2.5-Coder 1.5B (plain)** | Tiny open model, untouched | **14** (23%) | not run | not run | 81 tokens |
+| **Qwen2.5-Coder 7B (plain)** | Small open model, untouched | **13** (21%) | not run | not run | 82 tokens |
 
 How each row was run:
 - **Claude Haiku 5.5**: run blind as a separate Claude Haiku instance. It saw only the questions and the one-sentence instruction. Answer length was not measured.
@@ -34,7 +34,7 @@ How each row was run:
 ### What the numbers say
 
 - **The goal was missed.** The target for round 2 was 22 or more of 26 on hand-written questions. It scored **18 of 26** on set 1 and **17 of 29 (59%)** on the clean set 2. No further training tonight; the next step starts from reading the misses.
-- **It is level with Claude, not better.** On the clean set: Claude Haiku 18, Claude Sonnet 18, trained 1.5B 17, prompted 7B 17. A 1.5B model trained on a laptop for a few hours matches Claude on this narrow job when Claude is given no Flisk documentation. With 29 questions, a gap of one is noise.
+- **It is level with Claude, not better.** On the clean set: Claude Haiku 17, Claude Sonnet 17, trained 1.5B 17, prompted 7B 17 (Claude scored 18 before the 2026-11-10 re-grade, which caught an answer with `"appType": "container"`, not a Flisk type). A 1.5B model trained on a laptop for a few hours matches Claude on this narrow job when Claude is given no Flisk documentation. With 29 questions, a gap of one is noise.
 - **Widening the phrasing helped, and cost a little.** Round 1 to round 2: clean set 14 to **17**, set 1 16 to **18**, machine-written 62 to **60**. The 100% on machine-written questions was never evidence the model could cope with real wording.
 - **Answers are short.** 48 tokens on average, against 78 for the prompted 7B, and no 1,100-token prompt on each call. Claude's length was not measured.
 
@@ -82,7 +82,8 @@ Caveat: 26 and 29 questions are small samples, and set 1 is contaminated by my o
 ## Reproduce
 
 ```bash
-export FLISK_REPO=/path/to/flisk      # a checkout with cli/dist built: the real validator
+export FLISK_REPO=/path/to/flisk      # a checkout with cli/dist built and cli/node_modules installed: the real rules
+node --test lib/                      # the grader's own tests (or: bun test lib/)
 node gen-dataset.mjs                  # training data and the held-out test
 node eval.mjs --model qwen2.5-coder:7b --tasks tasks-b --prompt v1
 node report.mjs                       # writes RESULTS.md

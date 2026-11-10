@@ -34,7 +34,7 @@ The model gets the broken file and the error message, and has to fix only what i
 A question passes only if **all four** are true:
 
 1. The answer is valid JSON.
-2. **Flisk's own validator accepts it.** This is the same check Flisk runs before starting a stack, not our opinion.
+2. **Flisk's own rules accept it.** Two checks, both read from a Flisk checkout, not written here: the CLI's validator (`validateServiceManifest`), and Flisk's published `service.json` schema for the fields that validator leaves to the engine: `appType` must be one of Flisk's types (`backend`, `frontend`, `worker`, `bring-your-own`, ...), `port` a whole number from 1 to 65535, `stack` a string, `dependsOn` a list of service names. Until 2026-11-10 only the first check ran, so an answer with `"appType": "api"` or `"port": "4300"` could pass; the scores were re-graded then (see RESULTS.md). The schema's per-type port ranges are not graded, because Flisk's own layers disagree on them.
 3. Every setting the question asked for has exactly the right value (name, port, image, and so on).
 4. Nothing was added that the question said not to (for example, no health check for a database that has none).
 

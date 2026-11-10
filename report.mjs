@@ -29,7 +29,7 @@ Three held-out tests, never trained on. **Machine-written (62):** generated from
 
 ${lines.join("\n")}
 
-**Passed** means every rule for that question held (see TESTS.md). **Avg answer length** is the model's own output tokens per question: fewer is cheaper and faster.
+**Passed** means every rule for that question held (see TESTS.md). Re-graded on 2026-11-10: the grader now also checks appType, port, stack and dependsOn against Flisk's published schema. Every row was run again, gave the same answers as before, and was graded on those. It cost Claude Haiku and Sonnet one question each on natural set 2 (appType "container", which is not a Flisk type) and the plain Qwen models three each. **Avg answer length** is the model's own output tokens per question: fewer is cheaper and faster.
 
 How each row was run:
 ${models.map((m) => `- **${m.label}**: ${m.how}`).join("\n")}

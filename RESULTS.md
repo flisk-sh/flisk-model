@@ -4,15 +4,15 @@ Three held-out tests, never trained on. **Machine-written (62):** generated from
 
 | Model | What it is | Machine-written (62) | Natural set 1 (26, development) | **Natural set 2 (29, clean)** | Avg answer length |
 |---|---|---|---|---|---|
-| **Claude Haiku 5.5** | Large hosted model | **57** (92%) | **15** (58%) | **18** (62%) | not measured |
-| **Claude Sonnet 5.5** | Large hosted model | **57** (92%) | **16** (62%) | **18** (62%) | not measured |
 | **flisk-wolf 1.5B, trained (round 2)** | Tiny open model + our training, wider phrasing | **60** (97%) | **18** (69%) | **17** (59%) | 48 tokens |
+| **Claude Haiku 5.5** | Large hosted model | **57** (92%) | **15** (58%) | **17** (59%) | not measured |
+| **Claude Sonnet 5.5** | Large hosted model | **57** (92%) | **16** (62%) | **17** (59%) | not measured |
 | **flisk-wolf (prompted)** | Small open model + long instructions | **54** (87%) | **18** (69%) | **17** (59%) | 78 tokens |
 | **flisk-wolf 1.5B, trained (round 1)** | Tiny open model + our training | **62** (100%) | **16** (62%) | **14** (48%) | 48 tokens |
-| **Qwen2.5-Coder 1.5B (plain)** | Tiny open model, untouched | **17** (27%) | not run | not run | 81 tokens |
-| **Qwen2.5-Coder 7B (plain)** | Small open model, untouched | **16** (26%) | not run | not run | 82 tokens |
+| **Qwen2.5-Coder 1.5B (plain)** | Tiny open model, untouched | **14** (23%) | not run | not run | 81 tokens |
+| **Qwen2.5-Coder 7B (plain)** | Small open model, untouched | **13** (21%) | not run | not run | 82 tokens |
 
-**Passed** means every rule for that question held (see TESTS.md). **Avg answer length** is the model's own output tokens per question: fewer is cheaper and faster.
+**Passed** means every rule for that question held (see TESTS.md). Re-graded on 2026-11-10: the grader now also checks appType, port, stack and dependsOn against Flisk's published schema. Every row was run again, gave the same answers as before, and was graded on those. It cost Claude Haiku and Sonnet one question each on natural set 2 (appType "container", which is not a Flisk type) and the plain Qwen models three each. **Avg answer length** is the model's own output tokens per question: fewer is cheaper and faster.
 
 How each row was run:
 - **Claude Haiku 5.5**: run blind as a separate Claude Haiku instance. It saw only the questions and the one-sentence instruction. Answer length was not measured.

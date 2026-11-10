@@ -1,7 +1,7 @@
 {
   "model": "qwen2.5-coder:1.5b",
   "prompt": "v1",
-  "passed": 17,
+  "passed": 14,
   "total": 62,
   "totalTokens": 5022,
   "results": [
@@ -9,16 +9,19 @@
       "id": "b-single-0",
       "pass": true,
       "tokens": 41,
-      "problems": []
+      "problems": [],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"falcon-job\",\n  \"appType\": \"migrator\",\n  \"stack\": \"farm\"\n}\n```"
     },
     {
       "id": "b-single-1",
       "pass": false,
       "tokens": 68,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"service\"",
         "restart: expected \"on-failure\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"ember-box\",\n  \"appType\": \"service\",\n  \"stack\": \"clinic\",\n  \"image\": \"caddy:2\",\n  \"port\": 4953,\n  \"restartPolicy\": \"on-failure\"\n}\n```"
     },
     {
       "id": "b-single-2",
@@ -26,7 +29,8 @@
       "tokens": 75,
       "problems": [
         "command: expected \"java -jar app.jar\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"java\",\n  \"startCommand\": \"java -jar app.jar\",\n  \"image\": null,\n  \"dockerfile\": null,\n  \"port\": 7967\n}\n```"
     },
     {
       "id": "b-single-3",
@@ -34,130 +38,160 @@
       "tokens": 67,
       "problems": [
         "healthCheckPath: expected \"/alive\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-web\",\n  \"appType\": \"backend\",\n  \"stack\": \"atlas\",\n  \"healthPath\": \"/alive\",\n  \"replicas\": 2,\n  \"port\": 3157\n}\n```"
     },
     {
       "id": "b-single-4",
       "pass": true,
       "tokens": 41,
-      "problems": []
+      "problems": [],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-svc\",\n  \"appType\": \"mcp\",\n  \"stack\": \"orbit\"\n}\n```"
     },
     {
       "id": "b-single-5",
       "pass": false,
       "tokens": 90,
       "problems": [
+        "service.json.container: only applies to bring-your-own resources (appType \"bring-your-own\")",
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\"",
         "port: expected 5551, got undefined",
         "image: expected \"caddy:2\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"mosaic-db\",\n  \"appType\": \"container\",\n  \"stack\": \"clinic\",\n  \"container\": {\n    \"image\": \"caddy:2\",\n    \"portMappings\": [\n      {\n        \"containerPort\": 5551,\n        \"hostPort\": 5551\n      }\n    ]\n  }\n}\n```"
     },
     {
       "id": "b-single-6",
       "pass": false,
       "tokens": 108,
       "problems": [
+        "service.json.container: only applies to bring-your-own resources (appType \"bring-your-own\")",
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"third-party\"",
         "port: expected 5070, got undefined",
         "image: expected \"caddy:2\", got undefined",
         "healthCheckPath: expected \"/livez\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-db\",\n  \"appType\": \"third-party\",\n  \"stack\": \"quartz\",\n  \"container\": {\n    \"image\": \"caddy:2\",\n    \"ports\": [\n      {\n        \"containerPort\": 5070,\n        \"hostPort\": 5070\n      }\n    ]\n  },\n  \"healthCheck\": {\n    \"path\": \"/livez\"\n  }\n}\n```"
     },
     {
       "id": "b-single-7",
       "pass": false,
       "tokens": 84,
       "problems": [
+        "service.json.healthCheck: unexpected key \"type\" (expected \"enabled\", \"interval\", \"timeout\", \"startPeriod\", \"retries\", \"path\", \"port\", or \"command\")",
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"service\"",
         "restart: expected \"always\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"falcon-cache\",\n  \"appType\": \"service\",\n  \"stack\": \"studio\",\n  \"port\": 11746,\n  \"image\": \"couchdb:3\",\n  \"restartPolicy\": \"always\",\n  \"healthCheck\": {\n    \"type\": \"none\"\n  }\n}\n```"
     },
     {
       "id": "b-single-8",
       "pass": false,
       "tokens": 59,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"frontend\", got \"single-page\""
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"mosaic-svc\",\n  \"appType\": \"single-page\",\n  \"stack\": \"atlas\",\n  \"port\": 4842,\n  \"basePath\": \"/tools\"\n}\n```"
     },
     {
       "id": "b-single-9",
       "pass": false,
       "tokens": 70,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"migrator\", got \"job\"",
         "dependsOn: expected [\"rooster-queue\"], got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"saffron-app\",\n  \"appType\": \"job\",\n  \"stack\": \"harbor\",\n  \"dependencies\": [\n    {\n      \"appName\": \"rooster-queue\",\n      \"appType\": \"job\"\n    }\n  ]\n}\n```"
     },
     {
       "id": "b-single-10",
       "pass": false,
       "tokens": 77,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"mcp\", got \"tool\"",
         "dependsOn: expected [\"mosaic-queue\"], got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"falcon-app\",\n  \"appType\": \"tool\",\n  \"stack\": \"orbit\",\n  \"port\": 4880,\n  \"dependencies\": [\n    {\n      \"name\": \"mosaic-queue\",\n      \"version\": \"latest\"\n    }\n  ]\n}\n```"
     },
     {
       "id": "b-single-11",
       "pass": false,
       "tokens": 40,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"backend\", got \"http\"",
         "port: expected 3073, got undefined",
         "command: expected \"java -jar app.jar\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"rooster-svc\",\n  \"appType\": \"http\",\n  \"stack\": \"java\"\n}\n```"
     },
     {
       "id": "b-single-12",
       "pass": false,
       "tokens": 77,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"farm\"",
         "healthCheckPath: expected \"/state\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-cache\",\n  \"appType\": \"farm\",\n  \"stack\": \"farm\",\n  \"port\": 12674,\n  \"image\": \"etcd:3.5\",\n  \"healthCheck\": {\n    \"path\": \"/state\"\n  }\n}\n```"
     },
     {
       "id": "b-single-13",
       "pass": false,
       "tokens": 57,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"backend\", got \"api\"",
         "enabled: expected false, got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-api\",\n  \"appType\": \"api\",\n  \"stack\": \"farm\",\n  \"port\": 5333,\n  \"switchedOff\": true\n}\n```"
     },
     {
       "id": "b-single-14",
       "pass": false,
       "tokens": 79,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"service\"",
         "healthCheckPath: expected \"/state\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-cache\",\n  \"appType\": \"service\",\n  \"stack\": \"atlas\",\n  \"port\": 10378,\n  \"image\": \"etcd:3.5\",\n  \"healthCheck\": {\n    \"path\": \"/state\"\n  }\n}\n```"
     },
     {
       "id": "b-single-15",
       "pass": false,
       "tokens": 137,
       "problems": [
+        "service.json.container: only applies to bring-your-own resources (appType \"bring-your-own\")",
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\"",
         "port: expected 11715, got undefined",
         "image: expected \"etcd:3.5\", got undefined",
         "healthCheckPath: expected \"/livez\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"walnut-db\",\n  \"appType\": \"container\",\n  \"stack\": \"lab\",\n  \"container\": {\n    \"image\": \"etcd:3.5\",\n    \"portMappings\": [\n      {\n        \"containerPort\": 11715,\n        \"hostPort\": 11715\n      }\n    ],\n    \"healthCheck\": {\n      \"path\": \"/livez\",\n      \"interval\": \"10s\",\n      \"timeout\": \"2s\",\n      \"httpStatus\": 200\n    }\n  }\n}\n```"
     },
     {
       "id": "b-single-16",
       "pass": false,
       "tokens": 78,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"nimbus\"",
         "stack: expected \"nimbus\", got \"nats\"",
         "image: expected \"nats:2\", got undefined",
         "healthCheckPath: expected \"/state\", got undefined",
         "restart: expected \"no\", got undefined",
         "exposeViaProxy: expected false, got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-cache\",\n  \"appType\": \"nimbus\",\n  \"stack\": \"nats\",\n  \"port\": 16790,\n  \"healthPath\": \"/state\",\n  \"restartPolicy\": \"never\",\n  \"traefikRoute\": false\n}\n```"
     },
     {
       "id": "b-single-17",
@@ -165,82 +199,99 @@
       "tokens": 115,
       "problems": [
         "dependsOn: expected [\"mosaic-db\",\"falcon-api\"], got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"rooster-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"garage\",\n  \"port\": 5783,\n  \"dependencies\": [\n    {\n      \"appName\": \"mosaic-db\",\n      \"appType\": \"database\",\n      \"stack\": \"garage\"\n    },\n    {\n      \"appName\": \"falcon-api\",\n      \"appType\": \"backend\",\n      \"stack\": \"garage\"\n    }\n  ]\n}\n```"
     },
     {
       "id": "b-single-18",
       "pass": false,
       "tokens": 40,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"frontend\", got \"java\"",
         "port: expected 8496, got undefined",
         "command: expected \"java -jar app.jar\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-api\",\n  \"appType\": \"java\",\n  \"stack\": \"java\"\n}\n```"
     },
     {
       "id": "b-single-19",
       "pass": false,
       "tokens": 41,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"backend\", got \"http-api\""
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-job\",\n  \"appType\": \"http-api\",\n  \"stack\": \"harbor\"\n}\n```"
     },
     {
       "id": "b-single-20",
       "pass": false,
       "tokens": 53,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"mcp\", got \"model-context-protocol\""
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"pebble-app\",\n  \"appType\": \"model-context-protocol\",\n  \"stack\": \"nimbus\",\n  \"port\": 4293\n}\n```"
     },
     {
       "id": "b-single-21",
       "pass": false,
       "tokens": 97,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"backend\", got \"rest\"",
         "enabled: expected false, got undefined",
         "dependsOn: expected [\"zephyr-db\"], got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"pebble-web\",\n  \"appType\": \"rest\",\n  \"stack\": \"farm\",\n  \"replicas\": 3,\n  \"switchedOff\": true,\n  \"dependencies\": {\n    \"zephyr-db\": {\n      \"type\": \"service\",\n      \"appName\": \"zephyr-db\",\n      \"appType\": \"db\"\n    }\n  }\n}\n```"
     },
     {
       "id": "b-single-22",
       "pass": false,
       "tokens": 58,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"frontend\", got \"web\"",
         "healthCheckPath: expected \"/livez\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-web\",\n  \"appType\": \"web\",\n  \"stack\": \"orbit\",\n  \"port\": 5560,\n  \"healthPath\": \"/livez\"\n}\n```"
     },
     {
       "id": "b-single-23",
       "pass": false,
       "tokens": 69,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"backend\", got \"rest\"",
         "dependsOn: expected [\"tulip-api\"], got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"mosaic-api\",\n  \"appType\": \"rest\",\n  \"stack\": \"quartz\",\n  \"dependencies\": [\n    {\n      \"appName\": \"tulip-api\",\n      \"appType\": \"rest\"\n    }\n  ]\n}\n```"
     },
     {
       "id": "b-single-24",
       "pass": true,
       "tokens": 40,
-      "problems": []
+      "problems": [],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-app\",\n  \"appType\": \"worker\",\n  \"stack\": \"clinic\"\n}\n```"
     },
     {
       "id": "b-single-25",
       "pass": false,
       "tokens": 67,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"migrator\", got \"service\"",
         "dependsOn: expected [\"pebble-queue\"], got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"meadow-app\",\n  \"appType\": \"service\",\n  \"stack\": \"nimbus\",\n  \"enabled\": false,\n  \"dependencies\": {\n    \"pebble-queue\": \"1.0.0\"\n  }\n}\n```"
     },
     {
       "id": "b-single-26",
       "pass": true,
       "tokens": 42,
-      "problems": []
+      "problems": [],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-job\",\n  \"appType\": \"migrator\",\n  \"stack\": \"harbor\"\n}\n```"
     },
     {
       "id": "b-single-27",
@@ -248,21 +299,25 @@
       "tokens": 49,
       "problems": [
         "appType: expected \"mcp\", got \"agent\""
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"ember-app\",\n  \"appType\": \"agent\",\n  \"stack\": \"atlas\",\n  \"port\": 3901\n}\n```"
     },
     {
       "id": "b-single-28",
       "pass": true,
       "tokens": 40,
-      "problems": []
+      "problems": [],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"walnut-svc\",\n  \"appType\": \"agent\",\n  \"stack\": \"lab\"\n}\n```"
     },
     {
       "id": "b-single-29",
       "pass": false,
       "tokens": 40,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"migrator\", got \"job\""
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"rooster-job\",\n  \"appType\": \"job\",\n  \"stack\": \"garage\"\n}\n```"
     },
     {
       "id": "b-single-30",
@@ -270,82 +325,102 @@
       "tokens": 50,
       "problems": [
         "appType: expected \"mcp\", got \"agent\""
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-svc\",\n  \"appType\": \"agent\",\n  \"stack\": \"farm\",\n  \"port\": 3434\n}\n```"
     },
     {
       "id": "b-single-31",
       "pass": false,
       "tokens": 40,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"agent\", got \"ai\""
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-api\",\n  \"appType\": \"ai\",\n  \"stack\": \"farm\"\n}\n```"
     },
     {
       "id": "b-single-32",
       "pass": false,
       "tokens": 70,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"service\"",
         "healthCheckPath: expected \"/hc\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"saffron-store\",\n  \"appType\": \"service\",\n  \"stack\": \"lab\",\n  \"healthPath\": \"/hc\",\n  \"image\": \"influxdb:2\",\n  \"port\": 11186\n}\n```"
     },
     {
       "id": "b-single-33",
       "pass": false,
       "tokens": 94,
       "problems": [
+        "service.json.container: only applies to bring-your-own resources (appType \"bring-your-own\")",
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\"",
         "port: expected 17173, got undefined",
         "image: expected \"influxdb:2\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-queue\",\n  \"appType\": \"container\",\n  \"stack\": \"farm\",\n  \"container\": {\n    \"image\": \"influxdb:2\",\n    \"ports\": [\n      {\n        \"containerPort\": 17173,\n        \"hostPort\": 17173\n      }\n    ]\n  }\n}\n```"
     },
     {
       "id": "b-single-34",
       "pass": false,
       "tokens": 85,
       "problems": [
+        "service.json.container: only applies to bring-your-own resources (appType \"bring-your-own\")",
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\"",
         "port: expected 2774, got undefined",
         "image: expected \"etcd:3.5\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-queue\",\n  \"appType\": \"container\",\n  \"stack\": \"studio\",\n  \"container\": {\n    \"image\": \"etcd:3.5\",\n    \"port\": 2774,\n    \"healthCheck\": {\n      \"type\": \"none\"\n    }\n  }\n}\n```"
     },
     {
       "id": "b-single-35",
       "pass": false,
       "tokens": 81,
       "problems": [
+        "service.json.container: only applies to bring-your-own resources (appType \"bring-your-own\")",
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\"",
         "port: expected 5779, got undefined",
         "image: expected \"nats:2\", got undefined",
         "healthCheckPath: expected \"/alive\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"meadow-cache\",\n  \"appType\": \"container\",\n  \"stack\": \"farm\",\n  \"container\": {\n    \"image\": \"nats:2\",\n    \"port\": 5779,\n    \"healthCheck\": {\n      \"path\": \"/alive\"\n    }\n  }\n}\n```"
     },
     {
       "id": "b-single-36",
       "pass": false,
       "tokens": 41,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"backend\", got \"http\"",
         "port: expected 3227, got undefined",
         "command: expected \"elixir app.exs\", got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"saffron-api\",\n  \"appType\": \"http\",\n  \"stack\": \"elixir\"\n}\n```"
     },
     {
       "id": "b-single-37",
       "pass": false,
       "tokens": 39,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"agent\", got \"web\""
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"pebble-web\",\n  \"appType\": \"web\",\n  \"stack\": \"orbit\"\n}\n```"
     },
     {
       "id": "b-single-38",
       "pass": false,
       "tokens": 66,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"agent\", got \"service\"",
         "dependsOn: expected [\"lantern-api\"], got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-api\",\n  \"appType\": \"service\",\n  \"stack\": \"clinic\",\n  \"dependencies\": {\n    \"lantern-api\": {\n      \"version\": \"1.0.0\"\n    }\n  }\n}\n```"
     },
     {
       "id": "b-single-39",
@@ -353,7 +428,8 @@
       "tokens": 67,
       "problems": [
         "agent: expected {\"durability\":\"files\"}, got undefined"
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"mosaic-web\",\n  \"appType\": \"agent\",\n  \"stack\": \"garage\",\n  \"sessionCheckpoints\": {\n    \"type\": \"file\",\n    \"path\": \"/path/to/session/checkpoints\"\n  }\n}\n```"
     },
     {
       "id": "b-stack-0",
@@ -367,8 +443,14 @@
         "walnut-app.appType: expected \"backend\", got \"http\"",
         "rooster-job.appType: expected \"frontend\", got \"http\"",
         "walnut-api.appType: expected \"agent\", got \"ai\"",
-        "walnut-api.agent: expected {\"durability\":\"files\"}, got undefined"
-      ]
+        "walnut-api.agent: expected {\"durability\":\"files\"}, got undefined",
+        "lantern-cache: service.json.healthCheck: expected true or false, or an object such as { \"enabled\": true, \"path\": \"/health\" }",
+        "lantern-cache: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "walnut-app: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "rooster-job: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "walnut-api: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"lantern-cache\",\n    \"appType\": \"prebuilt\",\n    \"stack\": \"nimbus\",\n    \"port\": 13618,\n    \"healthCheck\": \"/livez\",\n    \"dependsOn\": []\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-app\",\n    \"appType\": \"http\",\n    \"stack\": \"nimbus\",\n    \"port\": 3311,\n    \"dependsOn\": [\"lantern-cache\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-job\",\n    \"appType\": \"http\",\n    \"stack\": \"nimbus\",\n    \"port\": 5842,\n    \"dependsOn\": [\"walnut-app\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-api\",\n    \"appType\": \"ai\",\n    \"stack\": \"nimbus\",\n    \"port\": 8080,\n    \"dependsOn\": [\"lantern-cache\"],\n    \"sessionCheckpoints\": \"files\"\n  }\n]\n```"
     },
     {
       "id": "b-stack-1",
@@ -378,8 +460,13 @@
         "falcon-job.appType: expected \"backend\", got \"rest\"",
         "falcon-job.healthCheckPath: expected \"/livez\", got undefined",
         "pebble-app.appType: expected \"mcp\", got \"modelContextProtocol\"",
-        "meadow-app.appType: expected \"migrator\", got \"schemaMigrationRunner\""
-      ]
+        "meadow-app.appType: expected \"migrator\", got \"schemaMigrationRunner\"",
+        "falcon-job: service.json.healthCheck: expected true or false, or an object such as { \"enabled\": true, \"path\": \"/health\" }",
+        "falcon-job: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "pebble-app: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "meadow-app: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"falcon-job\",\n    \"appType\": \"rest\",\n    \"stack\": \"clinic\",\n    \"port\": 4677,\n    \"healthCheck\": \"/livez\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pebble-app\",\n    \"appType\": \"modelContextProtocol\",\n    \"stack\": \"clinic\",\n    \"port\": 3154,\n    \"dependsOn\": [\"falcon-job\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"meadow-app\",\n    \"appType\": \"schemaMigrationRunner\",\n    \"stack\": \"clinic\",\n    \"port\": 3155,\n    \"dependsOn\": [\"pebble-app\"]\n  }\n]\n```"
     },
     {
       "id": "b-stack-2",
@@ -390,16 +477,22 @@
         "pebble-api.basePath: expected \"/lab\", got undefined",
         "walnut-api.appType: expected \"backend\", got \"http\"",
         "walnut-api.healthCheckPath: expected \"/state\", got undefined",
-        "tulip-api.appType: expected \"migrator\", got \"http\""
-      ]
+        "tulip-api.appType: expected \"migrator\", got \"http\"",
+        "pebble-api: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "walnut-api: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "tulip-api: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pebble-api\",\n    \"appType\": \"web\",\n    \"stack\": \"garage\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-api\",\n    \"appType\": \"http\",\n    \"stack\": \"garage\",\n    \"dependsOn\": [\"pebble-api\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"tulip-api\",\n    \"appType\": \"http\",\n    \"stack\": \"garage\",\n    \"dependsOn\": [\"walnut-api\"]\n  }\n]\n```"
     },
     {
       "id": "b-stack-3",
       "pass": false,
       "tokens": 146,
       "problems": [
-        "walnut-api.appType: expected \"worker\", got \"background\""
-      ]
+        "walnut-api.appType: expected \"worker\", got \"background\"",
+        "walnut-api: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-api\",\n    \"appType\": \"background\",\n    \"stack\": \"orbit\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"lantern-app\",\n    \"appType\": \"frontend\",\n    \"stack\": \"orbit\",\n    \"dependsOn\": [\"walnut-api\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"meadow-api\",\n    \"appType\": \"mcp\",\n    \"stack\": \"orbit\",\n    \"dependsOn\": [\"walnut-api\"],\n    \"port\": 3542\n  }\n]\n```"
     },
     {
       "id": "b-stack-4",
@@ -407,8 +500,11 @@
       "tokens": 95,
       "problems": [
         "rooster-web.appType: expected \"migrator\", got \"database-migration\"",
-        "rooster-job.appType: expected \"migrator\", got \"database-migration\""
-      ]
+        "rooster-job.appType: expected \"migrator\", got \"database-migration\"",
+        "rooster-web: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "rooster-job: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-web\",\n    \"appType\": \"database-migration\",\n    \"stack\": \"atlas\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-job\",\n    \"appType\": \"database-migration\",\n    \"stack\": \"atlas\",\n    \"dependsOn\": [\"rooster-web\"]\n  }\n]\n```"
     },
     {
       "id": "b-stack-5",
@@ -420,8 +516,11 @@
         "walnut-box.image: expected \"valkey/valkey:8\", got undefined",
         "walnut-box.healthCheckPath: expected \"/hc\", got undefined",
         "walnut-box.exposeViaProxy: expected false, got undefined",
-        "rooster-web.appType: expected \"mcp\", got \"tool\""
-      ]
+        "rooster-web.appType: expected \"mcp\", got \"tool\"",
+        "walnut-box: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "rooster-web: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pebble-app\",\n    \"appType\": \"worker\",\n    \"stack\": \"quartz\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-box\",\n    \"appType\": \"container\",\n    \"stack\": \"quartz\",\n    \"healthPath\": \"/hc\",\n    \"dependsOn\": [\"pebble-app\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-web\",\n    \"appType\": \"tool\",\n    \"stack\": \"quartz\",\n    \"dependsOn\": [\"pebble-app\"]\n  }\n]\n```"
     },
     {
       "id": "b-stack-6",
@@ -433,8 +532,12 @@
         "ember-store.exposeViaProxy: expected false, got undefined",
         "ember-api.appType: expected \"frontend\", got \"single-page\"",
         "ember-api.port: expected 7796, got undefined",
-        "meadow-web.appType: expected \"agent\", got \"long-running\""
-      ]
+        "meadow-web.appType: expected \"agent\", got \"long-running\"",
+        "ember-store: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "ember-api: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "meadow-web: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"ember-store\",\n    \"appType\": \"third-party\",\n    \"stack\": \"farm\",\n    \"image\": \"caddy:2\",\n    \"dependsOn\": []\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"ember-api\",\n    \"appType\": \"single-page\",\n    \"stack\": \"farm\",\n    \"image\": \"ember-api\",\n    \"dependsOn\": [\"ember-store\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"meadow-web\",\n    \"appType\": \"long-running\",\n    \"stack\": \"farm\",\n    \"image\": \"meadow-web\",\n    \"dependsOn\": [\"ember-api\"]\n  }\n]\n```"
     },
     {
       "id": "b-stack-7",
@@ -445,8 +548,12 @@
         "rooster-store.exposeViaProxy: expected false, got undefined",
         "rooster-queue.appType: expected \"bring-your-own\", got \"prebuilt\"",
         "rooster-queue.exposeViaProxy: expected false, got undefined",
-        "saffron-api.appType: expected \"worker\", got \"job\""
-      ]
+        "saffron-api.appType: expected \"worker\", got \"job\"",
+        "rooster-store: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "rooster-queue: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "saffron-api: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-store\",\n    \"appType\": \"prebuilt\",\n    \"stack\": \"studio\",\n    \"image\": \"couchdb:3\",\n    \"port\": 14461,\n    \"healthPath\": \"\",\n    \"dependsOn\": []\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-queue\",\n    \"appType\": \"prebuilt\",\n    \"stack\": \"studio\",\n    \"image\": \"keycloak/keycloak:25\",\n    \"port\": 5754,\n    \"healthPath\": \"\",\n    \"dependsOn\": [\"rooster-store\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"saffron-api\",\n    \"appType\": \"job\",\n    \"stack\": \"studio\",\n    \"image\": \"saffron-api:latest\",\n    \"port\": 8080,\n    \"healthPath\": \"\",\n    \"dependsOn\": [\"rooster-store\"]\n  }\n]\n```"
     },
     {
       "id": "b-stack-8",
@@ -460,88 +567,115 @@
         "rooster-svc.appType: expected \"backend\", got \"prebuilt\"",
         "rooster-svc.port: expected 5320, got undefined",
         "rooster-svc.healthCheckPath: expected \"/state\", got undefined",
-        "zephyr-app.appType: expected \"backend\", got \"prebuilt\""
-      ]
+        "zephyr-app.appType: expected \"backend\", got \"prebuilt\"",
+        "walnut-cache: service.json.healthCheck: expected true or false, or an object such as { \"enabled\": true, \"path\": \"/health\" }",
+        "walnut-cache: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "ember-web: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "rooster-svc: service.json.healthCheck: expected true or false, or an object such as { \"enabled\": true, \"path\": \"/health\" }",
+        "rooster-svc: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
+        "zephyr-app: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-cache\",\n    \"appType\": \"prebuilt\",\n    \"stack\": \"clinic\",\n    \"image\": \"keycloak/keycloak:25\",\n    \"healthCheck\": \"/hc\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"ember-web\",\n    \"appType\": \"prebuilt\",\n    \"stack\": \"clinic\",\n    \"dependsOn\": [\"walnut-cache\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-svc\",\n    \"appType\": \"prebuilt\",\n    \"stack\": \"clinic\",\n    \"healthCheck\": \"/state\",\n    \"replicas\": 3,\n    \"dependsOn\": [\"walnut-cache\"]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"zephyr-app\",\n    \"appType\": \"prebuilt\",\n    \"stack\": \"clinic\",\n    \"port\": 4301,\n    \"dependsOn\": [\"ember-web\"]\n  }\n]\n```"
     },
     {
       "id": "b-stack-9",
       "pass": false,
       "tokens": 121,
       "problems": [
-        "rooster-job.appType: expected \"mcp\", got \"modelContextProtocol\""
-      ]
+        "rooster-job.appType: expected \"mcp\", got \"modelContextProtocol\"",
+        "rooster-job: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"saffron-web\",\n    \"appType\": \"backend\",\n    \"stack\": \"studio\",\n    \"port\": 4768,\n    \"replicas\": 4\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-job\",\n    \"appType\": \"modelContextProtocol\",\n    \"stack\": \"studio\",\n    \"port\": 5028,\n    \"dependsOn\": [\"saffron-web\"]\n  }\n]\n```"
     },
     {
       "id": "b-repair-0",
       "pass": true,
       "tokens": 77,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-job\",\n  \"appType\": \"backend\",\n  \"port\": 4348,\n  \"replicas\": 4,\n  \"dependsOn\": [\n    \"lantern-queue\",\n    \"tulip-queue\"\n  ],\n  \"stack\": \"default\"\n}"
     },
     {
       "id": "b-repair-1",
-      "pass": true,
+      "pass": false,
       "tokens": 56,
-      "problems": []
+      "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"meadow-web\",\n  \"appType\": \"7\",\n  \"stack\": \"farm\",\n  \"agent\": {\n    \"durability\": \"files\"\n  },\n  \"enabled\": false\n}"
     },
     {
       "id": "b-repair-2",
       "pass": true,
       "tokens": 64,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"ember-svc\",\n  \"appType\": \"backend\",\n  \"healthCheckPath\": \"/alive\",\n  \"dependsOn\": [\n    \"rooster-queue\",\n    \"ember-db\"\n  ],\n  \"stack\": \"default\"\n}"
     },
     {
       "id": "b-repair-3",
       "pass": true,
       "tokens": 37,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-job\",\n  \"appType\": \"migrator\",\n  \"stack\": \"lab\"\n}"
     },
     {
       "id": "b-repair-4",
       "pass": true,
       "tokens": 60,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"quartz\",\n  \"port\": 4188,\n  \"dependsOn\": [\n    \"walnut-api\"\n  ]\n}"
     },
     {
       "id": "b-repair-5",
       "pass": true,
       "tokens": 66,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"ember-cache\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"quartz\",\n  \"port\": 19445,\n  \"image\": \"nats:2\",\n  \"restart\": \"always\"\n}"
     },
     {
       "id": "b-repair-6",
       "pass": true,
       "tokens": 52,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-job\",\n  \"appType\": \"agent\",\n  \"stack\": \"quartz\",\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "b-repair-7",
-      "pass": true,
+      "pass": false,
       "tokens": 68,
-      "problems": []
+      "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-queue\",\n  \"appType\": \"7\",\n  \"stack\": \"clinic\",\n  \"port\": 9488,\n  \"image\": \"keycloak/keycloak:25\",\n  \"healthCheckPath\": \"/state\"\n}"
     },
     {
       "id": "b-repair-8",
       "pass": true,
       "tokens": 63,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"pebble-app\",\n  \"appType\": \"backend\",\n  \"port\": 4652,\n  \"command\": \"elixir app.exs\",\n  \"env\": {\n    \"MODE\": \"3\"\n  }\n}"
     },
     {
       "id": "b-repair-9",
-      "pass": true,
+      "pass": false,
       "tokens": 59,
-      "problems": []
+      "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"pebble-cache\",\n  \"appType\": \"7\",\n  \"stack\": \"farm\",\n  \"port\": 10996,\n  \"image\": \"keycloak/keycloak:25\"\n}"
     },
     {
       "id": "b-repair-10",
       "pass": true,
       "tokens": 36,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"meadow-web\",\n  \"appType\": \"worker\",\n  \"stack\": \"harbor\"\n}"
     },
     {
       "id": "b-repair-11",
       "pass": true,
       "tokens": 47,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"atlas\",\n  \"port\": 5844\n}"
     }
   ]
 }

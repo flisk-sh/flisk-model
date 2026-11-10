@@ -9,13 +9,15 @@
       "id": "w-1",
       "pass": true,
       "tokens": 28,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"inventory-api\",\"appType\":\"backend\",\"stack\":\"stock\",\"port\":4210}"
     },
     {
       "id": "w-2",
       "pass": true,
       "tokens": 30,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"mail-sender\",\"appType\":\"worker\",\"stack\":\"comms\",\"dependsOn\":[\"queue-redis\"]}"
     },
     {
       "id": "w-3",
@@ -23,7 +25,8 @@
       "tokens": 30,
       "problems": [
         "basePath: expected \"/store\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"storefront-ui\",\"appType\":\"frontend\",\"stack\":\"retail\",\"port\":3000}"
     },
     {
       "id": "w-4",
@@ -31,7 +34,8 @@
       "tokens": 31,
       "problems": [
         "image: expected \"redis:7\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"session-cache\",\"appType\":\"bring-your-own\",\"stack\":\"shop\",\"port\":6379}"
     },
     {
       "id": "w-5",
@@ -39,31 +43,36 @@
       "tokens": 36,
       "problems": [
         "image: expected \"postgres:16\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"orders-db\",\"appType\":\"bring-your-own\",\"stack\":\"retail\",\"port\":5432,\"restart\":\"no\"}"
     },
     {
       "id": "w-6",
       "pass": true,
       "tokens": 30,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"calendar-tools\",\"appType\":\"mcp\",\"stack\":\"assistants\",\"port\":4600}"
     },
     {
       "id": "w-7",
       "pass": true,
       "tokens": 29,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"planner\",\"appType\":\"agent\",\"stack\":\"assistants\",\"agent\":{\"durability\":\"files\"}}"
     },
     {
       "id": "w-8",
       "pass": true,
       "tokens": 25,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"schema-migrate\",\"appType\":\"migrator\",\"stack\":\"retail\"}"
     },
     {
       "id": "w-9",
       "pass": true,
       "tokens": 23,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"digest-job\",\"appType\":\"worker\",\"command\":\"python worker.py\"}"
     },
     {
       "id": "w-10",
@@ -71,15 +80,18 @@
       "tokens": 43,
       "problems": [
         "appType: expected \"backend\", got \"bring-your-own\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"billing-api\",\"appType\":\"bring-your-own\",\"stack\":\"pay\",\"replicas\":3,\"port\":4300,\"healthCheckPath\":\"/healthz\"}"
     },
     {
       "id": "w-11",
       "pass": false,
       "tokens": 26,
       "problems": [
+        "service.json.appName: must match pattern \"^[a-z][a-z0-9-]*[a-z0-9]$\"",
         "appName: expected \"cleanup-job\", got \"worker_cleanup-job\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"worker_cleanup-job\",\"appType\":\"worker\",\"stack\":\"ops\",\"enabled\":false}"
     },
     {
       "id": "w-12",
@@ -88,7 +100,8 @@
       "problems": [
         "image: expected \"mariadb:11\", got undefined",
         "exposeViaProxy: expected false, got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"internal-db\",\"appType\":\"bring-your-own\",\"stack\":\"ops\",\"port\":3306}"
     },
     {
       "id": "w-13",
@@ -96,7 +109,8 @@
       "tokens": 27,
       "problems": [
         "appName: expected \"pricing-api\", got \"backend\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"backend\",\"appType\":\"backend\",\"stack\":\"finance\",\"port\":4101}"
     },
     {
       "id": "w-14",
@@ -105,19 +119,22 @@
       "problems": [
         "service.json.appName: cannot be a Docker image name; use lowercase letters and digits joined by \"-\", \"_\" or \".\" (at most 59 characters)",
         "appName: expected \"audit-log\", got \"worker audit-log\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"worker audit-log\",\"appType\":\"worker\",\"stack\":\"finance\"}"
     },
     {
       "id": "w-15",
       "pass": true,
       "tokens": 34,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"admin-ui\",\"appType\":\"frontend\",\"stack\":\"finance\",\"port\":5174,\"healthCheckPath\":\"/ping\"}"
     },
     {
       "id": "w-16",
       "pass": true,
       "tokens": 30,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"concierge\",\"appType\":\"agent\",\"stack\":\"hotel\",\"dependsOn\":[\"room-db\",\"menu-tools\"]}"
     },
     {
       "id": "w-17",
@@ -125,13 +142,15 @@
       "tokens": 37,
       "problems": [
         "image: expected \"nginx:1.27\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"gateway\",\"appType\":\"bring-your-own\",\"stack\":\"edge\",\"port\":8080,\"healthCheckPath\":\"/healthz\"}"
     },
     {
       "id": "w-18",
       "pass": true,
       "tokens": 28,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"search-api\",\"appType\":\"backend\",\"stack\":\"finder\",\"port\":4777}"
     },
     {
       "id": "w-19",
@@ -139,49 +158,57 @@
       "tokens": 41,
       "problems": [
         "image: expected \"etcd:3.5\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"config-store\",\"appType\":\"bring-your-own\",\"stack\":\"infra\",\"port\":2379,\"restart\":\"always\",\"healthCheckPath\":\"/health\"}"
     },
     {
       "id": "w-20",
       "pass": true,
       "tokens": 37,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"feed-api\",\"appType\":\"backend\",\"stack\":\"social\",\"port\":4020,\"replicas\":2,\"enabled\":false}"
     },
     {
       "id": "w-21",
       "pass": true,
       "tokens": 28,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"docs-tools\",\"appType\":\"mcp\",\"stack\":\"docs\",\"dependsOn\":[\"search-api\"]}"
     },
     {
       "id": "w-stack-1",
       "pass": true,
       "tokens": 95,
-      "problems": []
+      "problems": [],
+      "answer": "[{\"schemaVersion\":1,\"appName\":\"transcoder\",\"appType\":\"worker\",\"stack\":\"media\",\"agent\":{\"durability\":\"files\"}},{\"schemaVersion\":1,\"appName\":\"media-api\",\"appType\":\"backend\",\"stack\":\"media\",\"port\":4900,\"healthCheckPath\":\"/health\",\"dependsOn\":[\"transcoder\"]},{\"schemaVersion\":1,\"appName\":\"media-web\",\"appType\":\"frontend\",\"stack\":\"media\",\"dependsOn\":[\"media-api\"]}]"
     },
     {
       "id": "w-stack-2",
       "pass": true,
       "tokens": 91,
-      "problems": []
+      "problems": [],
+      "answer": "[{\"schemaVersion\":1,\"appName\":\"hotel-db\",\"appType\":\"bring-your-own\",\"stack\":\"hotel\",\"port\":5432,\"image\":\"postgres:16\"},{\"schemaVersion\":1,\"appName\":\"hotel-api\",\"appType\":\"backend\",\"stack\":\"hotel\",\"dependsOn\":[\"hotel-db\"]},{\"schemaVersion\":1,\"appName\":\"hotel-agent\",\"appType\":\"agent\",\"stack\":\"hotel\",\"dependsOn\":[\"hotel-api\"]}]"
     },
     {
       "id": "w-repair-1",
       "pass": true,
       "tokens": 28,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"ledger-api\",\"appType\":\"backend\",\"stack\":\"default\",\"port\":4400}"
     },
     {
       "id": "w-repair-2",
       "pass": true,
       "tokens": 21,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"report-job\",\"appType\":\"worker\",\"stack\":\"ops\"}"
     },
     {
       "id": "w-repair-3",
       "pass": true,
       "tokens": 27,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"fetcher\",\"appType\":\"worker\",\"stack\":\"ops\",\"command\":\"node fetch.js\"}"
     }
   ]
 }

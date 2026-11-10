@@ -9,19 +9,22 @@
       "id": "w-1",
       "pass": true,
       "tokens": 28,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"inventory-api\",\"appType\":\"backend\",\"stack\":\"stock\",\"port\":4210}"
     },
     {
       "id": "w-2",
       "pass": true,
       "tokens": 30,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"mail-sender\",\"appType\":\"worker\",\"stack\":\"comms\",\"dependsOn\":[\"queue-redis\"]}"
     },
     {
       "id": "w-3",
       "pass": true,
       "tokens": 27,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"storefront-ui\",\"appType\":\"frontend\",\"stack\":\"retail\",\"basePath\":\"/store\"}"
     },
     {
       "id": "w-4",
@@ -29,7 +32,8 @@
       "tokens": 31,
       "problems": [
         "image: expected \"redis:7\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"session-cache\",\"appType\":\"bring-your-own\",\"stack\":\"shop\",\"port\":6379}"
     },
     {
       "id": "w-5",
@@ -37,7 +41,8 @@
       "tokens": 36,
       "problems": [
         "image: expected \"postgres:16\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"orders-db\",\"appType\":\"bring-your-own\",\"stack\":\"retail\",\"port\":5432,\"restart\":\"no\"}"
     },
     {
       "id": "w-6",
@@ -45,7 +50,8 @@
       "tokens": 31,
       "problems": [
         "stack: expected \"assistants\", got \"assistances\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"calendar-tools\",\"appType\":\"mcp\",\"stack\":\"assistances\",\"port\":4600}"
     },
     {
       "id": "w-7",
@@ -53,7 +59,8 @@
       "tokens": 29,
       "problems": [
         "stack: expected \"assistants\", got \"assistances\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"planner\",\"appType\":\"agent\",\"stack\":\"assistances\",\"agent\":{\"durability\":\"files\"}}"
     },
     {
       "id": "w-8",
@@ -61,19 +68,22 @@
       "tokens": 25,
       "problems": [
         "appName: expected \"schema-migrate\", got \"stack-migrate\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"stack-migrate\",\"appType\":\"migrator\",\"stack\":\"retail\"}"
     },
     {
       "id": "w-9",
       "pass": true,
       "tokens": 23,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"digest-job\",\"appType\":\"worker\",\"command\":\"python worker.py\"}"
     },
     {
       "id": "w-10",
       "pass": true,
       "tokens": 40,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"billing-api\",\"appType\":\"backend\",\"stack\":\"pay\",\"port\":4300,\"healthCheckPath\":\"/healthz\",\"replicas\":3}"
     },
     {
       "id": "w-11",
@@ -81,73 +91,85 @@
       "tokens": 27,
       "problems": [
         "appName: expected \"cleanup-job\", got \"worker-cleanup-job\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"worker-cleanup-job\",\"appType\":\"worker\",\"stack\":\"ops\",\"enabled\":false}"
     },
     {
       "id": "w-12",
       "pass": true,
       "tokens": 47,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"internal-db\",\"appType\":\"bring-your-own\",\"stack\":\"ops\",\"port\":3306,\"image\":\"mariadb:11\",\"exposeViaProxy\":false}"
     },
     {
       "id": "w-13",
       "pass": true,
       "tokens": 28,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"pricing-api\",\"appType\":\"backend\",\"stack\":\"finance\",\"port\":4101}"
     },
     {
       "id": "w-14",
       "pass": true,
       "tokens": 21,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"audit-log\",\"appType\":\"worker\",\"stack\":\"finance\"}"
     },
     {
       "id": "w-15",
       "pass": true,
       "tokens": 34,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"admin-ui\",\"appType\":\"frontend\",\"stack\":\"finance\",\"port\":5174,\"healthCheckPath\":\"/ping\"}"
     },
     {
       "id": "w-16",
       "pass": true,
       "tokens": 30,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"concierge\",\"appType\":\"agent\",\"stack\":\"hotel\",\"dependsOn\":[\"room-db\",\"menu-tools\"]}"
     },
     {
       "id": "w-17",
       "pass": true,
       "tokens": 46,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"gateway\",\"appType\":\"bring-your-own\",\"stack\":\"edge\",\"port\":8080,\"image\":\"nginx:1.27\",\"healthCheckPath\":\"/healthz\"}"
     },
     {
       "id": "w-18",
       "pass": true,
       "tokens": 28,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"search-api\",\"appType\":\"backend\",\"stack\":\"finder\",\"port\":4777}"
     },
     {
       "id": "w-19",
       "pass": true,
       "tokens": 50,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"config-store\",\"appType\":\"bring-your-own\",\"stack\":\"infra\",\"port\":2379,\"image\":\"etcd:3.5\",\"healthCheckPath\":\"/health\",\"restart\":\"always\"}"
     },
     {
       "id": "w-20",
       "pass": true,
       "tokens": 37,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"feed-api\",\"appType\":\"backend\",\"stack\":\"social\",\"port\":4020,\"replicas\":2,\"enabled\":false}"
     },
     {
       "id": "w-21",
       "pass": true,
       "tokens": 28,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"docs-tools\",\"appType\":\"mcp\",\"stack\":\"docs\",\"dependsOn\":[\"search-api\"]}"
     },
     {
       "id": "w-stack-1",
       "pass": true,
       "tokens": 87,
-      "problems": []
+      "problems": [],
+      "answer": "[{\"schemaVersion\":1,\"appName\":\"transcoder\",\"appType\":\"worker\",\"stack\":\"media\"},{\"schemaVersion\":1,\"appName\":\"media-api\",\"appType\":\"backend\",\"stack\":\"media\",\"port\":4900,\"healthCheckPath\":\"/health\",\"dependsOn\":[\"transcoder\"]},{\"schemaVersion\":1,\"appName\":\"media-web\",\"appType\":\"frontend\",\"stack\":\"media\",\"dependsOn\":[\"media-api\"]}]"
     },
     {
       "id": "w-stack-2",
@@ -155,19 +177,22 @@
       "tokens": 95,
       "problems": [
         "hotel-db.image: expected \"postgres:16\", got \"postgres\""
-      ]
+      ],
+      "answer": "[{\"schemaVersion\":1,\"appName\":\"hotel-db\",\"appType\":\"bring-your-own\",\"stack\":\"hotel\",\"port\":5432,\"image\":\"postgres\",\"dependsOn\":[\"hotel-api\"]},{\"schemaVersion\":1,\"appName\":\"hotel-api\",\"appType\":\"backend\",\"stack\":\"hotel\",\"dependsOn\":[\"hotel-db\"]},{\"schemaVersion\":1,\"appName\":\"hotel-agent\",\"appType\":\"agent\",\"stack\":\"hotel\",\"dependsOn\":[\"hotel-api\"]}]"
     },
     {
       "id": "w-repair-1",
       "pass": true,
       "tokens": 28,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"ledger-api\",\"appType\":\"backend\",\"stack\":\"default\",\"port\":4400}"
     },
     {
       "id": "w-repair-2",
       "pass": true,
       "tokens": 21,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"report-job\",\"appType\":\"worker\",\"stack\":\"ops\"}"
     },
     {
       "id": "w-repair-3",
@@ -175,7 +200,8 @@
       "tokens": 23,
       "problems": [
         "stack: expected \"ops\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"fetcher\",\"appType\":\"worker\",\"command\":\"node fetch.js\"}"
     }
   ]
 }
