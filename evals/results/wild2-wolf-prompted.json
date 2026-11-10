@@ -17,10 +17,7 @@
       "pass": false,
       "tokens": 166,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"worker\", got undefined",
-        "appName: expected \"invoice-runner\", got undefined",
-        "stack: expected \"billing\", got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pay-cache\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"pay\",\n    \"image\": \"redis:7\",\n    \"port\": 6379\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pay-api\",\n    \"appType\": \"backend\",\n    \"stack\": \"pay\",\n    \"port\": 4300,\n    \"dependsOn\": [\n      \"pay-cache\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"invoice-runner\",\n    \"appType\": \"worker\",\n    \"stack\": \"pay\",\n    \"dependsOn\": [\n      \"pay-api\"\n    ]\n  }\n]"
     },
@@ -29,12 +26,7 @@
       "pass": false,
       "tokens": 56,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"frontend\", got undefined",
-        "appName: expected \"customer-portal\", got undefined",
-        "stack: expected \"support\", got undefined",
-        "basePath: expected \"/portal\", got undefined",
-        "port: expected 5180, got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"customer-portal\",\n    \"appType\": \"frontend\",\n    \"stack\": \"support\",\n    \"basePath\": \"/portal\",\n    \"port\": 5180\n  }\n]"
     },
@@ -43,12 +35,7 @@
       "pass": false,
       "tokens": 61,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"bring-your-own\", got undefined",
-        "appName: expected \"catalog-db\", got undefined",
-        "stack: expected \"catalog\", got undefined",
-        "image: expected \"mongo:7\", got undefined",
-        "port: expected 27017, got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"catalog-db\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"catalog\",\n    \"image\": \"mongo:7\",\n    \"port\": 27017\n  }\n]"
     },
@@ -57,13 +44,7 @@
       "pass": false,
       "tokens": 73,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"bring-your-own\", got undefined",
-        "appName: expected \"page-cache\", got undefined",
-        "stack: expected \"web\", got undefined",
-        "image: expected \"memcached:1.6\", got undefined",
-        "port: expected 11211, got undefined",
-        "healthCheckPath: expected \"/stats\", got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"page-cache\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"web\",\n    \"image\": \"memcached:1.6\",\n    \"port\": 11211,\n    \"healthCheckPath\": \"/stats\"\n  }\n]"
     },
@@ -109,11 +90,7 @@
       "pass": false,
       "tokens": 44,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"frontend\", got undefined",
-        "appName: expected \"legacy-ui\", got undefined",
-        "stack: expected \"archive\", got undefined",
-        "enabled: expected false, got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"legacy-ui\",\n    \"appType\": \"frontend\",\n    \"stack\": \"archive\",\n    \"enabled\": false\n  }\n]"
     },
@@ -122,13 +99,7 @@
       "pass": false,
       "tokens": 70,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"bring-your-own\", got undefined",
-        "appName: expected \"mq-broker\", got undefined",
-        "stack: expected \"messaging\", got undefined",
-        "image: expected \"rabbitmq:3\", got undefined",
-        "port: expected 5672, got undefined",
-        "restart: expected \"no\", got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"mq-broker\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"messaging\",\n    \"image\": \"rabbitmq:3\",\n    \"port\": 5672,\n    \"restart\": \"no\"\n  }\n]"
     },
@@ -160,11 +131,7 @@
       "pass": false,
       "tokens": 92,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"migrator\", got undefined",
-        "appName: expected \"sales-migrate\", got undefined",
-        "stack: expected \"sales\", got undefined",
-        "dependsOn: expected [\"sales-db\"], got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"sales-db\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"sales\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"sales-migrate\",\n    \"appType\": \"migrator\",\n    \"stack\": \"sales\",\n    \"dependsOn\": [\n      \"sales-db\"\n    ]\n  }\n]"
     },
@@ -180,11 +147,7 @@
       "pass": false,
       "tokens": 58,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"frontend\", got undefined",
-        "appName: expected \"dash-ui\", got undefined",
-        "stack: expected \"comms\", got undefined",
-        "healthCheckPath: expected \"/ready\", got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"dash-ui\",\n    \"appType\": \"frontend\",\n    \"stack\": \"comms\",\n    \"port\": 3000,\n    \"healthCheckPath\": \"/ready\"\n  }\n]"
     },
@@ -193,11 +156,7 @@
       "pass": false,
       "tokens": 75,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"agent\", got undefined",
-        "appName: expected \"concierge-2\", got undefined",
-        "stack: expected \"travel\", got undefined",
-        "dependsOn: expected [\"flights-api\",\"hotels-api\"], got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"concierge-2\",\n    \"appType\": \"agent\",\n    \"stack\": \"travel\",\n    \"dependsOn\": [\n      \"flights-api\",\n      \"hotels-api\"\n    ],\n    \"agent\": {\n      \"durability\": \"files\"\n    }\n  }\n]"
     },
@@ -220,11 +179,7 @@
       "pass": false,
       "tokens": 44,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"worker\", got undefined",
-        "appName: expected \"thumbnailer\", got undefined",
-        "stack: expected \"media\", got undefined",
-        "enabled: expected false, got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"thumbnailer\",\n    \"appType\": \"worker\",\n    \"stack\": \"media\",\n    \"enabled\": false\n  }\n]"
     },

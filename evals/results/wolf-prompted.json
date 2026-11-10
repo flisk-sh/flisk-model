@@ -73,11 +73,7 @@
       "pass": false,
       "tokens": 58,
       "problems": [
-        "service.json: expected a JSON object",
-        "appName: expected \"saffron-app\", got undefined",
-        "appType: expected \"migrator\", got undefined",
-        "stack: expected \"harbor\", got undefined",
-        "dependsOn: expected [\"rooster-queue\"], got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"saffron-app\",\n    \"appType\": \"migrator\",\n    \"stack\": \"harbor\",\n    \"dependsOn\": [\n      \"rooster-queue\"\n    ]\n  }\n]"
     },
@@ -165,13 +161,7 @@
       "pass": false,
       "tokens": 78,
       "problems": [
-        "service.json: expected a JSON object",
-        "appName: expected \"pebble-web\", got undefined",
-        "appType: expected \"backend\", got undefined",
-        "stack: expected \"farm\", got undefined",
-        "replicas: expected 3, got undefined",
-        "enabled: expected false, got undefined",
-        "dependsOn: expected [\"zephyr-db\"], got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pebble-web\",\n    \"appType\": \"backend\",\n    \"stack\": \"farm\",\n    \"port\": 8080,\n    \"dependsOn\": [\n      \"zephyr-db\"\n    ],\n    \"replicas\": 3,\n    \"enabled\": false\n  }\n]"
     },
@@ -187,11 +177,7 @@
       "pass": false,
       "tokens": 55,
       "problems": [
-        "service.json: expected a JSON object",
-        "appName: expected \"mosaic-api\", got undefined",
-        "appType: expected \"backend\", got undefined",
-        "stack: expected \"quartz\", got undefined",
-        "dependsOn: expected [\"tulip-api\"], got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"mosaic-api\",\n    \"appType\": \"backend\",\n    \"stack\": \"quartz\",\n    \"dependsOn\": [\n      \"tulip-api\"\n    ]\n  }\n]"
     },

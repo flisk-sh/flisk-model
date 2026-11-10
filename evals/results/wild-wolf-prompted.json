@@ -24,11 +24,7 @@
       "pass": false,
       "tokens": 59,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"frontend\", got undefined",
-        "appName: expected \"storefront-ui\", got undefined",
-        "stack: expected \"retail\", got undefined",
-        "basePath: expected \"/store\", got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"storefront-ui\",\n    \"appType\": \"frontend\",\n    \"stack\": \"retail\",\n    \"basePath\": \"/store\",\n    \"replicas\": 1\n  }\n]\n```"
     },
@@ -37,12 +33,7 @@
       "pass": false,
       "tokens": 60,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"bring-your-own\", got undefined",
-        "appName: expected \"session-cache\", got undefined",
-        "stack: expected \"shop\", got undefined",
-        "image: expected \"redis:7\", got undefined",
-        "port: expected 6379, got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"session-cache\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"shop\",\n    \"image\": \"redis:7\",\n    \"port\": 6379\n  }\n]"
     },
@@ -93,11 +84,7 @@
       "pass": false,
       "tokens": 44,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"worker\", got undefined",
-        "appName: expected \"cleanup-job\", got undefined",
-        "stack: expected \"ops\", got undefined",
-        "enabled: expected false, got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"cleanup-job\",\n    \"appType\": \"worker\",\n    \"stack\": \"ops\",\n    \"enabled\": false\n  }\n]"
     },
@@ -106,13 +93,7 @@
       "pass": false,
       "tokens": 72,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"bring-your-own\", got undefined",
-        "appName: expected \"internal-db\", got undefined",
-        "stack: expected \"ops\", got undefined",
-        "image: expected \"mariadb:11\", got undefined",
-        "port: expected 3306, got undefined",
-        "exposeViaProxy: expected false, got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"internal-db\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"ops\",\n    \"image\": \"mariadb:11\",\n    \"port\": 3306,\n    \"exposeViaProxy\": false\n  }\n]"
     },
@@ -135,12 +116,7 @@
       "pass": false,
       "tokens": 57,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"frontend\", got undefined",
-        "appName: expected \"admin-ui\", got undefined",
-        "stack: expected \"finance\", got undefined",
-        "port: expected 5174, got undefined",
-        "healthCheckPath: expected \"/ping\", got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"admin-ui\",\n    \"appType\": \"frontend\",\n    \"stack\": \"finance\",\n    \"port\": 5174,\n    \"healthCheckPath\": \"/ping\"\n  }\n]"
     },
@@ -149,11 +125,7 @@
       "pass": false,
       "tokens": 71,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"agent\", got undefined",
-        "appName: expected \"concierge\", got undefined",
-        "stack: expected \"hotel\", got undefined",
-        "dependsOn: expected [\"room-db\",\"menu-tools\"], got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"concierge\",\n    \"appType\": \"agent\",\n    \"stack\": \"hotel\",\n    \"dependsOn\": [\n      \"room-db\",\n      \"menu-tools\"\n    ],\n    \"agent\": {\n      \"durability\": \"files\"\n    }\n  }\n]"
     },
@@ -183,13 +155,7 @@
       "pass": false,
       "tokens": 62,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"backend\", got undefined",
-        "appName: expected \"feed-api\", got undefined",
-        "stack: expected \"social\", got undefined",
-        "replicas: expected 2, got undefined",
-        "port: expected 4020, got undefined",
-        "enabled: expected false, got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"feed-api\",\n    \"appType\": \"backend\",\n    \"stack\": \"social\",\n    \"port\": 4020,\n    \"replicas\": 2,\n    \"enabled\": false\n  }\n]"
     },
@@ -198,11 +164,7 @@
       "pass": false,
       "tokens": 52,
       "problems": [
-        "service.json: expected a JSON object",
-        "appType: expected \"mcp\", got undefined",
-        "appName: expected \"docs-tools\", got undefined",
-        "stack: expected \"docs\", got undefined",
-        "dependsOn: expected [\"search-api\"], got undefined"
+        "service.json: expected a JSON object"
       ],
       "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"docs-tools\",\n    \"appType\": \"mcp\",\n    \"stack\": \"docs\",\n    \"dependsOn\": [\n      \"search-api\"\n    ]\n  }\n]"
     },

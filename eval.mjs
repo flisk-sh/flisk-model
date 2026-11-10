@@ -3,6 +3,7 @@
 // every expected field matches, no forbidden field is present. Also reports output tokens, the number Particle optimises.
 import { readFileSync, writeFileSync } from "node:fs";
 import { validateService } from "./lib/validate.mjs";
+import { scoreSingle, scoreStack } from "./lib/score.mjs";
 import { SYSTEM, SYSTEM_V2, FEW_SHOTS } from "./lib/templates.mjs";
 
 const arg = (name, fallback) => {
@@ -47,32 +48,6 @@ function extractAny(text) {
   const end = Math.max(body.lastIndexOf("}"), body.lastIndexOf("]"));
   return a > -1 && end > a ? body.slice(a, end + 1) : body;
 }
-const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-
-function scoreSingle(parsed, task, problems) {
-  problems.push(...validateService(parsed).errors);
-  for (const [k, v] of Object.entries(task.expect ?? task.keep ?? {})) {
-    if (!same(parsed[k], v)) problems.push(`${k}: expected ${JSON.stringify(v)}, got ${JSON.stringify(parsed[k])}`);
-  }
-  for (const k of task.mustHave ?? []) if (!(k in parsed)) problems.push(`${k}: must be present`);
-  for (const k of task.absent ?? []) if (k in parsed) problems.push(`${k}: must not be present`);
-}
-function scoreStack(parsed, task, problems) {
-  if (!Array.isArray(parsed)) return problems.push("expected a JSON array");
-  const names = new Set(parsed.map((s) => s?.appName));
-  if (names.size !== parsed.length) problems.push("duplicate appName");
-  for (const want of task.services) {
-    const got = parsed.find((s) => s?.appName === want.appName);
-    if (!got) { problems.push(`${want.appName}: missing`); continue; }
-    for (const [k, v] of Object.entries(want)) if (!same(got[k], v)) problems.push(`${want.appName}.${k}: expected ${JSON.stringify(v)}, got ${JSON.stringify(got[k])}`);
-  }
-  for (const s of parsed) {
-    problems.push(...validateService(s).errors.map((e) => `${s?.appName}: ${e}`));
-    for (const d of s?.dependsOn ?? []) if (!names.has(d)) problems.push(`${s.appName}: depends on unknown "${d}"`);
-  }
-  if (parsed.length !== task.services.length) problems.push(`expected ${task.services.length} services, got ${parsed.length}`);
-}
-
 for (const task of tasks) {
   let text = "", tokens = 0, error;
   if (answers) {
