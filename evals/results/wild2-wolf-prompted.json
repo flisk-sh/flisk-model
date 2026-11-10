@@ -9,7 +9,8 @@
       "id": "v-1",
       "pass": true,
       "tokens": 45,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"ticketing-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"support\",\n  \"port\": 4510\n}"
     },
     {
       "id": "v-2",
@@ -20,7 +21,8 @@
         "appType: expected \"worker\", got undefined",
         "appName: expected \"invoice-runner\", got undefined",
         "stack: expected \"billing\", got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pay-cache\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"pay\",\n    \"image\": \"redis:7\",\n    \"port\": 6379\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pay-api\",\n    \"appType\": \"backend\",\n    \"stack\": \"pay\",\n    \"port\": 4300,\n    \"dependsOn\": [\n      \"pay-cache\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"invoice-runner\",\n    \"appType\": \"worker\",\n    \"stack\": \"pay\",\n    \"dependsOn\": [\n      \"pay-api\"\n    ]\n  }\n]"
     },
     {
       "id": "v-3",
@@ -33,7 +35,8 @@
         "stack: expected \"support\", got undefined",
         "basePath: expected \"/portal\", got undefined",
         "port: expected 5180, got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"customer-portal\",\n    \"appType\": \"frontend\",\n    \"stack\": \"support\",\n    \"basePath\": \"/portal\",\n    \"port\": 5180\n  }\n]"
     },
     {
       "id": "v-4",
@@ -46,7 +49,8 @@
         "stack: expected \"catalog\", got undefined",
         "image: expected \"mongo:7\", got undefined",
         "port: expected 27017, got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"catalog-db\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"catalog\",\n    \"image\": \"mongo:7\",\n    \"port\": 27017\n  }\n]"
     },
     {
       "id": "v-5",
@@ -60,31 +64,36 @@
         "image: expected \"memcached:1.6\", got undefined",
         "port: expected 11211, got undefined",
         "healthCheckPath: expected \"/stats\", got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"page-cache\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"web\",\n    \"image\": \"memcached:1.6\",\n    \"port\": 11211,\n    \"healthCheckPath\": \"/stats\"\n  }\n]"
     },
     {
       "id": "v-6",
       "pass": true,
       "tokens": 45,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"pdf-tools\",\n  \"appType\": \"mcp\",\n  \"stack\": \"docs\",\n  \"port\": 4650\n}"
     },
     {
       "id": "v-7",
       "pass": true,
       "tokens": 50,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"triage-bot\",\n  \"appType\": \"agent\",\n  \"stack\": \"support\",\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "v-8",
       "pass": true,
       "tokens": 44,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"billing-migrate\",\n  \"appType\": \"migrator\",\n  \"stack\": \"billing\",\n  \"restart\": \"no\"\n}"
     },
     {
       "id": "v-9",
       "pass": true,
       "tokens": 38,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"feed-poller\",\n  \"appType\": \"worker\",\n  \"command\": \"node poller.js\"\n}"
     },
     {
       "id": "v-10",
@@ -92,7 +101,8 @@
       "tokens": 63,
       "problems": [
         "appName: expected \"gateway-api\", got \"api-gateway-api\""
-      ]
+      ],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"api-gateway-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"edge\",\n  \"port\": 4020,\n  \"replicas\": 4,\n  \"healthCheckPath\": \"/up\"\n}"
     },
     {
       "id": "v-11",
@@ -104,7 +114,8 @@
         "appName: expected \"legacy-ui\", got undefined",
         "stack: expected \"archive\", got undefined",
         "enabled: expected false, got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"legacy-ui\",\n    \"appType\": \"frontend\",\n    \"stack\": \"archive\",\n    \"enabled\": false\n  }\n]"
     },
     {
       "id": "v-12",
@@ -118,7 +129,8 @@
         "image: expected \"rabbitmq:3\", got undefined",
         "port: expected 5672, got undefined",
         "restart: expected \"no\", got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"mq-broker\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"messaging\",\n    \"image\": \"rabbitmq:3\",\n    \"port\": 5672,\n    \"restart\": \"no\"\n  }\n]"
     },
     {
       "id": "v-13",
@@ -126,19 +138,22 @@
       "tokens": 86,
       "problems": [
         "appName: expected \"dashboards\", got \"grafana\""
-      ]
+      ],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"grafana\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"observability\",\n  \"image\": \"grafana/grafana:11\",\n  \"port\": 3000,\n  \"healthCheckPath\": \"/api/health\",\n  \"exposeViaProxy\": false\n}\n```"
     },
     {
       "id": "v-15",
       "pass": true,
       "tokens": 35,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"price-updater\",\n  \"appType\": \"worker\",\n  \"stack\": \"pricing\"\n}"
     },
     {
       "id": "v-16",
       "pass": true,
       "tokens": 44,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"quote-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"sales\",\n  \"port\": 4222\n}"
     },
     {
       "id": "v-17",
@@ -150,13 +165,15 @@
         "appName: expected \"sales-migrate\", got undefined",
         "stack: expected \"sales\", got undefined",
         "dependsOn: expected [\"sales-db\"], got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"sales-db\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"sales\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"sales-migrate\",\n    \"appType\": \"migrator\",\n    \"stack\": \"sales\",\n    \"dependsOn\": [\n      \"sales-db\"\n    ]\n  }\n]"
     },
     {
       "id": "v-18",
       "pass": true,
       "tokens": 55,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"mailer-svc\",\n  \"appType\": \"backend\",\n  \"stack\": \"comms\",\n  \"port\": 4321,\n  \"healthCheckPath\": \"/health\"\n}"
     },
     {
       "id": "v-19",
@@ -168,7 +185,8 @@
         "appName: expected \"dash-ui\", got undefined",
         "stack: expected \"comms\", got undefined",
         "healthCheckPath: expected \"/ready\", got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"dash-ui\",\n    \"appType\": \"frontend\",\n    \"stack\": \"comms\",\n    \"port\": 3000,\n    \"healthCheckPath\": \"/ready\"\n  }\n]"
     },
     {
       "id": "v-20",
@@ -180,19 +198,22 @@
         "appName: expected \"concierge-2\", got undefined",
         "stack: expected \"travel\", got undefined",
         "dependsOn: expected [\"flights-api\",\"hotels-api\"], got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"concierge-2\",\n    \"appType\": \"agent\",\n    \"stack\": \"travel\",\n    \"dependsOn\": [\n      \"flights-api\",\n      \"hotels-api\"\n    ],\n    \"agent\": {\n      \"durability\": \"files\"\n    }\n  }\n]"
     },
     {
       "id": "v-21",
       "pass": true,
       "tokens": 71,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"events-db\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"analytics\",\n  \"image\": \"clickhouse/clickhouse-server:24\",\n  \"port\": 8123,\n  \"healthCheckPath\": \"/ping\"\n}"
     },
     {
       "id": "v-22",
       "pass": true,
       "tokens": 58,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"crm-tools\",\n  \"appType\": \"mcp\",\n  \"stack\": \"sales\",\n  \"port\": 4701,\n  \"dependsOn\": [\n    \"quote-api\"\n  ]\n}"
     },
     {
       "id": "v-23",
@@ -204,49 +225,57 @@
         "appName: expected \"thumbnailer\", got undefined",
         "stack: expected \"media\", got undefined",
         "enabled: expected false, got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"thumbnailer\",\n    \"appType\": \"worker\",\n    \"stack\": \"media\",\n    \"enabled\": false\n  }\n]"
     },
     {
       "id": "v-24",
       "pass": true,
       "tokens": 40,
-      "problems": []
+      "problems": [],
+      "answer": "```json\n{\n  \"schemaVersion\": 1,\n  \"appName\": \"syncer\",\n  \"appType\": \"worker\",\n  \"command\": \"python sync.py\"\n}\n```"
     },
     {
       "id": "v-stack-1",
       "pass": true,
       "tokens": 170,
-      "problems": []
+      "problems": [],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"blog-db\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"blogging\",\n    \"image\": \"postgres:16\",\n    \"port\": 5432\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"blog-api\",\n    \"appType\": \"backend\",\n    \"stack\": \"blogging\",\n    \"port\": 4100,\n    \"dependsOn\": [\n      \"blog-db\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"blog-web\",\n    \"appType\": \"frontend\",\n    \"stack\": \"blogging\",\n    \"dependsOn\": [\n      \"blog-api\"\n    ]\n  }\n]"
     },
     {
       "id": "v-stack-2",
       "pass": true,
       "tokens": 151,
-      "problems": []
+      "problems": [],
+      "answer": "```json\n[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"event-ingest\",\n    \"appType\": \"worker\",\n    \"stack\": \"analytics\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"stats-api\",\n    \"appType\": \"backend\",\n    \"stack\": \"analytics\",\n    \"port\": 4300,\n    \"dependsOn\": [\n      \"event-ingest\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"stats-tools\",\n    \"appType\": \"mcp\",\n    \"stack\": \"analytics\",\n    \"dependsOn\": [\n      \"stats-api\"\n    ]\n  }\n]\n```"
     },
     {
       "id": "v-repair-1",
       "pass": true,
       "tokens": 56,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"queue-cache\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"web\",\n  \"image\": \"redis:7\",\n  \"port\": 6379\n}"
     },
     {
       "id": "v-repair-2",
       "pass": true,
       "tokens": 44,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"stats-api\",\n  \"appType\": \"backend\",\n  \"port\": 4300,\n  \"stack\": \"default\"\n}"
     },
     {
       "id": "v-repair-3",
       "pass": true,
       "tokens": 44,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"poller\",\n  \"appType\": \"worker\",\n  \"stack\": \"ops\",\n  \"command\": \"node poller.js\"\n}"
     },
     {
       "id": "v-repair-4",
       "pass": true,
       "tokens": 34,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"archiver\",\n  \"appType\": \"worker\",\n  \"stack\": \"ops\"\n}"
     }
   ]
 }

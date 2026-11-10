@@ -7,7 +7,7 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 | | Status |
 |---|---|
 | Test | Three held-out tests (62 machine-written, natural set 1 of 26 as a development set, clean natural set 2 of 29), graded by the real Flisk validator. Works, but small. |
-| Best small model | Round-2 trained 1.5B: **60/62** machine-written, **18/26** and **17/29** on the two natural sets. Prompted 7B: 54/62, 18/26, 17/29. Claude Haiku and Sonnet: 57/62, 15 to 16/26, 18/29, given no Flisk documentation. |
+| Best small model | Round-2 trained 1.5B: **60/62** machine-written, **18/26** and **17/29** on the two natural sets. Prompted 7B: 54/62, 18/26, 17/29. Claude Haiku and Sonnet: 57/62, 15 to 16/26, 17/29, given no Flisk documentation (re-graded 2026-11-10; 18/29 under the older, looser grader). |
 | Inference service | Live, but it runs on one Mac behind a tunnel, and only the owner can sign in. It is a demo, not a service. |
 | Users | None yet. Nobody has told us this solves a problem for them. |
 | Not measured | Cost per request, speed, and how Claude does when it is *given* the schema (which is how agents really use it). |

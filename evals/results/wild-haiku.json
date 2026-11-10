@@ -8,13 +8,15 @@
       "id": "w-1",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"inventory-api\",\"appType\":\"backend\",\"stack\":\"stock\",\"port\":4210}"
     },
     {
       "id": "w-2",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"mail-sender\",\"appType\":\"worker\",\"stack\":\"comms\",\"dependsOn\":[\"queue-redis\"]}"
     },
     {
       "id": "w-3",
@@ -22,29 +24,35 @@
       "tokens": 0,
       "problems": [
         "basePath: expected \"/store\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"storefront-ui\",\"appType\":\"frontend\",\"stack\":\"retail\",\"route\":\"/store\"}"
     },
     {
       "id": "w-4",
       "pass": false,
       "tokens": 0,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"session-cache\",\"appType\":\"container\",\"stack\":\"shop\",\"image\":\"redis:7\",\"port\":6379,\"healthCheck\":false}"
     },
     {
       "id": "w-5",
       "pass": false,
       "tokens": 0,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\""
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"orders-db\",\"appType\":\"container\",\"stack\":\"retail\",\"image\":\"postgres:16\",\"port\":5432,\"restart\":\"no\"}"
     },
     {
       "id": "w-6",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"calendar-tools\",\"appType\":\"mcp\",\"stack\":\"assistants\",\"port\":4600}"
     },
     {
       "id": "w-7",
@@ -52,19 +60,22 @@
       "tokens": 0,
       "problems": [
         "agent: expected {\"durability\":\"files\"}, got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"planner\",\"appType\":\"agent\",\"stack\":\"assistants\",\"checkpoints\":{\"store\":\"files\"}}"
     },
     {
       "id": "w-8",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"schema-migrate\",\"appType\":\"migrator\",\"stack\":\"retail\"}"
     },
     {
       "id": "w-9",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"digest-job\",\"appType\":\"worker\",\"stack\":\"default\",\"command\":\"python worker.py\"}"
     },
     {
       "id": "w-10",
@@ -72,13 +83,15 @@
       "tokens": 0,
       "problems": [
         "healthCheckPath: expected \"/healthz\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"billing-api\",\"appType\":\"backend\",\"stack\":\"pay\",\"port\":4300,\"replicas\":3,\"healthPath\":\"/healthz\"}"
     },
     {
       "id": "w-11",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"cleanup-job\",\"appType\":\"worker\",\"stack\":\"ops\",\"enabled\":false}"
     },
     {
       "id": "w-12",
@@ -86,21 +99,25 @@
       "tokens": 0,
       "problems": [
         "service.json.traefik: expected an object",
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\"",
         "exposeViaProxy: expected false, got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"internal-db\",\"appType\":\"container\",\"stack\":\"ops\",\"image\":\"mariadb:11\",\"port\":3306,\"traefik\":false}"
     },
     {
       "id": "w-13",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"pricing-api\",\"appType\":\"backend\",\"stack\":\"finance\",\"port\":4101}"
     },
     {
       "id": "w-14",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"audit-log\",\"appType\":\"worker\",\"stack\":\"finance\"}"
     },
     {
       "id": "w-15",
@@ -108,49 +125,58 @@
       "tokens": 0,
       "problems": [
         "healthCheckPath: expected \"/ping\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"admin-ui\",\"appType\":\"frontend\",\"stack\":\"finance\",\"port\":5174,\"healthPath\":\"/ping\"}"
     },
     {
       "id": "w-16",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"concierge\",\"appType\":\"agent\",\"stack\":\"hotel\",\"dependsOn\":[\"room-db\",\"menu-tools\"]}"
     },
     {
       "id": "w-17",
       "pass": false,
       "tokens": 0,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\"",
         "healthCheckPath: expected \"/healthz\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"gateway\",\"appType\":\"container\",\"stack\":\"edge\",\"image\":\"nginx:1.27\",\"port\":8080,\"healthPath\":\"/healthz\",\"existing\":true}"
     },
     {
       "id": "w-18",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"search-api\",\"appType\":\"backend\",\"stack\":\"finder\",\"port\":4777}"
     },
     {
       "id": "w-19",
       "pass": false,
       "tokens": 0,
       "problems": [
+        "service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)",
         "appType: expected \"bring-your-own\", got \"container\"",
         "healthCheckPath: expected \"/health\", got undefined"
-      ]
+      ],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"config-store\",\"appType\":\"container\",\"stack\":\"infra\",\"image\":\"etcd:3.5\",\"port\":2379,\"restart\":\"always\",\"healthPath\":\"/health\"}"
     },
     {
       "id": "w-20",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"feed-api\",\"appType\":\"backend\",\"stack\":\"social\",\"port\":4020,\"replicas\":2,\"enabled\":false}"
     },
     {
       "id": "w-21",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"docs-tools\",\"appType\":\"mcp\",\"stack\":\"docs\",\"dependsOn\":[\"search-api\"]}"
     },
     {
       "id": "w-stack-1",
@@ -158,33 +184,39 @@
       "tokens": 0,
       "problems": [
         "media-api.healthCheckPath: expected \"/health\", got undefined"
-      ]
+      ],
+      "answer": "[{\"schemaVersion\":1,\"appName\":\"transcoder\",\"appType\":\"worker\",\"stack\":\"media\"},{\"schemaVersion\":1,\"appName\":\"media-api\",\"appType\":\"backend\",\"stack\":\"media\",\"port\":4900,\"healthPath\":\"/health\",\"dependsOn\":[\"transcoder\"]},{\"schemaVersion\":1,\"appName\":\"media-web\",\"appType\":\"frontend\",\"stack\":\"media\",\"dependsOn\":[\"media-api\"]}]"
     },
     {
       "id": "w-stack-2",
       "pass": false,
       "tokens": 0,
       "problems": [
-        "hotel-db.appType: expected \"bring-your-own\", got \"container\""
-      ]
+        "hotel-db.appType: expected \"bring-your-own\", got \"container\"",
+        "hotel-db: service.json.appType: must be equal to one of the allowed values (backend, frontend, sdk, worker, migrator, library, mcp, agent, database, bring-your-own)"
+      ],
+      "answer": "[{\"schemaVersion\":1,\"appName\":\"hotel-db\",\"appType\":\"container\",\"stack\":\"hotel\",\"image\":\"postgres:16\",\"port\":5432},{\"schemaVersion\":1,\"appName\":\"hotel-api\",\"appType\":\"backend\",\"stack\":\"hotel\",\"dependsOn\":[\"hotel-db\"]},{\"schemaVersion\":1,\"appName\":\"hotel-agent\",\"appType\":\"agent\",\"stack\":\"hotel\",\"dependsOn\":[\"hotel-api\"]}]"
     },
     {
       "id": "w-repair-1",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"ledger-api\",\"appType\":\"backend\",\"stack\":\"ledger\",\"port\":4400}"
     },
     {
       "id": "w-repair-2",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"report-job\",\"appType\":\"worker\",\"stack\":\"ops\"}"
     },
     {
       "id": "w-repair-3",
       "pass": true,
       "tokens": 0,
-      "problems": []
+      "problems": [],
+      "answer": "{\"schemaVersion\":1,\"appName\":\"fetcher\",\"appType\":\"worker\",\"stack\":\"ops\",\"command\":\"node fetch.js\"}"
     }
   ]
 }

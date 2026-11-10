@@ -9,55 +9,64 @@
       "id": "b-single-0",
       "pass": true,
       "tokens": 37,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"falcon-job\",\n  \"appType\": \"migrator\",\n  \"stack\": \"farm\"\n}"
     },
     {
       "id": "b-single-1",
       "pass": true,
       "tokens": 75,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"ember-box\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"clinic\",\n  \"image\": \"caddy:2\",\n  \"port\": 4953,\n  \"restart\": \"on-failure\",\n  \"exposeViaProxy\": false\n}"
     },
     {
       "id": "b-single-2",
       "pass": true,
       "tokens": 50,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-api\",\n  \"appType\": \"backend\",\n  \"command\": \"java -jar app.jar\",\n  \"port\": 7967\n}"
     },
     {
       "id": "b-single-3",
       "pass": true,
       "tokens": 64,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-web\",\n  \"appType\": \"backend\",\n  \"stack\": \"atlas\",\n  \"port\": 3157,\n  \"healthCheckPath\": \"/alive\",\n  \"replicas\": 2\n}"
     },
     {
       "id": "b-single-4",
       "pass": true,
       "tokens": 37,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-svc\",\n  \"appType\": \"mcp\",\n  \"stack\": \"orbit\"\n}"
     },
     {
       "id": "b-single-5",
       "pass": true,
       "tokens": 58,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"mosaic-db\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"clinic\",\n  \"image\": \"caddy:2\",\n  \"port\": 5551\n}"
     },
     {
       "id": "b-single-6",
       "pass": true,
       "tokens": 70,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-db\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"quartz\",\n  \"image\": \"caddy:2\",\n  \"port\": 5070,\n  \"healthCheckPath\": \"/livez\"\n}"
     },
     {
       "id": "b-single-7",
       "pass": true,
       "tokens": 67,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"falcon-cache\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"studio\",\n  \"image\": \"couchdb:3\",\n  \"port\": 11746,\n  \"restart\": \"always\"\n}"
     },
     {
       "id": "b-single-8",
       "pass": true,
       "tokens": 54,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"mosaic-svc\",\n  \"appType\": \"frontend\",\n  \"stack\": \"atlas\",\n  \"port\": 4842,\n  \"basePath\": \"/tools\"\n}"
     },
     {
       "id": "b-single-9",
@@ -69,7 +78,8 @@
         "appType: expected \"migrator\", got undefined",
         "stack: expected \"harbor\", got undefined",
         "dependsOn: expected [\"rooster-queue\"], got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"saffron-app\",\n    \"appType\": \"migrator\",\n    \"stack\": \"harbor\",\n    \"dependsOn\": [\n      \"rooster-queue\"\n    ]\n  }\n]"
     },
     {
       "id": "b-single-10",
@@ -77,67 +87,78 @@
       "tokens": 60,
       "problems": [
         "appType: expected \"mcp\", got \"agent\""
-      ]
+      ],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"falcon-app\",\n  \"appType\": \"agent\",\n  \"stack\": \"orbit\",\n  \"port\": 4880,\n  \"dependsOn\": [\n    \"mosaic-queue\"\n  ]\n}"
     },
     {
       "id": "b-single-11",
       "pass": true,
       "tokens": 50,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"rooster-svc\",\n  \"appType\": \"backend\",\n  \"command\": \"java -jar app.jar\",\n  \"port\": 3073\n}"
     },
     {
       "id": "b-single-12",
       "pass": true,
       "tokens": 70,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-cache\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"farm\",\n  \"image\": \"etcd:3.5\",\n  \"port\": 12674,\n  \"healthCheckPath\": \"/state\"\n}"
     },
     {
       "id": "b-single-13",
       "pass": true,
       "tokens": 51,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"farm\",\n  \"port\": 5333,\n  \"enabled\": false\n}"
     },
     {
       "id": "b-single-14",
       "pass": true,
       "tokens": 72,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-cache\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"atlas\",\n  \"image\": \"etcd:3.5\",\n  \"port\": 10378,\n  \"healthCheckPath\": \"/state\"\n}"
     },
     {
       "id": "b-single-15",
       "pass": true,
       "tokens": 78,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"walnut-db\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"lab\",\n  \"image\": \"etcd:3.5\",\n  \"port\": 11715,\n  \"healthCheckPath\": \"/livez\",\n  \"restart\": \"no\"\n}"
     },
     {
       "id": "b-single-16",
       "pass": true,
       "tokens": 86,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-cache\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"nimbus\",\n  \"image\": \"nats:2\",\n  \"port\": 16790,\n  \"healthCheckPath\": \"/state\",\n  \"restart\": \"no\",\n  \"exposeViaProxy\": false\n}"
     },
     {
       "id": "b-single-17",
       "pass": true,
       "tokens": 66,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"rooster-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"garage\",\n  \"port\": 5783,\n  \"dependsOn\": [\n    \"mosaic-db\",\n    \"falcon-api\"\n  ]\n}"
     },
     {
       "id": "b-single-18",
       "pass": true,
       "tokens": 50,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-api\",\n  \"appType\": \"frontend\",\n  \"command\": \"java -jar app.jar\",\n  \"port\": 8496\n}"
     },
     {
       "id": "b-single-19",
       "pass": true,
       "tokens": 56,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-job\",\n  \"appType\": \"backend\",\n  \"stack\": \"harbor\",\n  \"port\": 8080,\n  \"healthCheckPath\": \"/healthz\"\n}"
     },
     {
       "id": "b-single-20",
       "pass": true,
       "tokens": 47,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"pebble-app\",\n  \"appType\": \"mcp\",\n  \"stack\": \"nimbus\",\n  \"port\": 4293\n}"
     },
     {
       "id": "b-single-21",
@@ -151,13 +172,15 @@
         "replicas: expected 3, got undefined",
         "enabled: expected false, got undefined",
         "dependsOn: expected [\"zephyr-db\"], got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pebble-web\",\n    \"appType\": \"backend\",\n    \"stack\": \"farm\",\n    \"port\": 8080,\n    \"dependsOn\": [\n      \"zephyr-db\"\n    ],\n    \"replicas\": 3,\n    \"enabled\": false\n  }\n]"
     },
     {
       "id": "b-single-22",
       "pass": true,
       "tokens": 55,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-web\",\n  \"appType\": \"frontend\",\n  \"stack\": \"orbit\",\n  \"port\": 5560,\n  \"healthCheckPath\": \"/livez\"\n}"
     },
     {
       "id": "b-single-23",
@@ -169,25 +192,29 @@
         "appType: expected \"backend\", got undefined",
         "stack: expected \"quartz\", got undefined",
         "dependsOn: expected [\"tulip-api\"], got undefined"
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"mosaic-api\",\n    \"appType\": \"backend\",\n    \"stack\": \"quartz\",\n    \"dependsOn\": [\n      \"tulip-api\"\n    ]\n  }\n]"
     },
     {
       "id": "b-single-24",
       "pass": true,
       "tokens": 36,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-app\",\n  \"appType\": \"worker\",\n  \"stack\": \"clinic\"\n}"
     },
     {
       "id": "b-single-25",
       "pass": true,
       "tokens": 59,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"meadow-app\",\n  \"appType\": \"migrator\",\n  \"stack\": \"nimbus\",\n  \"dependsOn\": [\n    \"pebble-queue\"\n  ],\n  \"enabled\": false\n}"
     },
     {
       "id": "b-single-26",
       "pass": true,
       "tokens": 38,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-job\",\n  \"appType\": \"migrator\",\n  \"stack\": \"harbor\"\n}"
     },
     {
       "id": "b-single-27",
@@ -195,19 +222,22 @@
       "tokens": 60,
       "problems": [
         "appType: expected \"mcp\", got \"agent\""
-      ]
+      ],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"ember-app\",\n  \"appType\": \"agent\",\n  \"stack\": \"atlas\",\n  \"port\": 3901,\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "b-single-28",
       "pass": true,
       "tokens": 51,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"walnut-svc\",\n  \"appType\": \"agent\",\n  \"stack\": \"lab\",\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "b-single-29",
       "pass": true,
       "tokens": 38,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"rooster-job\",\n  \"appType\": \"migrator\",\n  \"stack\": \"garage\"\n}"
     },
     {
       "id": "b-single-30",
@@ -215,91 +245,106 @@
       "tokens": 61,
       "problems": [
         "appType: expected \"mcp\", got \"agent\""
-      ]
+      ],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-svc\",\n  \"appType\": \"agent\",\n  \"stack\": \"farm\",\n  \"port\": 3434,\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "b-single-31",
       "pass": true,
       "tokens": 51,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-api\",\n  \"appType\": \"agent\",\n  \"stack\": \"farm\",\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "b-single-32",
       "pass": true,
       "tokens": 70,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"saffron-store\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"lab\",\n  \"image\": \"influxdb:2\",\n  \"port\": 11186,\n  \"healthCheckPath\": \"/hc\"\n}"
     },
     {
       "id": "b-single-33",
       "pass": true,
       "tokens": 71,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"zephyr-queue\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"farm\",\n  \"image\": \"influxdb:2\",\n  \"port\": 17173,\n  \"exposeViaProxy\": false\n}"
     },
     {
       "id": "b-single-34",
       "pass": true,
       "tokens": 62,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-queue\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"studio\",\n  \"image\": \"etcd:3.5\",\n  \"port\": 2774\n}"
     },
     {
       "id": "b-single-35",
       "pass": true,
       "tokens": 67,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"meadow-cache\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"farm\",\n  \"image\": \"nats:2\",\n  \"port\": 5779,\n  \"healthCheckPath\": \"/alive\"\n}"
     },
     {
       "id": "b-single-36",
       "pass": true,
       "tokens": 50,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"saffron-api\",\n  \"appType\": \"backend\",\n  \"command\": \"elixir app.exs\",\n  \"port\": 3227\n}"
     },
     {
       "id": "b-single-37",
       "pass": true,
       "tokens": 50,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"pebble-web\",\n  \"appType\": \"agent\",\n  \"stack\": \"orbit\",\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "b-single-38",
       "pass": true,
       "tokens": 64,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-api\",\n  \"appType\": \"agent\",\n  \"stack\": \"clinic\",\n  \"dependsOn\": [\n    \"lantern-api\"\n  ],\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "b-single-39",
       "pass": true,
       "tokens": 51,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"mosaic-web\",\n  \"appType\": \"agent\",\n  \"stack\": \"garage\",\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "b-stack-0",
       "pass": true,
       "tokens": 274,
-      "problems": []
+      "problems": [],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"lantern-cache\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"nimbus\",\n    \"image\": \"valkey/valkey:8\",\n    \"port\": 13618,\n    \"healthCheckPath\": \"/livez\",\n    \"exposeViaProxy\": false\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-app\",\n    \"appType\": \"backend\",\n    \"stack\": \"nimbus\",\n    \"port\": 3311,\n    \"dependsOn\": [\n      \"lantern-cache\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-job\",\n    \"appType\": \"frontend\",\n    \"stack\": \"nimbus\",\n    \"port\": 5842,\n    \"dependsOn\": [\n      \"walnut-app\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-api\",\n    \"appType\": \"agent\",\n    \"stack\": \"nimbus\",\n    \"dependsOn\": [\n      \"lantern-cache\"\n    ],\n    \"agent\": {\n      \"durability\": \"files\"\n    }\n  }\n]"
     },
     {
       "id": "b-stack-1",
       "pass": true,
       "tokens": 172,
-      "problems": []
+      "problems": [],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"falcon-job\",\n    \"appType\": \"backend\",\n    \"stack\": \"clinic\",\n    \"port\": 4677,\n    \"healthCheckPath\": \"/livez\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pebble-app\",\n    \"appType\": \"mcp\",\n    \"stack\": \"clinic\",\n    \"port\": 3154,\n    \"dependsOn\": [\n      \"falcon-job\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"meadow-app\",\n    \"appType\": \"migrator\",\n    \"stack\": \"clinic\",\n    \"dependsOn\": [\n      \"pebble-app\"\n    ]\n  }\n]"
     },
     {
       "id": "b-stack-2",
       "pass": true,
       "tokens": 171,
-      "problems": []
+      "problems": [],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pebble-api\",\n    \"appType\": \"frontend\",\n    \"stack\": \"garage\",\n    \"basePath\": \"/lab\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-api\",\n    \"appType\": \"backend\",\n    \"stack\": \"garage\",\n    \"port\": 4300,\n    \"healthCheckPath\": \"/state\",\n    \"dependsOn\": [\n      \"pebble-api\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"tulip-api\",\n    \"appType\": \"migrator\",\n    \"stack\": \"garage\",\n    \"dependsOn\": [\n      \"walnut-api\"\n    ]\n  }\n]"
     },
     {
       "id": "b-stack-3",
       "pass": true,
       "tokens": 150,
-      "problems": []
+      "problems": [],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-api\",\n    \"appType\": \"worker\",\n    \"stack\": \"orbit\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"lantern-app\",\n    \"appType\": \"frontend\",\n    \"stack\": \"orbit\",\n    \"dependsOn\": [\n      \"walnut-api\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"meadow-api\",\n    \"appType\": \"mcp\",\n    \"stack\": \"orbit\",\n    \"port\": 3542,\n    \"dependsOn\": [\n      \"walnut-api\"\n    ]\n  }\n]"
     },
     {
       "id": "b-stack-4",
       "pass": true,
       "tokens": 95,
-      "problems": []
+      "problems": [],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-web\",\n    \"appType\": \"migrator\",\n    \"stack\": \"atlas\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-job\",\n    \"appType\": \"migrator\",\n    \"stack\": \"atlas\",\n    \"dependsOn\": [\n      \"rooster-web\"\n    ]\n  }\n]"
     },
     {
       "id": "b-stack-5",
@@ -307,25 +352,29 @@
       "tokens": 187,
       "problems": [
         "rooster-web.appType: expected \"mcp\", got \"agent\""
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"pebble-app\",\n    \"appType\": \"worker\",\n    \"stack\": \"quartz\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-box\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"quartz\",\n    \"image\": \"valkey/valkey:8\",\n    \"port\": 15817,\n    \"healthCheckPath\": \"/hc\",\n    \"exposeViaProxy\": false,\n    \"dependsOn\": [\n      \"pebble-app\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-web\",\n    \"appType\": \"agent\",\n    \"stack\": \"quartz\",\n    \"dependsOn\": [\n      \"pebble-app\"\n    ]\n  }\n]"
     },
     {
       "id": "b-stack-6",
       "pass": true,
       "tokens": 193,
-      "problems": []
+      "problems": [],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"ember-store\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"farm\",\n    \"image\": \"caddy:2\",\n    \"port\": 11800,\n    \"exposeViaProxy\": false\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"ember-api\",\n    \"appType\": \"frontend\",\n    \"stack\": \"farm\",\n    \"port\": 7796,\n    \"dependsOn\": [\n      \"ember-store\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"meadow-web\",\n    \"appType\": \"agent\",\n    \"stack\": \"farm\",\n    \"dependsOn\": [\n      \"ember-api\"\n    ],\n    \"agent\": {\n      \"durability\": \"files\"\n    }\n  }\n]"
     },
     {
       "id": "b-stack-7",
       "pass": true,
       "tokens": 210,
-      "problems": []
+      "problems": [],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-store\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"studio\",\n    \"image\": \"couchdb:3\",\n    \"port\": 14461,\n    \"exposeViaProxy\": false\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-queue\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"studio\",\n    \"image\": \"keycloak/keycloak:25\",\n    \"port\": 5754,\n    \"exposeViaProxy\": false,\n    \"dependsOn\": [\n      \"rooster-store\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"saffron-api\",\n    \"appType\": \"worker\",\n    \"stack\": \"studio\",\n    \"dependsOn\": [\n      \"rooster-store\"\n    ]\n  }\n]"
     },
     {
       "id": "b-stack-8",
       "pass": true,
       "tokens": 264,
-      "problems": []
+      "problems": [],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"walnut-cache\",\n    \"appType\": \"bring-your-own\",\n    \"stack\": \"clinic\",\n    \"image\": \"keycloak/keycloak:25\",\n    \"port\": 19923,\n    \"healthCheckPath\": \"/hc\"\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"ember-web\",\n    \"appType\": \"migrator\",\n    \"stack\": \"clinic\",\n    \"dependsOn\": [\n      \"walnut-cache\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-svc\",\n    \"appType\": \"backend\",\n    \"stack\": \"clinic\",\n    \"port\": 5320,\n    \"healthCheckPath\": \"/state\",\n    \"replicas\": 3,\n    \"dependsOn\": [\n      \"walnut-cache\"\n    ]\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"zephyr-app\",\n    \"appType\": \"backend\",\n    \"stack\": \"clinic\",\n    \"port\": 4301,\n    \"dependsOn\": [\n      \"ember-web\"\n    ]\n  }\n]"
     },
     {
       "id": "b-stack-9",
@@ -333,79 +382,92 @@
       "tokens": 119,
       "problems": [
         "rooster-job.appType: expected \"mcp\", got \"worker\""
-      ]
+      ],
+      "answer": "[\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"saffron-web\",\n    \"appType\": \"backend\",\n    \"stack\": \"studio\",\n    \"port\": 4768,\n    \"replicas\": 4\n  },\n  {\n    \"schemaVersion\": 1,\n    \"appName\": \"rooster-job\",\n    \"appType\": \"worker\",\n    \"stack\": \"studio\",\n    \"port\": 5028,\n    \"dependsOn\": [\n      \"saffron-web\"\n    ]\n  }\n]"
     },
     {
       "id": "b-repair-0",
       "pass": true,
       "tokens": 77,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-job\",\n  \"appType\": \"backend\",\n  \"port\": 4348,\n  \"replicas\": 4,\n  \"dependsOn\": [\n    \"lantern-queue\",\n    \"tulip-queue\"\n  ],\n  \"stack\": \"default\"\n}"
     },
     {
       "id": "b-repair-1",
       "pass": true,
       "tokens": 56,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"meadow-web\",\n  \"appType\": \"agent\",\n  \"stack\": \"farm\",\n  \"agent\": {\n    \"durability\": \"files\"\n  },\n  \"enabled\": false\n}"
     },
     {
       "id": "b-repair-2",
       "pass": true,
       "tokens": 64,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"ember-svc\",\n  \"appType\": \"backend\",\n  \"stack\": \"default\",\n  \"healthCheckPath\": \"/alive\",\n  \"dependsOn\": [\n    \"rooster-queue\",\n    \"ember-db\"\n  ]\n}"
     },
     {
       "id": "b-repair-3",
       "pass": true,
       "tokens": 37,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-job\",\n  \"appType\": \"migrator\",\n  \"stack\": \"lab\"\n}"
     },
     {
       "id": "b-repair-4",
       "pass": true,
       "tokens": 60,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tundra-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"quartz\",\n  \"port\": 4188,\n  \"dependsOn\": [\n    \"walnut-api\"\n  ]\n}"
     },
     {
       "id": "b-repair-5",
       "pass": true,
       "tokens": 66,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"ember-cache\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"quartz\",\n  \"port\": 19445,\n  \"image\": \"nats:2\",\n  \"restart\": \"always\"\n}"
     },
     {
       "id": "b-repair-6",
       "pass": true,
       "tokens": 52,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-job\",\n  \"appType\": \"agent\",\n  \"stack\": \"quartz\",\n  \"agent\": {\n    \"durability\": \"files\"\n  }\n}"
     },
     {
       "id": "b-repair-7",
       "pass": true,
       "tokens": 68,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"lantern-queue\",\n  \"appType\": \"worker\",\n  \"stack\": \"clinic\",\n  \"port\": 9488,\n  \"image\": \"keycloak/keycloak:25\",\n  \"healthCheckPath\": \"/state\"\n}"
     },
     {
       "id": "b-repair-8",
       "pass": true,
       "tokens": 63,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"pebble-app\",\n  \"appType\": \"backend\",\n  \"port\": 4652,\n  \"command\": \"elixir app.exs\",\n  \"env\": {\n    \"MODE\": \"3\"\n  }\n}"
     },
     {
       "id": "b-repair-9",
       "pass": true,
       "tokens": 62,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"pebble-cache\",\n  \"appType\": \"bring-your-own\",\n  \"stack\": \"farm\",\n  \"port\": 10996,\n  \"image\": \"keycloak/keycloak:25\"\n}"
     },
     {
       "id": "b-repair-10",
       "pass": true,
       "tokens": 36,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"meadow-web\",\n  \"appType\": \"worker\",\n  \"stack\": \"harbor\"\n}"
     },
     {
       "id": "b-repair-11",
       "pass": true,
       "tokens": 47,
-      "problems": []
+      "problems": [],
+      "answer": "{\n  \"schemaVersion\": 1,\n  \"appName\": \"tulip-api\",\n  \"appType\": \"backend\",\n  \"stack\": \"atlas\",\n  \"port\": 5844\n}"
     }
   ]
 }

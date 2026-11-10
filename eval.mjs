@@ -10,7 +10,10 @@ const arg = (name, fallback) => {
   return i > -1 ? process.argv[i + 1] : fallback;
 };
 const answersFile = arg("answers");
-const answers = answersFile ? JSON.parse(readFileSync(answersFile, "utf-8")) : null; // score hand-written answers instead of calling a server
+// --answers scores saved answers instead of calling a server: either { taskId: answer } (hand-written) or a results file
+// written by --out, whose raw model text is kept in each result's `answer`, so a run can be graded again without the model.
+const answersRaw = answersFile ? JSON.parse(readFileSync(answersFile, "utf-8")) : null;
+const answers = answersRaw?.results ? Object.fromEntries(answersRaw.results.filter((r) => "answer" in r).map((r) => [r.id, r.answer])) : answersRaw;
 const baseUrl = arg("base-url", "http://localhost:11434/v1");
 const model = arg("model");
 if (!model && !answers) { console.error("usage: node eval.mjs --model <name> [--base-url <url>] [--out <file>]"); process.exit(2); }
@@ -74,7 +77,7 @@ for (const task of tasks) {
   let text = "", tokens = 0, error;
   if (answers) {
     if (!(task.id in answers)) error = "no answer given";
-    else { text = JSON.stringify(answers[task.id]); tokens = 0; }
+    else { const a = answers[task.id]; text = typeof a === "string" ? a : JSON.stringify(a); tokens = answersRaw?.results?.find((r) => r.id === task.id)?.tokens ?? 0; }
   } else try {
     const res = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST", headers,
@@ -92,7 +95,7 @@ for (const task of tasks) {
     try { parsed = JSON.parse(extractAny(text)); } catch { problems.push("not valid JSON"); }
     if (parsed !== undefined) (task.kind === "stack" ? scoreStack : scoreSingle)(parsed, task, problems);
   }
-  results.push({ id: task.id, pass: problems.length === 0, tokens, problems });
+  results.push({ id: task.id, pass: problems.length === 0, tokens, problems, ...(error ? {} : { answer: text }) });
   console.log(`${problems.length === 0 ? "PASS" : "FAIL"} ${task.id} (${tokens} tokens)${problems.length ? "\n  " + problems.join("\n  ") : ""}`);
 }
 const passed = results.filter((r) => r.pass).length;
@@ -100,5 +103,5 @@ const totalTokens = results.reduce((n, r) => n + r.tokens, 0);
 const cat = (id) => id.replace(/^b-/, "").replace(/-\d+$/, "");
 console.log(`\n${model ?? "answers"} (prompt ${promptVersion}): ${passed}/${results.length} passed, ${totalTokens} output tokens`);
 const out = arg("out");
-if (out) writeFileSync(out, JSON.stringify({ model, prompt: promptVersion, passed, total: results.length, totalTokens, results }, null, 2));
+if (out) writeFileSync(out, JSON.stringify({ model: model ?? answersRaw?.model, prompt: answersRaw?.prompt ?? promptVersion, passed, total: results.length, totalTokens, results }, null, 2));
 process.exit(passed === results.length ? 0 : 1);
