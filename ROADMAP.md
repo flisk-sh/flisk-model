@@ -23,6 +23,20 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 3. **Score Claude with the Flisk schema in its prompt.** It is unmeasured, and it decides whether a small model has a point at all.
 4. Export the weights and move off the laptop only after that. The live model is still the prompted 7B.
 
+## Which jobs to train next (scored by ICE, 2026-11-11)
+
+Impact, Confidence and Ease, each 1 to 10, ICE is their average. These are judgment scores, not measurements: change them when a number shows otherwise. The rule behind them: **train only jobs where `flisk` can check the answer.** That gives free training data, an honest test, and short outputs a small model can serve within the free Workers AI limit (100 requests a day, shared).
+
+| Job | I | C | E | ICE | Why |
+|---|---|---|---|---|---|
+| Command recommender (a sentence in, the right `flisk` command and flags out) | 8 | 8 | 8 | **8.0** | The command set is closed. Data can be generated from the CLI and docs, and answers checked against the real CLI. |
+| Close the service.json gap on natural wording (17/29 to 22+) | 6 | 8 | 8 | **7.3** | Known misses, graded by `flisk config verify`. PR review and everything else builds on it. |
+| App-build plan (a sentence in, the `flisk resource` / `up` steps out) | 9 | 6 | 5 | **6.7** | Highest payoff, but a plan only counts if `flisk up` works, which is slow to grade. Build it from the command recommender. |
+| Explain a validator error, or convert Compose / Procfile | 6 | 6 | 6 | **6.0** | Useful, but longer outputs that are harder to check. |
+| General heavier code review | 9 | 3 | 2 | **4.7** | No ground truth, a small model will not beat Claude, false positives cost trust, long diffs need hosting we do not have. Use Claude for this; Wolf stays a first pass on config files. |
+
+**First step: score the hosted model.** inference.flisk.si serves prompted Qwen2.5-Coder 32B, which has no score. The 17/29 above is the trained 1.5B, which is not served. Run the 32B on the clean natural set before any claim about what the hosted Wolf can do (the GitHub Actions PR review in [flisk-sh/flisk#3954](https://github.com/flisk-sh/flisk/pull/3954) relies on it).
+
 ## Phase 0: make the claims solid (2 weeks)
 
 - **Round 2 result: gate missed.** Widening phrasing moved the clean set from 14 to 17 of 29, not to the 22 of 26 target. The misses are wrong names, dropped images, exact-string slips and repairs that drop the stack (see the README). **Do not retrain the same night.** Read the misses, fix the data gaps, then try an 8-bit base or the 7B before adding more of the same data.
