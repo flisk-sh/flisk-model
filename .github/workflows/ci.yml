@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # lib/validate.mjs grades with Flisk's own validator, read from a flisk checkout (cli/dist is committed).
+      - uses: actions/checkout@v4
+        with:
+          repository: flisk-sh/flisk
+          path: flisk
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install the validator's dependencies
+        run: npm install --prefix flisk/cli --ignore-scripts --no-audit --no-fund
+      - run: npm test
+        env:
+          FLISK_REPO: ${{ github.workspace }}/flisk
