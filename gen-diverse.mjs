@@ -180,6 +180,8 @@ mkdirSync("data-v3", { recursive: true });
 writeFileSync("data-v3/train.jsonl", train.join("\n") + "\n"); writeFileSync("data-v3/valid.jsonl", valid.join("\n") + "\n");
 const all = train.join("\n");
 console.log(`train ${train.length}, valid ${valid.length}`);
-console.log(`wild prompts found verbatim in training: ${[...wildPrompts].filter((p) => all.includes(JSON.stringify(p).slice(1, -1))).length}`);
+const wildLeaks = [...wildPrompts].filter((p) => all.includes(JSON.stringify(p).slice(1, -1))).length;
+console.log(`wild prompts found verbatim in training: ${wildLeaks}`);
+if (wildLeaks > 0) { console.error(`FAIL: ${wildLeaks} held-out wild prompt(s) appear word for word in the training data, so the published scores would be wrong.`); process.exitCode = 1; }
 console.log(`banned names appearing in training targets: ${[...banned].filter((b) => all.includes(`\\"appName\\":\\"${b}\\"`) || all.includes(`\\"${b}\\"`)).length}`);
 console.log("--- samples:"); for (const l of train.slice(0, 12)) console.log("  " + JSON.parse(l).messages[1].content.replace(/\n/g, " ⏎ ").slice(0, 170));

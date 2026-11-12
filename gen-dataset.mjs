@@ -148,4 +148,5 @@ console.log(`train ${train.length}, valid ${valid.length}, held-out eval tasks $
 const trainText = train.join("\n");
 const leaks = tasks.filter((t) => t.prompt && trainText.includes(t.prompt)).length;
 console.log(`held-out prompts found verbatim in training data: ${leaks}`);
+if (leaks > 0) { console.error(`FAIL: ${leaks} held-out prompt(s) appear word for word in the training data, so the published scores would be wrong.`); process.exitCode = 1; }
 const pb = POOLS.B.stems.filter((x) => trainText.includes(`"${x}-`)).length; console.log(`held-out name stems appearing in training data: ${pb}`);
