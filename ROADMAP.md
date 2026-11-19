@@ -7,8 +7,8 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 | | Status |
 |---|---|
 | Test | Three held-out tests (62 machine-written, natural set 1 of 26 as a development set, clean natural set 2 of 29), graded by the real Flisk validator. Works, but small. |
-| Best small model | Round-2 trained 1.5B: **60/62** machine-written, **18/26** and **17/29** on the two natural sets. Prompted 7B: 54/62, 18/26, 17/29. Claude Haiku and Sonnet: 57/62, 15 to 16/26, 17/29, given no Flisk documentation (re-graded 2026-11-10; 18/29 under the older, looser grader). |
-| Inference service | Live, but it runs on one Mac behind a tunnel, and only the owner can sign in. It is a demo, not a service. |
+| Best small model | Round-2 trained 1.5B: **60/62** machine-written, **18/26** and **17/29** on the two natural sets. Prompted 7B: 54/62, 18/26, 17/29. Claude Haiku and Sonnet: 57/62, 15 to 16/26, 17/29, given no Flisk documentation (re-graded 2026-11-10; 18/29 under the older, looser grader). The 17/29 belongs to that trained 1.5B, which is not served; the hosted Qwen2.5-Coder 32B has no score yet. |
+| Inference service | Live in open beta as a Cloudflare Worker with D1 and Workers AI, serving Qwen2.5-Coder 32B with Flisk's rules. Anyone can sign in with GitHub; all users share 100 model requests a day. Nothing runs on a laptop. The hosted model has no score yet. |
 | Users | None yet. Nobody has told us this solves a problem for them. |
 | Not measured | Cost per request, speed, and how Claude does when it is *given* the schema (which is how agents really use it). |
 
@@ -21,7 +21,7 @@ Where `flisk-model` and [inference.flisk.si](https://inference.flisk.si) are goi
 1. Fix the data gaps the misses show: a type glued onto a name, an image used as the name, a command service that never had a `stack`, and exact strings such as `postgres:16`.
 2. One size check after that: an 8-bit 1.5B or the 7B. Keep it only if it wins on the clean natural set. Do not add more of the same phrasing first.
 3. **Score Claude with the Flisk schema in its prompt.** It is unmeasured, and it decides whether a small model has a point at all.
-4. Export the weights and move off the laptop only after that. The live model is still the prompted 7B.
+4. **Partly done:** export the trained weights only after that. Moving off the laptop is done: the live service is a Cloudflare Worker serving the prompted Qwen2.5-Coder 32B, not the trained 1.5B or the old prompted 7B.
 
 ## Which jobs to train next (scored by ICE, 2026-11-11)
 
@@ -48,11 +48,11 @@ Impact, Confidence and Ease, each 1 to 10, ICE is their average. These are judgm
 
 ## Phase 1: make it reliable (1 to 2 months)
 
-- **Constrained decoding, on the prompted 7B that serves today.** Force the output to match the real `service.json` schema (JSON-schema or grammar mode) so invalid JSON becomes impossible. It will not fix the trained model's misses (wrong names, dropped images), which are valid JSON, but several of the 7B's clean-set misses are not JSON at all. Compare on and off on the clean natural set.
+- **Constrained decoding, on the hosted 32B that serves today.** Force the output to match the real `service.json` schema (JSON-schema or grammar mode) so invalid JSON becomes impossible. It will not fix the trained model's misses (wrong names, dropped images), which are valid JSON, but several of the prompted model's clean-set misses are not JSON at all. Compare on and off on the clean natural set.
 - Fix whole stacks: more stack and dependency data, and a model that plans the list of services before writing them.
 - Publish the weights (MLX and GGUF) with a one-command Ollama recipe, so people can run it themselves. Check each base model's licence first: Qwen 1.5B and 7B are Apache 2.0, the 3B is not.
-- Move the service off a laptop to a small hosted GPU or CPU box, with a status page and uptime numbers.
-- Real accounts: GitHub sign-in open to everyone behind per-key rate limits, usage counted per key (already built), and a simple, honest price.
+- **(Done) Move the service off a laptop.** inference.flisk.si now runs as a Cloudflare Worker with D1 and Workers AI; uptime numbers are not published yet.
+- **(Done in open beta) Real accounts:** GitHub sign-in is open to everyone behind per-key rate limits and usage counted per key; the service is free while in beta.
 - **Gate:** 95% of answers valid on the private test, and the service up 99% of a month.
 
 ## Phase 2: put it where agents already are (2 to 4 months)
@@ -75,7 +75,7 @@ A scan of the MLX fine-tuning ecosystem (`ml-explore/mlx-lm` is the only mainstr
 
 | Idea | Verdict |
 |---|---|
-| **Constrained decoding** (force the answer to match the `service.json` schema) | **Not the next training fix.** The trained model's misses are valid JSON with wrong content, which a schema does not catch. It is still worth trying on the **prompted 7B that is actually serving**, where several clean-set misses are not JSON at all. Ollama's structured-output mode and llama.cpp grammars can enforce it. Compare on and off on the clean set. |
+| **Constrained decoding** (force the answer to match the `service.json` schema) | **Not the next training fix.** The trained model's misses are valid JSON with wrong content, which a schema does not catch. It is still worth trying on the **hosted 32B that is actually serving**, where several clean-set misses are not JSON at all. Ollama's structured-output mode and llama.cpp grammars can enforce it. Compare on and off on the clean set. |
 | **Fuse the adapter and publish weights** (GGUF, MLX, a Modelfile) | **Do in Phase 1.** Nobody can self-host or contribute until this exists. |
 | **A config file for training** | Done: [`configs/lora-v3.yaml`](configs/lora-v3.yaml). Not yet re-run from the file. |
 | **DoRA instead of plain LoRA** | **Cheap experiment.** One flag. Keep it only if it wins on *both* natural-wording tests. |
@@ -102,5 +102,5 @@ A scan of the MLX fine-tuning ecosystem (`ml-explore/mlx-lm` is the only mainstr
 | Invalid JSON | not tracked | 0%, by constrained decoding |
 | Cost per 1,000 requests | not measured | published, with Claude beside it |
 | Time to answer | about 20 s (cold), about 4 s (warm) | under 2 s |
-| Uptime | the laptop | 99% a month |
+| Uptime | Cloudflare Worker (open beta) | 99% a month |
 | Real users | 0 | at least 10 using it from Flisk |

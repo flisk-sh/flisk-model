@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Check roadmap status statements
+        run: node scripts/check-roadmap-status.mjs
       - name: Install the validator's dependencies
         run: npm install --prefix flisk/cli --ignore-scripts --no-audit --no-fund
       - run: npm test
