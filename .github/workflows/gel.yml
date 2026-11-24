@@ -14,5 +14,5 @@ concurrency:
 jobs:
   gel:
     permissions: { contents: read, checks: read, pull-requests: read }
-    uses: flisk-sh/gel/.github/workflows/gel.yml@bf44a026dd4e283b3a47c100d5dc0e09112a2464 # v1.8.0
+    uses: flisk-sh/gel/.github/workflows/gel.yml@1be250eb318de025602a37eb32e50fb6d5913199 # v1.17.0
     with: { gel_ref: bf44a026dd4e283b3a47c100d5dc0e09112a2464 }
